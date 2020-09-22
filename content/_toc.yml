@@ -1,0 +1,11 @@
+- file: intro
+- file: content
+  sections:
+    - file: markdown
+    # - file: notebook
+    - file: code
+- file: activities
+  sections:
+    - file: activity1-js
+    - file: activity1-py
+    - file: lake-champlain
