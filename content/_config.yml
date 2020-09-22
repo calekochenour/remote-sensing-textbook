@@ -1,8 +1,8 @@
 # Book settings
 title: Remote Sensing with Google Earth Engine
 author: TBD
-logo: logo.png
+# logo: logo.png
 
 # latex:
 #   latex_documents:
-#     targetname: remote-sensing-book.tex
+#     targetname: remote-sensing-textbook.tex
