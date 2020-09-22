@@ -1,9 +1,5 @@
 - file: intro
 - file: content
-  sections:
-    - file: markdown
-    # - file: notebook
-    - file: code
 - file: activities
   sections:
     - file: activity1-js
