@@ -24,7 +24,7 @@ Contains Jupyter Notebooks for the Python code in the textbook (independent of t
 
 Run Jupyter Notebooks in Google Colab:
 
-[![image](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/calekochenour/remote-sensing-textbook/tree/master/notebooks)
+[![image](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/calekochenour/remote-sensing-textbook/blob/master/notebooks)
 
 ### `environment.yml`
 
