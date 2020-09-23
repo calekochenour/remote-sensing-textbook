@@ -22,6 +22,10 @@ Contains source files for the textbook content (both pre-build and post-build).
 
 Contains Jupyter Notebooks for the Python code in the textbook (independent of the textbook build).
 
+Run Jupyter Notebooks in Google Colab:
+
+[![image](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/calekochenour/remote-sensing-textbook/tree/master/notebooks)
+
 ### `environment.yml`
 
 Contains all information to create the Conda environment required to:
