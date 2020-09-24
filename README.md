@@ -32,7 +32,4 @@ Run Jupyter Notebooks in Binder:
 
 ### `environment.yml`
 
-Contains all information to create the Conda environment required to:
-
-* Build the textbook from source files in the `contents/` folder; and,
-* Run the Jupyter Notebook files in the `notebooks/` folder.  
+Contains all information to create the Conda environment required to run the Jupyter Notebook files in the `notebooks/` folder.  
