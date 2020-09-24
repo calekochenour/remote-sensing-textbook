@@ -1,4 +1,4 @@
-name: gee-vegetation-change
+name: earth-engine-python
 
 channels:
   - conda-forge
