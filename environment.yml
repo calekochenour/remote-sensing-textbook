@@ -1,0 +1,12 @@
+name: gee-vegetation-change
+
+channels:
+  - conda-forge
+  - defaults
+
+dependencies:
+  - python=3.8
+  - earthengine-api
+  - geemap
+  - jupyter_contrib_nbextensions
+  - autopep8
