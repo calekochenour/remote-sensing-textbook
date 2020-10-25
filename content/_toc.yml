@@ -1,7 +1,32 @@
-- file: intro
-- file: content
-- file: activities
+# Introduction
+- file: chapter01-section01-introduction
+
+# Beginner workflows
+- file: chapter02-section01-introduction
   sections:
-    - file: activity1-js
-    - file: activity1-py
-    - file: lake-champlain
+    - file: chapter02-section02-qualitative-change-detection
+    - file: chapter02-section03-normalized-difference
+    - file: chapter02-section04-image-composites
+    - file: chapter02-section05-image-mosaics
+    - file: chapter02-section06-image-collection-iteration
+    - file: chapter02-section07-cloud-masking
+    - file: chapter02-section08-data-quality-bitmasks
+
+# Intermediate workflows
+- file: chapter03-section01-introduction
+  sections:
+    - file: chapter03-section02-raster-reprojection-resampling
+    - file: chapter03-section03-raster-reduce-resolution
+    - file: chapter03-section04-spectral-indices-math
+    - file: chapter03-section05-image-region-statistics
+    - file: chapter03-section06-image-statistics-module
+    - file: chapter03-section07-data-correlation
+    - file: chapter03-section08-data-conversion-export
+    - file: chapter03-section09-arrays-tasseled-cap
+
+# Advanced workflows
+- file: chapter04-section01-introduction
+  sections:
+    - file: chapter04-section02-agriculture-boundaries-vaalharts
+    - file: chapter04-section03-rice-fields-columbia
+    - file: chapter04-section04-alpine-treeline-colorado

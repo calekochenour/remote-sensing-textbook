@@ -6,7 +6,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Index &#8212; Remote Sensing with Google Earth Engine</title>
+    <title>Image Composites &#8212; Remote Sensing with Google Earth Engine</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
     <link href="_static/css/index.css" rel="stylesheet">
     <link rel="stylesheet" href="_static/sphinx-book-theme.css" type="text/css" />
@@ -33,8 +33,10 @@
         const thebe_selector_output = ".output"
     </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
-    <link rel="index" title="Index" href="#" />
+    <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Image Mosaics" href="chapter02-section05-image-mosaics.html" />
+    <link rel="prev" title="Normalized Difference" href="chapter02-section03-normalized-difference.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="docsearch:language" content="en">
@@ -72,11 +74,48 @@
   </a>
  </li>
 </ul>
-<ul class="nav sidenav_l1">
- <li class="toctree-l1">
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1 current active">
   <a class="reference internal" href="chapter02-section01-introduction.html">
    Chapter 2 - Beginner Workflows
   </a>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="chapter02-section02-qualitative-change-detection.html">
+     Qualitative Change Detection
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="chapter02-section03-normalized-difference.html">
+     Normalized Difference
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Image Composites
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="chapter02-section05-image-mosaics.html">
+     Image Mosaics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="chapter02-section06-image-collection-iteration.html">
+     Image Collection Iteration
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="chapter02-section07-cloud-masking.html">
+     Cloud and Shadow Masking
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="chapter02-section08-data-quality-bitmasks.html">
+     Data Quality Bitmasks
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="chapter03-section01-introduction.html">
@@ -126,6 +165,18 @@
             class="fas fa-download"></i></button>
 
     
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/chapter02-section04-image-composites.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+    
 </div>
         <!-- Source interaction buttons -->
 
@@ -141,8 +192,38 @@
 
     <!-- Table of contents -->
     <div class="d-none d-md-block col-md-2 bd-toc show">
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
         <nav id="bd-toc-nav">
-            
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#data-acquisition-pre-processing">
+   Data Acquisition &amp; Pre-Processing
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#data-processing">
+   Data Processing
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#data-visualization">
+   Data Visualization
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#data-post-processing">
+   Data Post-Processing
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#data-export">
+   Data Export
+  </a>
+ </li>
+</ul>
+
         </nav>
     </div>
 </div>
@@ -151,13 +232,60 @@
         
               <div>
                 
-
-<h1 id="index">Index</h1>
-
-<div class="genindex-jumpbox">
- 
+  <div class="section" id="image-composites">
+<h1>Image Composites<a class="headerlink" href="#image-composites" title="Permalink to this headline">¶</a></h1>
+<p>This lesson recreates the following paper: [PLACEHOLDER]</p>
+<div class="section" id="data-acquisition-pre-processing">
+<h2>Data Acquisition &amp; Pre-Processing<a class="headerlink" href="#data-acquisition-pre-processing" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">//  No data acquisition and preprocessing in the lab.</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="data-processing">
+<h2>Data Processing<a class="headerlink" href="#data-processing" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// No data processing in this lab.</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="data-visualization">
+<h2>Data Visualization<a class="headerlink" href="#data-visualization" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// No data visualization in this lab.</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="data-post-processing">
+<h2>Data Post-Processing<a class="headerlink" href="#data-post-processing" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// No data post-processing in this lab.</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="data-export">
+<h2>Data Export<a class="headerlink" href="#data-export" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// No data export in this lab.</span>
+</pre></div>
+</div>
+</div>
 </div>
 
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
 
               </div>
               
@@ -167,6 +295,8 @@
     
     <div class='prev-next-bottom'>
         
+    <a class='left-prev' id="prev-link" href="chapter02-section03-normalized-difference.html" title="previous page">Normalized Difference</a>
+    <a class='right-next' id="next-link" href="chapter02-section05-image-mosaics.html" title="next page">Image Mosaics</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">
