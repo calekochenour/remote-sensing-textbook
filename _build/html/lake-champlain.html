@@ -1,0 +1,633 @@
+
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lake Champlain &#8212; Remote Sensing with Google Earth Engine</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
+    <link href="_static/css/index.css" rel="stylesheet">
+    <link rel="stylesheet" href="_static/sphinx-book-theme.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-dropdown.css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/sphinx-book-theme.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Python" href="activity1-py.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="docsearch:language" content="en">
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="index.html">
+  
+  
+  <h1 class="site-logo" id="site-title">Remote Sensing with Google Earth Engine</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="chapter01-section01-introduction.html">
+   Chapter 1 - Textbook Introduction
+  </a>
+ </li>
+</ul>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="chapter02-section01-introduction.html">
+   Chapter 2 - Beginner Workflows
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chapter03-section01-introduction.html">
+   Chapter 3 - Intermediate Workflows
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chapter04-section01-introduction.html">
+   Chapter 4 - Advanced Workflows
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="reference internal" href="activities.html">
+   Activities
+  </a>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="activity1-js.html">
+     Javascript
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="activity1-py.html">
+     Python
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Lake Champlain
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/lake-champlain.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+    
+</div>
+        <!-- Source interaction buttons -->
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introduction">
+   Introduction
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#lesson-steps">
+   Lesson Steps
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#set-up-gee-environment">
+     0. Set Up GEE Environment
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#chose-an-area-of-interest">
+     1. Chose an Area of Interest
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#import-a-landsat-collection">
+     2. Import a Landsat Collection
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#filter-the-collection-to-a-specific-time-period">
+     3. Filter the Collection to a Specific Time Period
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#apply-the-palette-to-improve-your-visualizations">
+     4. Apply the Palette to Improve your Visualizations
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#reduce-your-collection-by-compositing-imagery">
+     5. “Reduce” Your Collection by Compositing Imagery
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#create-a-map-of-the-composite-image">
+     6. Create a Map of the Composite Image
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#apply-masking-and-mosaicking-functions">
+     7. Apply Masking and Mosaicking Functions
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#create-a-map-of-the-mosaic-image">
+     8. Create a Map of the Mosaic Image
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+        </nav>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="lake-champlain">
+<h1>Lake Champlain<a class="headerlink" href="#lake-champlain" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>The purpose of this lesson is to further extend your knowledge of GEE and functions to bring images and image collections into the browser for further analysis.</p>
+<p>You’ll locate a Landsat image in any area on the planet that interests you. It could be some place you’ve lived, visited, or a place where you’ve worked. It’s your choice. You can use the map (at the bottom of the Code Editor). In the upper left corner there are drawing tools to allow you to define polygons on the map interface below the Code Editor window.</p>
+</div>
+<div class="section" id="lesson-steps">
+<h2>Lesson Steps<a class="headerlink" href="#lesson-steps" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="set-up-gee-environment">
+<h3>0. Set Up GEE Environment<a class="headerlink" href="#set-up-gee-environment" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import packages</span>
+<span class="kn">import</span> <span class="nn">ee</span>
+<span class="kn">import</span> <span class="nn">geemap</span> <span class="k">as</span> <span class="nn">gm</span>
+
+<span class="c1"># Initialze GEE Python API; authenticate if necessary</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">ee</span><span class="o">.</span><span class="n">Initialize</span><span class="p">()</span>
+
+<span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
+    <span class="n">ee</span><span class="o">.</span><span class="n">Authenticate</span><span class="p">()</span>
+    <span class="n">ee</span><span class="o">.</span><span class="n">Initialize</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="chose-an-area-of-interest">
+<h3>1. Chose an Area of Interest<a class="headerlink" href="#chose-an-area-of-interest" title="Permalink to this headline">¶</a></h3>
+<p>Define a study area of interest.</p>
+<p>Hint: Point or polygon geometry should suffice. Review the EE <a class="reference external" href="https://developers.google.com/earth-engine/geometries#creating-geometry-objects">Geometry Overview</a>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define point for the center of Lake Champlain, Vermont</span>
+<span class="n">lake_champlain_center</span> <span class="o">=</span> <span class="n">ee</span><span class="o">.</span><span class="n">Geometry</span><span class="o">.</span><span class="n">Point</span><span class="p">(</span><span class="o">-</span><span class="mf">73.3333</span><span class="p">,</span> <span class="mf">44.5333</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># DO NOT MODIFY - AUTOGRADE</span>
+<span class="c1"># Initialize points</span>
+<span class="n">points</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="c1"># Check if type is EE geometry</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">lake_champlain_center</span><span class="p">,</span> <span class="n">ee</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">Geometry</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Your study area is the correct type - ee.geometry.Geometry&quot;</span><span class="p">)</span>
+    <span class="n">points</span> <span class="o">+=</span> <span class="mi">10</span>
+
+<span class="c1"># Catch assertion error</span>
+<span class="k">except</span> <span class="ne">AssertionError</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;AssertionError:&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;Your study area object should be of type ee.geometry.Geometry.&quot;</span><span class="p">)</span>
+
+<span class="c1"># Show points earned    </span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Points earned: </span><span class="si">{</span><span class="n">points</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="import-a-landsat-collection">
+<h3>2. Import a Landsat Collection<a class="headerlink" href="#import-a-landsat-collection" title="Permalink to this headline">¶</a></h3>
+<p>Use the <code class="docutils literal notranslate"><span class="pre">ee.ImageCollection</span></code> (“Name of Collection”) function.</p>
+<p>Hint: In the EE DataCatalog each collection has an “EE Snippet” of code that you can cut-and-paste. You can choose any of the Landsat Tier-1 Collections (more on collections that are in the Data Catalog later).</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define collection</span>
+<span class="n">landsat8_t1_sr</span> <span class="o">=</span> <span class="n">ee</span><span class="o">.</span><span class="n">ImageCollection</span><span class="p">(</span><span class="s1">&#39;LANDSAT/LC08/C01/T1_SR&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># DO NOT MODIFY - AUTOGRADE</span>
+<span class="c1"># Initialize points</span>
+<span class="n">points</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="c1"># Check if type is EE image collection</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">landsat8_t1_sr</span><span class="p">,</span> <span class="n">ee</span><span class="o">.</span><span class="n">imagecollection</span><span class="o">.</span><span class="n">ImageCollection</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Your image collection object is the correct type - ee.imagecollection.ImageCollection&quot;</span><span class="p">)</span>
+    <span class="n">points</span> <span class="o">+=</span> <span class="mi">10</span>
+
+<span class="c1"># Catch assertion error</span>
+<span class="k">except</span> <span class="ne">AssertionError</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;AssertionError:&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;Your image collection object should be of type ee.imagecollection.ImageCollection.&quot;</span><span class="p">)</span>
+
+<span class="c1"># Show points earned</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Points earned: </span><span class="si">{</span><span class="n">points</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="filter-the-collection-to-a-specific-time-period">
+<h3>3. Filter the Collection to a Specific Time Period<a class="headerlink" href="#filter-the-collection-to-a-specific-time-period" title="Permalink to this headline">¶</a></h3>
+<p>Use the various <code class="docutils literal notranslate"><span class="pre">.filter</span></code> methods under <code class="docutils literal notranslate"><span class="pre">ee.collection</span></code> to filter your data. See examples <a class="reference external" href="https://developers.google.com/earth-engine/ic_filtering">here</a>.</p>
+<p>For instance:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">reduced_collection</span> <span class="o">=</span> <span class="n">ee</span><span class="o">.</span><span class="n">ImageCollection</span><span class="p">(</span>
+    <span class="s1">&#39;LANDSAT/LT05/C01/T2&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">filterDate</span><span class="p">(</span><span class="s1">&#39;1987-01-01&#39;</span><span class="p">,</span> <span class="s1">&#39;1990-05-01&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>You can filter on time and location, image quality, and numerous other image collection properties.</p>
+<p>For now just choose a time range and a location (use <code class="docutils literal notranslate"><span class="pre">.filterbounds</span></code> for this step).</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Filter Landsat 8 Tier 1 SR to Vermont, 6/2018-9/2018</span>
+<span class="n">vermont_jun_sep_2018</span> <span class="o">=</span> <span class="n">landsat8_t1_sr</span><span class="o">.</span><span class="n">filterDate</span><span class="p">(</span>
+    <span class="s1">&#39;2018-06-01&#39;</span><span class="p">,</span> <span class="s1">&#39;2018-09-30&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">filterBounds</span><span class="p">(</span><span class="n">lake_champlain_center</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># DO NOT MODIFY - AUTOGRADE</span>
+<span class="c1"># Initialize points</span>
+<span class="n">points</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="c1"># Check if filtered collection is reduced (less images than original)</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="k">assert</span> <span class="n">vermont_jun_sep_2018</span><span class="o">.</span><span class="n">size</span><span class="p">()</span><span class="o">.</span><span class="n">getInfo</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">landsat8_t1_sr</span><span class="o">.</span><span class="n">size</span><span class="p">()</span><span class="o">.</span><span class="n">getInfo</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Your filtered image collection object has been reduced.&quot;</span><span class="p">)</span>
+    <span class="n">points</span> <span class="o">+=</span> <span class="mi">10</span>
+
+<span class="c1"># Catch assertion error</span>
+<span class="k">except</span> <span class="ne">AssertionError</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;AssertionError:&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;Your filtered image collection object has not been reduced.&quot;</span>
+          <span class="s2">&quot;It has the same number of images as the original collection.&quot;</span><span class="p">)</span>
+
+<span class="c1"># Show points earned</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Points earned: </span><span class="si">{</span><span class="n">points</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Your filtered image collection object has been reduced.
+Points earned: 10
+</pre></div>
+</div>
+</div>
+<div class="section" id="apply-the-palette-to-improve-your-visualizations">
+<h3>4. Apply the Palette to Improve your Visualizations<a class="headerlink" href="#apply-the-palette-to-improve-your-visualizations" title="Permalink to this headline">¶</a></h3>
+<p>Recall that you used the EE palette in Lesson 1, feel free to re-use that code in this exercise. More information on the palette and visualizing imagery can be found <a class="reference external" href="https://developers.google.com/earth-engine/tutorial_api_02">here</a>. You should use the palette to help you visualize your outputs in this exercise.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define Landsat 8 RGB visualization parameters</span>
+<span class="n">l8_vis_params_rgb</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="s1">&#39;bands&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;B4&#39;</span><span class="p">,</span> <span class="s1">&#39;B3&#39;</span><span class="p">,</span> <span class="s1">&#39;B2&#39;</span><span class="p">],</span>
+  <span class="s1">&#39;min&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+  <span class="s1">&#39;max&#39;</span><span class="p">:</span> <span class="mi">3000</span>
+<span class="p">}</span>
+
+<span class="c1"># Define Landsat 8 CIR visualization parameters</span>
+<span class="n">l8_vis_params_cir</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="s1">&#39;bands&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;B5&#39;</span><span class="p">,</span> <span class="s1">&#39;B4&#39;</span><span class="p">,</span> <span class="s1">&#39;B3&#39;</span><span class="p">],</span>
+  <span class="s1">&#39;min&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+  <span class="s1">&#39;max&#39;</span><span class="p">:</span> <span class="mi">5000</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># DO NOT MODIFY - AUTOGRADE</span>
+<span class="c1"># Initialize points</span>
+<span class="n">points</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="c1"># Check if vis params have the correct bands for Landsat 8</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="k">assert</span> <span class="n">l8_vis_params_rgb</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;bands&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="p">[</span><span class="s1">&#39;B4&#39;</span><span class="p">,</span> <span class="s1">&#39;B3&#39;</span><span class="p">,</span> <span class="s1">&#39;B2&#39;</span><span class="p">]</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Your RGB visualization parameters have the correct bands.&quot;</span><span class="p">)</span>
+    <span class="n">points</span> <span class="o">+=</span> <span class="mi">10</span>
+
+<span class="c1"># Catch assertion error</span>
+<span class="k">except</span> <span class="ne">AssertionError</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;AssertionError:&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;Your RGB visualization parameters have incorrect bands.&quot;</span><span class="p">)</span>
+
+<span class="c1"># Show points earned</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Points earned: </span><span class="si">{</span><span class="n">points</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="reduce-your-collection-by-compositing-imagery">
+<h3>5. “Reduce” Your Collection by Compositing Imagery<a class="headerlink" href="#reduce-your-collection-by-compositing-imagery" title="Permalink to this headline">¶</a></h3>
+<p>Using filters above helps to “reduce” the number of scenes in a collection that you’re working with. However this can still result in a “ton” of data! You can use compositing, as described <a class="reference external" href="https://developers.google.com/earth-engine/tutorial_api_05">here</a>, to calculate across all of the images (and bands) in your filtered collection to create, for example, a “median” image. Recall your basic statistics: the median is the “middle value” in a set of observations. Other measures could be applied here too, for instance the “mean” across all images could be determined.</p>
+<p>For this part of the exercise take your time- and space-filtered collection from above and apply a reducer like the “median”. One of the things to remember about collections and display is that the default display on the map for a collection is to take the very latest image in the collection and display. Reducing to the median allows you to “composite” all of the images in the collection and display this result.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Sort collection from least to most cloudy</span>
+<span class="n">vermont_sorted</span> <span class="o">=</span> <span class="n">vermont_jun_sep_2018</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="s1">&#39;CLOUD_COVER&#39;</span><span class="p">)</span>
+
+<span class="c1"># Reduce collection to the first (least cloudy) image</span>
+<span class="n">vermont_least_cloudy</span> <span class="o">=</span> <span class="n">ee</span><span class="o">.</span><span class="n">Image</span><span class="p">(</span><span class="n">vermont_sorted</span><span class="o">.</span><span class="n">first</span><span class="p">())</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># DO NOT MODIFY - AUTOGRADE</span>
+<span class="c1"># Initialize points</span>
+<span class="n">points</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="c1"># Check if image collection has been reduced to a single image</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="k">assert</span> <span class="n">vermont_least_cloudy</span><span class="o">.</span><span class="n">getInfo</span><span class="p">()</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;type&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="s1">&#39;Image&#39;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Your image collection has been reduced to a single image.&quot;</span><span class="p">)</span>
+    <span class="n">points</span> <span class="o">+=</span> <span class="mi">10</span>
+
+<span class="c1"># Catch assertion error</span>
+<span class="k">except</span> <span class="ne">AssertionError</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;AssertionError:&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;Your image collection has not been reduced to a single image.&quot;</span><span class="p">)</span>
+
+<span class="c1"># Show points earned</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Points earned: </span><span class="si">{</span><span class="n">points</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="create-a-map-of-the-composite-image">
+<h3>6. Create a Map of the Composite Image<a class="headerlink" href="#create-a-map-of-the-composite-image" title="Permalink to this headline">¶</a></h3>
+<p>Combine the visualization parameters with your composite image to add the composite to an interactive map for viewing.</p>
+<p>Hint: Review the <a class="reference external" href="https://developers.google.com/earth-engine/image_visualization">Image Visualization</a> documentation, specifically the <code class="docutils literal notranslate"><span class="pre">Map.addLayer()</span></code> function, for help with adding layers to an EE map.</p>
+<p>Hint: Run the following commands in Jupyter Notebook to review <code class="docutils literal notranslate"><span class="pre">geemap</span></code> documentation for creating and working with an interactive map in Python:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Call help on geemap class and methods</span>
+<span class="n">help</span><span class="p">(</span><span class="n">gm</span><span class="o">.</span><span class="n">Map</span><span class="p">)</span>
+<span class="n">help</span><span class="p">(</span><span class="n">gm</span><span class="o">.</span><span class="n">Map</span><span class="o">.</span><span class="n">setOptions</span><span class="p">)</span>
+<span class="n">help</span><span class="p">(</span><span class="n">gm</span><span class="o">.</span><span class="n">Map</span><span class="o">.</span><span class="n">setCenter</span><span class="p">)</span>
+<span class="n">help</span><span class="p">(</span><span class="n">gm</span><span class="o">.</span><span class="n">Map</span><span class="o">.</span><span class="n">addLayer</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Hint: To display a map within Jupyter Notebook, first create a <code class="docutils literal notranslate"><span class="pre">geemap.Map</span></code> object, configure options,  and add layers, then call the variable containing the <code class="docutils literal notranslate"><span class="pre">geemap.Map</span></code> object:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Instantiate map object</span>
+<span class="n">ee_map</span> <span class="o">=</span> <span class="n">gm</span><span class="o">.</span><span class="n">Map</span><span class="p">()</span>
+
+<span class="c1"># Configure map options</span>
+<span class="c1"># CODE FOR MAP OPTIONS</span>
+
+<span class="c1"># Add layers to map</span>
+<span class="c1"># CODE FOR MAP LAYERS</span>
+
+<span class="c1"># Display map</span>
+<span class="n">ee_map</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create interactive map for visualization</span>
+<span class="n">vermont_map</span> <span class="o">=</span> <span class="n">gm</span><span class="o">.</span><span class="n">Map</span><span class="p">()</span>
+
+<span class="c1"># Set basemap</span>
+<span class="n">vermont_map</span><span class="o">.</span><span class="n">setOptions</span><span class="p">(</span><span class="s1">&#39;SATELLITE&#39;</span><span class="p">)</span>
+
+<span class="c1"># Center map to study area</span>
+<span class="n">vermont_map</span><span class="o">.</span><span class="n">setCenter</span><span class="p">(</span>
+    <span class="n">lon</span><span class="o">=</span><span class="n">lake_champlain_center</span><span class="o">.</span><span class="n">coordinates</span><span class="p">()</span><span class="o">.</span><span class="n">getInfo</span><span class="p">()[</span><span class="mi">0</span><span class="p">],</span>
+    <span class="n">lat</span><span class="o">=</span><span class="n">lake_champlain_center</span><span class="o">.</span><span class="n">coordinates</span><span class="p">()</span><span class="o">.</span><span class="n">getInfo</span><span class="p">()[</span><span class="mi">1</span><span class="p">],</span>
+    <span class="n">zoom</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Add least cloudy, RGB and CIR to interactive map</span>
+<span class="n">vermont_map</span><span class="o">.</span><span class="n">addLayer</span><span class="p">(</span>
+    <span class="n">ee_object</span><span class="o">=</span><span class="n">vermont_least_cloudy</span><span class="p">,</span>
+    <span class="n">vis_params</span><span class="o">=</span><span class="n">l8_vis_params_rgb</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Vermont | Lake Champlain | Least Cloudy | RGB&quot;</span><span class="p">,</span>
+    <span class="n">shown</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">opacity</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">vermont_map</span><span class="o">.</span><span class="n">addLayer</span><span class="p">(</span>
+    <span class="n">ee_object</span><span class="o">=</span><span class="n">vermont_least_cloudy</span><span class="p">,</span>
+    <span class="n">vis_params</span><span class="o">=</span><span class="n">l8_vis_params_cir</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Vermont | Lake Champlain | Least Cloudy | CIR&quot;</span><span class="p">,</span>
+    <span class="n">shown</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">opacity</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Add study area (point) to map</span>
+<span class="n">vermont_map</span><span class="o">.</span><span class="n">addLayer</span><span class="p">(</span>
+    <span class="n">ee_object</span><span class="o">=</span><span class="n">lake_champlain_center</span><span class="p">,</span>
+    <span class="n">vis_params</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;color&#39;</span><span class="p">:</span> <span class="s1">&#39;00FF00&#39;</span><span class="p">,</span> <span class="s1">&#39;width&#39;</span><span class="p">:</span> <span class="mi">5</span><span class="p">},</span>
+    <span class="n">name</span><span class="o">=</span><span class="s1">&#39;Vermont | Lake Champlain | Center&#39;</span><span class="p">,</span>
+    <span class="n">shown</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">opacity</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Display map</span>
+<span class="n">vermont_map</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="apply-masking-and-mosaicking-functions">
+<h3>7. Apply Masking and Mosaicking Functions<a class="headerlink" href="#apply-masking-and-mosaicking-functions" title="Permalink to this headline">¶</a></h3>
+<p>Masks and mosaics (information found <a class="reference external" href="https://developers.google.com/earth-engine/tutorial_api_05">here</a>) are very traditional image processing functions. GEE provides very nice capabilities to customize outputs. Read through the example provided and apply a similar approach to your reduced collection. The example discusses a “water mask”, but there are other ways to mask an image, like for instance using a polygon coverage of political boundaries, or maybe “ecoregions”. Try your hand at applying the water mask or developing your own mask, and then use the mosaic function to combine the mask and the reduced image. Hint: There are ancillary data resources in the data catalog that could be used in this step.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load the Hansen dataset</span>
+<span class="n">hansen_2015</span> <span class="o">=</span> <span class="n">ee</span><span class="o">.</span><span class="n">Image</span><span class="p">(</span><span class="s1">&#39;UMD/hansen/global_forest_change_2015&#39;</span><span class="p">)</span>
+
+<span class="c1"># Select the mask band</span>
+<span class="n">datamask</span> <span class="o">=</span> <span class="n">hansen_2015</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s1">&#39;datamask&#39;</span><span class="p">)</span>
+
+<span class="c1"># Create the binary mask; non-water features, no data (0) and land (1)</span>
+<span class="n">water</span> <span class="o">=</span> <span class="n">datamask</span><span class="o">.</span><span class="n">eq</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="c1"># Create water image (mask water with itself)</span>
+<span class="n">water</span> <span class="o">=</span> <span class="n">water</span><span class="o">.</span><span class="n">mask</span><span class="p">(</span><span class="n">water</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create visualization image for Landsat 8</span>
+<span class="n">vermont_least_cloudy_rgb</span> <span class="o">=</span> <span class="n">vermont_least_cloudy</span><span class="o">.</span><span class="n">visualize</span><span class="p">(</span>
+    <span class="o">**</span><span class="p">{</span><span class="s1">&#39;bands&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;B4&#39;</span><span class="p">,</span> <span class="s1">&#39;B3&#39;</span><span class="p">,</span> <span class="s1">&#39;B2&#39;</span><span class="p">],</span> <span class="s1">&#39;max&#39;</span><span class="p">:</span> <span class="mi">3000</span><span class="p">,</span> <span class="s1">&#39;min&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">})</span>
+
+<span class="c1"># Create visualization image for Hansen water mask</span>
+<span class="n">water_vis</span> <span class="o">=</span> <span class="n">water</span><span class="o">.</span><span class="n">visualize</span><span class="p">(</span>
+    <span class="o">**</span><span class="p">{</span><span class="s1">&#39;palette&#39;</span><span class="p">:</span> <span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="s1">&#39;max&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;min&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;opacity&#39;</span><span class="p">:</span> <span class="mf">0.75</span><span class="p">})</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get Landsat image boundary coordinates</span>
+<span class="n">landsat_image_coords</span> <span class="o">=</span> <span class="n">vermont_least_cloudy</span><span class="o">.</span><span class="n">getInfo</span><span class="p">()</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+    <span class="s1">&#39;properties&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;system:footprint&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;coordinates&#39;</span><span class="p">)</span>
+
+<span class="c1"># Define Landsat clip polygon from coordinates</span>
+<span class="n">vermont_clip_poly</span> <span class="o">=</span> <span class="n">ee</span><span class="o">.</span><span class="n">Geometry</span><span class="o">.</span><span class="n">Polygon</span><span class="p">([</span><span class="n">landsat_image_coords</span><span class="p">])</span>
+
+<span class="c1"># Clip water mask to Landsat polygon</span>
+<span class="n">water_vis_clip</span> <span class="o">=</span> <span class="n">water_vis</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">vermont_clip_poly</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create image collection from image visualizations</span>
+<span class="n">vermont_collection</span> <span class="o">=</span> <span class="n">ee</span><span class="o">.</span><span class="n">ImageCollection</span><span class="p">(</span>
+    <span class="p">[</span><span class="n">vermont_least_cloudy_rgb</span><span class="p">,</span> <span class="n">water_vis_clip</span><span class="p">])</span>
+
+<span class="c1"># Create mosaic from image collection</span>
+<span class="n">vermont_mosaic</span> <span class="o">=</span> <span class="n">vermont_collection</span><span class="o">.</span><span class="n">mosaic</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="create-a-map-of-the-mosaic-image">
+<h3>8. Create a Map of the Mosaic Image<a class="headerlink" href="#create-a-map-of-the-mosaic-image" title="Permalink to this headline">¶</a></h3>
+<p>Create a new interactive map and add the mosaic image to the map for viewing.</p>
+<p>Hint: Follow the guidance provided in Section 6 for creating and configuring an interactive map in Jupyter Notebook.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create interactive map for visualization</span>
+<span class="n">mosaic_map</span> <span class="o">=</span> <span class="n">gm</span><span class="o">.</span><span class="n">Map</span><span class="p">()</span>
+
+<span class="c1"># Set basemap</span>
+<span class="n">mosaic_map</span><span class="o">.</span><span class="n">setOptions</span><span class="p">(</span><span class="s1">&#39;SATELLITE&#39;</span><span class="p">)</span>
+
+<span class="c1"># Center map to study area</span>
+<span class="n">mosaic_map</span><span class="o">.</span><span class="n">setCenter</span><span class="p">(</span>
+    <span class="n">lon</span><span class="o">=</span><span class="n">lake_champlain_center</span><span class="o">.</span><span class="n">coordinates</span><span class="p">()</span><span class="o">.</span><span class="n">getInfo</span><span class="p">()[</span><span class="mi">0</span><span class="p">],</span>
+    <span class="n">lat</span><span class="o">=</span><span class="n">lake_champlain_center</span><span class="o">.</span><span class="n">coordinates</span><span class="p">()</span><span class="o">.</span><span class="n">getInfo</span><span class="p">()[</span><span class="mi">1</span><span class="p">],</span>
+    <span class="n">zoom</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Add mosaic image to the map</span>
+<span class="n">mosaic_map</span><span class="o">.</span><span class="n">addLayer</span><span class="p">(</span><span class="n">vermont_mosaic</span><span class="p">,</span> <span class="p">{},</span> <span class="s1">&#39;Vermont | Lake Champlain | Water Mask Mosaic&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Display map</span>
+<span class="n">mosaic_map</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="activity1-py.html" title="previous page">Python</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By TBD<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    <script src="_static/js/index.js"></script>
+    
+  </body>
+</html>
