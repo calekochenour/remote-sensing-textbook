@@ -1,4 +1,4 @@
-# Qualitative Change Detection
+# Qualitative Change Detection - JavaScript
 
 ## Environment Setup
 
