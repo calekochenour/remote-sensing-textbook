@@ -85,7 +85,7 @@ initialize_earth_engine()
 import_geemap()
 ```
 
-## Data Acquisition & Pre-Processing
+## Data Acquisition & Preprocessing
 
 ```{code-block} python
 # Get boundary for Rocky Mountain National Park, Colorado
@@ -122,9 +122,9 @@ rmnp_snow_off_2018 = co_snow_off_2018.clip(rmnp_boundary)
 # No data processing in this lab.
 ```
 
-## Data Post-Processing
+## Data Postprocessing
 ```
-# No data post-processing in this lab.
+# No data postprocessing in this lab.
 ```
 
 ## Data Visualization
