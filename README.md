@@ -16,8 +16,6 @@ The [remote sensing textbook](https://calekochenour.github.io/remote-sensing-tex
 
 ## Contents
 
-The project contains folders for the textbook content as well as other files necessary to re-create the book locally.
-
 ### `content/`
 
 Contains source files for the textbook content (both pre-build and post-build).
