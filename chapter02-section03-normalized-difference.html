@@ -198,6 +198,11 @@
         <nav id="bd-toc-nav">
             <ul class="nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#environment-setup">
+   Environment Setup
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#data-acquisition-pre-processing">
    Data Acquisition &amp; Pre-Processing
   </a>
@@ -208,13 +213,13 @@
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#data-visualization">
-   Data Visualization
+  <a class="reference internal nav-link" href="#data-postprocessing">
+   Data Postprocessing
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#data-post-processing">
-   Data Post-Processing
+  <a class="reference internal nav-link" href="#data-visualization">
+   Data Visualization
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -234,34 +239,309 @@
                 
   <div class="section" id="normalized-difference">
 <h1>Normalized Difference<a class="headerlink" href="#normalized-difference" title="Permalink to this headline">¶</a></h1>
-<p>This lesson recreates the following paper: [PLACEHOLDER]</p>
+<div class="section" id="environment-setup">
+<h2>Environment Setup<a class="headerlink" href="#environment-setup" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">initialize_earth_engine</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;Initializes the Earth Engine Python API.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    str</span>
+
+<span class="sd">    Example</span>
+<span class="sd">    -------</span>
+<span class="sd">        &gt;&gt;&gt; import ee</span>
+<span class="sd">        &gt;&gt;&gt; initialize_earth_engine()</span>
+<span class="sd">        Imported ee. Initialized Earth Engine Python API.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Import ee if not already imported</span>
+    <span class="kn">import</span> <span class="nn">sys</span>
+    <span class="k">if</span> <span class="s2">&quot;ee&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">sys</span><span class="o">.</span><span class="n">modules</span><span class="p">:</span>
+        <span class="kn">import</span> <span class="nn">ee</span>
+        <span class="k">global</span> <span class="n">ee</span>
+
+    <span class="c1"># Initialize Earth Engine Python API</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">ee</span><span class="o">.</span><span class="n">Initialize</span><span class="p">()</span>
+    <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+        <span class="n">ee</span><span class="o">.</span><span class="n">Authenticate</span><span class="p">()</span>
+        <span class="n">ee</span><span class="o">.</span><span class="n">Initialize</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Imported ee. Initialized Earth Engine Python API.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">import_geemap</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;Imports the geemap package (environment-dependent, Google Colab</span>
+<span class="sd">    vs. Jupyter/Binder).</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    environment : str</span>
+<span class="sd">        Message indicating the geemap has been imported into the</span>
+<span class="sd">        environment. The message differs based on the environment.</span>
+
+<span class="sd">    Example</span>
+<span class="sd">    -------</span>
+<span class="sd">        &gt;&gt;&gt; import_geemap()</span>
+<span class="sd">        Notebook running in Jupyter/Binder. Imported geemap as gm.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Check for Google Colab</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="kn">import</span> <span class="nn">google.colab</span>
+    <span class="c1"># Notebook running in Jupyter/Binder</span>
+    <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+        <span class="n">running_in_colab</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="c1"># Notebook running in Google Colab</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">running_in_colab</span> <span class="o">=</span> <span class="kc">True</span>
+
+    <span class="c1"># Import geemap based on environment (Google Colab vs. Jupyter/Binder)</span>
+    <span class="k">if</span> <span class="n">running_in_colab</span><span class="p">:</span>
+        <span class="kn">import</span> <span class="nn">subprocess</span>
+        <span class="n">subprocess</span><span class="o">.</span><span class="n">check_call</span><span class="p">([</span><span class="s2">&quot;python&quot;</span><span class="p">,</span> <span class="s2">&quot;-m&quot;</span><span class="p">,</span> <span class="s2">&quot;pip&quot;</span><span class="p">,</span> <span class="s2">&quot;install&quot;</span><span class="p">,</span> <span class="s2">&quot;geemap&quot;</span><span class="p">])</span>
+        <span class="kn">import</span> <span class="nn">geemap.eefolium</span> <span class="k">as</span> <span class="nn">gm</span>
+        <span class="k">global</span> <span class="n">gm</span>
+        <span class="n">environment</span> <span class="o">=</span> <span class="nb">print</span><span class="p">(</span>
+            <span class="s2">&quot;Notebook running in Google Colab. Imported geemap.folium as gm.&quot;</span>
+        <span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="kn">import</span> <span class="nn">geemap</span> <span class="k">as</span> <span class="nn">gm</span>
+        <span class="k">global</span> <span class="n">gm</span>
+        <span class="n">environment</span> <span class="o">=</span> <span class="nb">print</span><span class="p">(</span>
+            <span class="s2">&quot;Notebook running in Jupyter/Binder. Imported geemap as gm.&quot;</span>
+        <span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">environment</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize Earth Engine Python API</span>
+<span class="n">initialize_earth_engine</span><span class="p">()</span>
+
+<span class="c1"># Import geemap</span>
+<span class="n">import_geemap</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
 <div class="section" id="data-acquisition-pre-processing">
 <h2>Data Acquisition &amp; Pre-Processing<a class="headerlink" href="#data-acquisition-pre-processing" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">//  No data acquisition and preprocessing in the lab.</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get boundary for Rocky Mountain National Park, Colorado</span>
+<span class="n">rmnp_boundary</span> <span class="o">=</span> <span class="n">ee</span><span class="o">.</span><span class="n">FeatureCollection</span><span class="p">(</span>
+    <span class="s2">&quot;users/calekochenour/Rocky_Mountain_National_Park__Boundary_Polygon&quot;</span>
+<span class="p">)</span>
+
+<span class="c1"># Get Landsat 8 collection</span>
+<span class="n">landsat8_t1_sr</span> <span class="o">=</span> <span class="n">ee</span><span class="o">.</span><span class="n">ImageCollection</span><span class="p">(</span><span class="s2">&quot;LANDSAT/LC08/C01/T1_SR&quot;</span><span class="p">)</span>
+
+<span class="c1"># Filter Landsat 8 Tier 1 SR to snow-on conditions near RMNP, 2018</span>
+<span class="n">co_snow_on_2018_l8</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">landsat8_t1_sr</span><span class="o">.</span><span class="n">filterDate</span><span class="p">(</span><span class="s2">&quot;2018-03-01&quot;</span><span class="p">,</span> <span class="s2">&quot;2018-04-30&quot;</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">filterBounds</span><span class="p">(</span><span class="n">rmnp_boundary</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="s2">&quot;CLOUD_COVER&quot;</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">first</span><span class="p">()</span>
+<span class="p">)</span>
+
+<span class="c1"># Filter Landsat 8 Tier 1 SR to snow-off conditions near RMNP, 2018</span>
+<span class="n">co_snow_off_2018_l8</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">landsat8_t1_sr</span><span class="o">.</span><span class="n">filterDate</span><span class="p">(</span><span class="s2">&quot;2018-07-01&quot;</span><span class="p">,</span> <span class="s2">&quot;2018-08-31&quot;</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">filterBounds</span><span class="p">(</span><span class="n">rmnp_boundary</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="s2">&quot;CLOUD_COVER&quot;</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">first</span><span class="p">()</span>
+<span class="p">)</span>
+
+<span class="c1"># Clip snow-on and snow-off imagery to RMNP boundary</span>
+<span class="n">rmnp_snow_on_2018_l8</span> <span class="o">=</span> <span class="n">co_snow_on_2018_l8</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">rmnp_boundary</span><span class="p">)</span>
+<span class="n">rmnp_snow_off_2018_l8</span> <span class="o">=</span> <span class="n">co_snow_off_2018_l8</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">rmnp_boundary</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get Sentinel-2 collection</span>
+<span class="n">sentinel2_level2a</span> <span class="o">=</span> <span class="n">ee</span><span class="o">.</span><span class="n">ImageCollection</span><span class="p">(</span><span class="s2">&quot;COPERNICUS/S2_SR&quot;</span><span class="p">)</span>
+
+<span class="c1"># Filter Sentinel-2 Level 2A to snow-on conditions near RMNP, 2019</span>
+<span class="n">co_snow_on_2019_s2</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">sentinel2_level2a</span><span class="o">.</span><span class="n">filterDate</span><span class="p">(</span><span class="s2">&quot;2019-03-01&quot;</span><span class="p">,</span> <span class="s2">&quot;2019-04-30&quot;</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">filterBounds</span><span class="p">(</span><span class="n">rmnp_boundary</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="s2">&quot;CLOUDY_PIXEL_PERCENTAGE&quot;</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">first</span><span class="p">()</span>
+<span class="p">)</span>
+
+<span class="c1"># Get list of all bands</span>
+<span class="n">s2_band_names</span> <span class="o">=</span> <span class="n">co_snow_on_2019_s2</span><span class="o">.</span><span class="n">bandNames</span><span class="p">()</span>
+
+<span class="c1"># Get a specific band(s)</span>
+<span class="n">s2_red</span> <span class="o">=</span> <span class="n">co_snow_on_2019_s2</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s2">&quot;B4&quot;</span><span class="p">)</span>
+<span class="n">s2_red_nir</span> <span class="o">=</span> <span class="n">co_snow_on_2019_s2</span><span class="o">.</span><span class="n">select</span><span class="p">([</span><span class="s2">&quot;B4&quot;</span><span class="p">,</span> <span class="s2">&quot;B8&quot;</span><span class="p">])</span>
+
+<span class="c1"># Get a list of all metadata properties</span>
+<span class="n">s2_properties</span> <span class="o">=</span> <span class="n">co_snow_on_2019_s2</span><span class="o">.</span><span class="n">propertyNames</span><span class="p">()</span>
+
+<span class="c1"># Get a specific metadata property</span>
+<span class="n">cloudiness</span> <span class="o">=</span> <span class="n">co_snow_on_2019_s2</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;CLOUD_COVERAGE_ASSESSMENT&quot;</span><span class="p">)</span>
+
+<span class="c1"># Get a specific metadata property</span>
+<span class="n">cloudiness</span> <span class="o">=</span> <span class="n">co_snow_on_2019_s2</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;CLOUDY_PIXEL_PERCENTAGE&quot;</span><span class="p">)</span>
+
+<span class="c1"># Get the timestamp and convert to date</span>
+<span class="n">date</span> <span class="o">=</span> <span class="n">ee</span><span class="o">.</span><span class="n">Date</span><span class="p">(</span><span class="n">co_snow_on_2019_s2</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;system:time_start&quot;</span><span class="p">))</span>
+
+<span class="c1"># Filter Sentinel-2 Level 2A to snow-off conditions near RMNP, 2019</span>
+<span class="n">co_snow_off_2019_s2</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">sentinel2_level2a</span><span class="o">.</span><span class="n">filterDate</span><span class="p">(</span><span class="s2">&quot;2019-07-01&quot;</span><span class="p">,</span> <span class="s2">&quot;2019-08-31&quot;</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">filterBounds</span><span class="p">(</span><span class="n">rmnp_boundary</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="s2">&quot;CLOUDY_PIXEL_PERCENTAGE&quot;</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">first</span><span class="p">()</span>
+<span class="p">)</span>
+
+<span class="c1"># Clip snow-on and snow-off imagery (Sentinel-2) to RMNP boundary</span>
+<span class="n">rmnp_snow_on_2019_s2</span> <span class="o">=</span> <span class="n">co_snow_on_2019_s2</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">rmnp_boundary</span><span class="p">)</span>
+<span class="n">rmnp_snow_off_2019_s2</span> <span class="o">=</span> <span class="n">co_snow_off_2019_s2</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">rmnp_boundary</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="data-processing">
 <h2>Data Processing<a class="headerlink" href="#data-processing" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// No data processing in this lab.</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate NDVI for Landsat 8</span>
+<span class="n">rmnp_ndvi_snow_on_l8</span> <span class="o">=</span> <span class="n">co_snow_on_2018_l8</span><span class="o">.</span><span class="n">normalizedDifference</span><span class="p">(</span>
+    <span class="p">[</span><span class="s2">&quot;B5&quot;</span><span class="p">,</span> <span class="s2">&quot;B4&quot;</span><span class="p">]</span>
+<span class="p">)</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">rmnp_boundary</span><span class="p">)</span>
+
+<span class="n">rmnp_ndvi_snow_off_l8</span> <span class="o">=</span> <span class="n">co_snow_off_2018_l8</span><span class="o">.</span><span class="n">normalizedDifference</span><span class="p">(</span>
+    <span class="p">[</span><span class="s2">&quot;B5&quot;</span><span class="p">,</span> <span class="s2">&quot;B4&quot;</span><span class="p">]</span>
+<span class="p">)</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">rmnp_boundary</span><span class="p">)</span>
+
+<span class="c1"># Calculate NDVI for Sentinel-2</span>
+<span class="n">rmnp_ndvi_snow_on_s2</span> <span class="o">=</span> <span class="n">co_snow_on_2019_s2</span><span class="o">.</span><span class="n">normalizedDifference</span><span class="p">(</span>
+    <span class="p">[</span><span class="s2">&quot;B8&quot;</span><span class="p">,</span> <span class="s2">&quot;B4&quot;</span><span class="p">]</span>
+<span class="p">)</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">rmnp_boundary</span><span class="p">)</span>
+
+<span class="n">rmnp_ndvi_snow_off_s2</span> <span class="o">=</span> <span class="n">co_snow_off_2019_s2</span><span class="o">.</span><span class="n">normalizedDifference</span><span class="p">(</span>
+    <span class="p">[</span><span class="s2">&quot;B8&quot;</span><span class="p">,</span> <span class="s2">&quot;B4&quot;</span><span class="p">]</span>
+<span class="p">)</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">rmnp_boundary</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="data-postprocessing">
+<h2>Data Postprocessing<a class="headerlink" href="#data-postprocessing" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># No data postprocessing in this lab.</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="data-visualization">
 <h2>Data Visualization<a class="headerlink" href="#data-visualization" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// No data visualization in this lab.</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create interactive map for visualization and set options</span>
+<span class="k">if</span> <span class="s2">&quot;rmnp_map&quot;</span> <span class="ow">in</span> <span class="nb">globals</span><span class="p">():</span>
+    <span class="k">del</span> <span class="n">rmnp_map</span>
+    <span class="n">rmnp_map</span> <span class="o">=</span> <span class="n">gm</span><span class="o">.</span><span class="n">Map</span><span class="p">()</span>
+    <span class="n">rmnp_map</span><span class="o">.</span><span class="n">setOptions</span><span class="p">(</span><span class="s2">&quot;SATELLITE&quot;</span><span class="p">)</span>
+    <span class="n">rmnp_map</span><span class="o">.</span><span class="n">setCenter</span><span class="p">(</span><span class="n">lon</span><span class="o">=-</span><span class="mf">105.6836</span><span class="p">,</span> <span class="n">lat</span><span class="o">=</span><span class="mf">40.3428</span><span class="p">,</span> <span class="n">zoom</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">rmnp_map</span> <span class="o">=</span> <span class="n">gm</span><span class="o">.</span><span class="n">Map</span><span class="p">()</span>
+    <span class="n">rmnp_map</span><span class="o">.</span><span class="n">setOptions</span><span class="p">(</span><span class="s2">&quot;SATELLITE&quot;</span><span class="p">)</span>
+    <span class="n">rmnp_map</span><span class="o">.</span><span class="n">setCenter</span><span class="p">(</span><span class="n">lon</span><span class="o">=-</span><span class="mf">105.6836</span><span class="p">,</span> <span class="n">lat</span><span class="o">=</span><span class="mf">40.3428</span><span class="p">,</span> <span class="n">zoom</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
 </pre></div>
 </div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set visualization parameters</span>
+<span class="n">l8_vis_params_rgb</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;bands&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;B4&quot;</span><span class="p">,</span> <span class="s2">&quot;B3&quot;</span><span class="p">,</span> <span class="s2">&quot;B2&quot;</span><span class="p">],</span> <span class="s2">&quot;min&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;max&quot;</span><span class="p">:</span> <span class="mi">3000</span><span class="p">}</span>
+<span class="n">l8_vis_params_cir</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;bands&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;B5&quot;</span><span class="p">,</span> <span class="s2">&quot;B4&quot;</span><span class="p">,</span> <span class="s2">&quot;B3&quot;</span><span class="p">],</span> <span class="s2">&quot;min&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;max&quot;</span><span class="p">:</span> <span class="mi">3000</span><span class="p">}</span>
+<span class="n">s2_vis_params_rgb</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;bands&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;B4&quot;</span><span class="p">,</span> <span class="s2">&quot;B3&quot;</span><span class="p">,</span> <span class="s2">&quot;B2&quot;</span><span class="p">],</span> <span class="s2">&quot;min&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;max&quot;</span><span class="p">:</span> <span class="mi">3000</span><span class="p">}</span>
+<span class="n">s2_vis_params_cir</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;bands&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;B8&quot;</span><span class="p">,</span> <span class="s2">&quot;B4&quot;</span><span class="p">,</span> <span class="s2">&quot;B3&quot;</span><span class="p">],</span> <span class="s2">&quot;min&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;max&quot;</span><span class="p">:</span> <span class="mi">3000</span><span class="p">}</span>
+<span class="n">vis_params_ndvi</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;min&quot;</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;max&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;palette&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;blue&quot;</span><span class="p">,</span> <span class="s2">&quot;white&quot;</span><span class="p">,</span> <span class="s2">&quot;green&quot;</span><span class="p">]}</span>
+</pre></div>
 </div>
-<div class="section" id="data-post-processing">
-<h2>Data Post-Processing<a class="headerlink" href="#data-post-processing" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// No data post-processing in this lab.</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set RMNP boundary visualization parameters</span>
+<span class="n">rmnp_boundary_vis</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">ee</span><span class="o">.</span><span class="n">Image</span><span class="p">()</span>
+    <span class="o">.</span><span class="n">byte</span><span class="p">()</span>
+    <span class="o">.</span><span class="n">paint</span><span class="p">(</span><span class="o">**</span><span class="p">{</span><span class="s2">&quot;featureCollection&quot;</span><span class="p">:</span> <span class="n">rmnp_boundary</span><span class="p">,</span> <span class="s2">&quot;color&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;width&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">})</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Add snow-on and snow-off images to map, Landsat 8, RGB and CIR</span>
+<span class="n">rmnp_map</span><span class="o">.</span><span class="n">addLayer</span><span class="p">(</span>
+    <span class="n">rmnp_snow_on_2018_l8</span><span class="p">,</span>
+    <span class="n">l8_vis_params_rgb</span><span class="p">,</span>
+    <span class="s2">&quot;Landsat 8 - RGB - 2018 - RMNP - Snow On&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">rmnp_map</span><span class="o">.</span><span class="n">addLayer</span><span class="p">(</span>
+    <span class="n">rmnp_snow_on_2018_l8</span><span class="p">,</span>
+    <span class="n">l8_vis_params_cir</span><span class="p">,</span>
+    <span class="s2">&quot;Landsat 8 - CIR - 2018 - RMNP - Snow On&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">rmnp_map</span><span class="o">.</span><span class="n">addLayer</span><span class="p">(</span>
+    <span class="n">rmnp_snow_off_2018_l8</span><span class="p">,</span>
+    <span class="n">l8_vis_params_rgb</span><span class="p">,</span>
+    <span class="s2">&quot;Landsat 8 - RGB - 2018 - RMNP - Snow Off&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">rmnp_map</span><span class="o">.</span><span class="n">addLayer</span><span class="p">(</span>
+    <span class="n">rmnp_snow_off_2018_l8</span><span class="p">,</span>
+    <span class="n">l8_vis_params_cir</span><span class="p">,</span>
+    <span class="s2">&quot;Landsat 8 - CIR - 2018 - RMNP - Snow Off&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># Add snow-on and snow-off images to map, Sentinel-2, RGB and CIR</span>
+<span class="n">rmnp_map</span><span class="o">.</span><span class="n">addLayer</span><span class="p">(</span>
+    <span class="n">rmnp_snow_on_2019_s2</span><span class="p">,</span>
+    <span class="n">s2_vis_params_rgb</span><span class="p">,</span>
+    <span class="s2">&quot;Sentinel-2 - RGB - 2019 - RMNP - Snow On&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">rmnp_map</span><span class="o">.</span><span class="n">addLayer</span><span class="p">(</span>
+    <span class="n">rmnp_snow_on_2019_s2</span><span class="p">,</span>
+    <span class="n">s2_vis_params_cir</span><span class="p">,</span>
+    <span class="s2">&quot;Sentinel-2 - CIR - 2019 - RMNP - Snow On&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">rmnp_map</span><span class="o">.</span><span class="n">addLayer</span><span class="p">(</span>
+    <span class="n">rmnp_snow_off_2019_s2</span><span class="p">,</span>
+    <span class="n">s2_vis_params_rgb</span><span class="p">,</span>
+    <span class="s2">&quot;Sentinel-2 - RGB - 2019 - RMNP - Snow Off&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">rmnp_map</span><span class="o">.</span><span class="n">addLayer</span><span class="p">(</span>
+    <span class="n">rmnp_snow_off_2019_s2</span><span class="p">,</span>
+    <span class="n">s2_vis_params_cir</span><span class="p">,</span>
+    <span class="s2">&quot;Sentinel-2 - CIR - 2019 - RMNP - Snow Off&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># Add NDVI to map</span>
+<span class="n">rmnp_map</span><span class="o">.</span><span class="n">addLayer</span><span class="p">(</span>
+    <span class="n">rmnp_ndvi_snow_on_l8</span><span class="p">,</span>
+    <span class="n">vis_params_ndvi</span><span class="p">,</span>
+    <span class="s2">&quot;Landsat 8 - NDVI - 2018 - RMNP - Snow On&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">rmnp_map</span><span class="o">.</span><span class="n">addLayer</span><span class="p">(</span>
+    <span class="n">rmnp_ndvi_snow_off_l8</span><span class="p">,</span>
+    <span class="n">vis_params_ndvi</span><span class="p">,</span>
+    <span class="s2">&quot;Landsat 8 - NDVI - 2018 - RMNP - Snow Off&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">rmnp_map</span><span class="o">.</span><span class="n">addLayer</span><span class="p">(</span>
+    <span class="n">rmnp_ndvi_snow_on_s2</span><span class="p">,</span>
+    <span class="n">vis_params_ndvi</span><span class="p">,</span>
+    <span class="s2">&quot;Sentinel-2 - NDVI - 2019 - RMNP - Snow On&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">rmnp_map</span><span class="o">.</span><span class="n">addLayer</span><span class="p">(</span>
+    <span class="n">rmnp_ndvi_snow_off_s2</span><span class="p">,</span>
+    <span class="n">vis_params_ndvi</span><span class="p">,</span>
+    <span class="s2">&quot;Sentinel-2 - NDVI - 2019 - RMNP - Snow Off&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># Add RMNP boundary to map</span>
+<span class="n">rmnp_map</span><span class="o">.</span><span class="n">addLayer</span><span class="p">(</span><span class="n">rmnp_boundary_vis</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;palette&quot;</span><span class="p">:</span> <span class="s2">&quot;FF0000&quot;</span><span class="p">},</span> <span class="s2">&quot;RMNP Boundary&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Display map</span>
+<span class="n">rmnp_map</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="data-export">
 <h2>Data Export<a class="headerlink" href="#data-export" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// No data export in this lab.</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># No data export in this lab.</span>
 </pre></div>
 </div>
 </div>
