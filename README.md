@@ -1,10 +1,14 @@
+[![Launch Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/calekochenour/remote-sensing-textbook/master)
+[![Launch Google Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/calekochenour/remote-sensing-textbook/blob/master/notebooks)
+[![BSD 3-Clause License](https://img.shields.io/badge/License-BSD%203--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)
+
 # Remote Sensing with Google Earth Engine
 
 This [remote sensing textbook](https://calekochenour.github.io/remote-sensing-textbook/) provides text and examples for how to use Google Earth Engine to work through the remote sensing data workflow:
 
-* Acquisition and Pre-Processing;
+* Acquisition and Preprocessing;
 * Processing;
-* Post-Processing;
+* Postprocessing;
 * Visualization; and,
 * Export.
 
@@ -22,13 +26,9 @@ Contains source files for the textbook content (both pre-build and post-build).
 
 Contains Jupyter Notebooks for the Python code in the textbook (independent of the textbook build).
 
-Run Jupyter Notebooks in Google Colab:
+### `Makefile`
 
-[![Google Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/calekochenour/remote-sensing-textbook/blob/master/notebooks)
-
-Run Jupyter Notebooks in Binder:
-
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/calekochenour/remote-sensing-textbook/master)
+Contains instructions to automate Jupyter Book builds and GitHub commits.
 
 ### `environment.yml`
 
