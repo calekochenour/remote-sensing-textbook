@@ -6,25 +6,25 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Image Composites &#8212; Remote Sensing with Google Earth Engine</title>
+    <title>Edge Detection of Agricultural Fields &#8212; Remote Sensing with Google Earth Engine</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
-    <link href="_static/css/index.css" rel="stylesheet">
-    <link rel="stylesheet" href="_static/sphinx-book-theme.css" type="text/css" />
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-dropdown.css" />
-    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/doctools.js"></script>
-    <script src="_static/language_data.js"></script>
-    <script src="_static/togglebutton.js"></script>
-    <script src="_static/clipboard.min.js"></script>
-    <script src="_static/copybutton.js"></script>
-    <script src="_static/sphinx-book-theme.js"></script>
+    <link href="../_static/css/index.css" rel="stylesheet">
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-dropdown.css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/sphinx-book-theme.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
@@ -32,11 +32,11 @@
         const thebe_selector_input = "pre"
         const thebe_selector_output = ".output"
     </script>
-    <script async="async" src="_static/sphinx-thebe.js"></script>
-    <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Image Mosaics" href="chapter02-section05-image-mosaics.html" />
-    <link rel="prev" title="Normalized Difference" href="chapter02-section03-normalized-difference.html" />
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Vegetation Change in Columbia" href="chapter17-rice-fields-columbia.html" />
+    <link rel="prev" title="Data Conversion and Export" href="../02-intermediate/chapter15-data-conversion-export.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="docsearch:language" content="en">
@@ -53,7 +53,7 @@
 <div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
     
         <div class="navbar-brand-box">
-<a class="navbar-brand text-wrap" href="index.html">
+<a class="navbar-brand text-wrap" href="../index.html">
   
   
   <h1 class="site-logo" id="site-title">Remote Sensing with Google Earth Engine</h1>
@@ -61,70 +61,105 @@
 </a>
 </div>
 
-<form class="bd-search d-flex align-items-center" action="search.html" method="get">
+<form class="bd-search d-flex align-items-center" action="../search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
 </form>
 
 <nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
-  <ul class="nav sidenav_l1">
+  <p class="caption">
+ <span class="caption-text">
+  Beginner Workflows
+ </span>
+</p>
+<ul class="nav sidenav_l1">
  <li class="toctree-l1">
-  <a class="reference internal" href="chapter01-section01-introduction.html">
-   Chapter 1 - Textbook Introduction
+  <a class="reference internal" href="../01-beginner/chapter01-qualitative-change-detection.html">
+   Qualitative Change Detection
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../01-beginner/chapter02-normalized-difference.html">
+   Normalized Difference
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../01-beginner/chapter03-image-composites.html">
+   Image Composites
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../01-beginner/chapter04-image-mosaics.html">
+   Image Mosaics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../01-beginner/chapter05-image-collection-iteration.html">
+   Image Collection Iteration
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../01-beginner/chapter06-cloud-masking.html">
+   Cloud and Shadow Masking
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../01-beginner/chapter07-data-quality-bitmasks.html">
+   Data Quality Bitmasks
   </a>
  </li>
 </ul>
+<p class="caption">
+ <span class="caption-text">
+  Intermediate Workflows
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../02-intermediate/chapter08-raster-reprojection-resampling.html">
+   Raster Reprojection and Resampling
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../02-intermediate/chapter09-raster-reduce-resolution.html">
+   Raster Reduce Resolution
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../02-intermediate/chapter13-data-correlation.html">
+   Data Correlation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../02-intermediate/chapter14-arrays-tasseled-cap.html">
+   Arrays and Tasseled Cap
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../02-intermediate/chapter15-data-conversion-export.html">
+   Data Conversion and Export
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Advanced Workflows
+ </span>
+</p>
 <ul class="current nav sidenav_l1">
  <li class="toctree-l1 current active">
-  <a class="reference internal" href="chapter02-section01-introduction.html">
-   Chapter 2 - Beginner Workflows
-  </a>
-  <ul class="current">
-   <li class="toctree-l2">
-    <a class="reference internal" href="chapter02-section02-qualitative-change-detection.html">
-     Qualitative Change Detection
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="chapter02-section03-normalized-difference.html">
-     Normalized Difference
-    </a>
-   </li>
-   <li class="toctree-l2 current active">
-    <a class="current reference internal" href="#">
-     Image Composites
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="chapter02-section05-image-mosaics.html">
-     Image Mosaics
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="chapter02-section06-image-collection-iteration.html">
-     Image Collection Iteration
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="chapter02-section07-cloud-masking.html">
-     Cloud and Shadow Masking
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="chapter02-section08-data-quality-bitmasks.html">
-     Data Quality Bitmasks
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="chapter03-section01-introduction.html">
-   Chapter 3 - Intermediate Workflows
+  <a class="current reference internal" href="#">
+   Edge Detection of Agricultural Fields
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="chapter04-section01-introduction.html">
-   Chapter 4 - Advanced Workflows
+  <a class="reference internal" href="chapter17-rice-fields-columbia.html">
+   Vegetation Change in Columbia
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chapter18-alpine-treeline-colorado.html">
+   Alpine Treeline Detection
   </a>
  </li>
 </ul>
@@ -169,7 +204,7 @@
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="_sources/chapter02-section04-image-composites.md"><button type="button"
+        <a class="dropdown-buttons" href="../_sources/03-advanced/chapter16-agriculture-boundaries-vaalharts.md"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
                 data-placement="left">.md</button></a>
         <!-- Download PDF via print -->
@@ -232,8 +267,8 @@
         
               <div>
                 
-  <div class="section" id="image-composites">
-<h1>Image Composites<a class="headerlink" href="#image-composites" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="edge-detection-of-agricultural-fields">
+<h1>Edge Detection of Agricultural Fields<a class="headerlink" href="#edge-detection-of-agricultural-fields" title="Permalink to this headline">¶</a></h1>
 <p>This lesson recreates the following paper: [PLACEHOLDER]</p>
 <div class="section" id="data-acquisition-pre-processing">
 <h2>Data Acquisition &amp; Pre-Processing<a class="headerlink" href="#data-acquisition-pre-processing" title="Permalink to this headline">¶</a></h2>
@@ -280,7 +315,7 @@
         },
         kernelOptions: {
             kernelName: "python3",
-            path: "./."
+            path: "./03-advanced"
         },
         predefinedOutput: true
     }
@@ -295,15 +330,15 @@
     
     <div class='prev-next-bottom'>
         
-    <a class='left-prev' id="prev-link" href="chapter02-section03-normalized-difference.html" title="previous page">Normalized Difference</a>
-    <a class='right-next' id="next-link" href="chapter02-section05-image-mosaics.html" title="next page">Image Mosaics</a>
+    <a class='left-prev' id="prev-link" href="../02-intermediate/chapter15-data-conversion-export.html" title="previous page">Data Conversion and Export</a>
+    <a class='right-next' id="next-link" href="chapter17-rice-fields-columbia.html" title="next page">Vegetation Change in Columbia</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">
     <div class="container">
       <p>
         
-          By TBD<br/>
+          By Cale Kochenour<br/>
         
             &copy; Copyright 2020.<br/>
       </p>
@@ -315,7 +350,7 @@
       </div>
     </div>
 
-    <script src="_static/js/index.js"></script>
+    <script src="../_static/js/index.js"></script>
     
   </body>
 </html>
