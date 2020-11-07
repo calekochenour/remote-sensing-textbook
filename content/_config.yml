@@ -1,8 +1,12 @@
 # Book settings
 title: Remote Sensing with Google Earth Engine
-author: TBD
+author: Cale Kochenour
 # logo: logo.png
 
 # latex:
 #   latex_documents:
 #     targetname: remote-sensing-textbook.tex
+
+# HTML-specific settings
+html:
+  home_page_in_navbar       : false
