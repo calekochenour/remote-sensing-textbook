@@ -6,7 +6,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Normalized Difference &#8212; Remote Sensing with Google Earth Engine</title>
+    <title>Chapter 2: Normalized Difference &#8212; Remote Sensing with Google Earth Engine</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
     <link href="../_static/css/index.css" rel="stylesheet">
     <link rel="stylesheet" href="../_static/sphinx-book-theme.css" type="text/css" />
@@ -35,8 +35,8 @@
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Image Composites" href="chapter03-image-composites.html" />
-    <link rel="prev" title="Qualitative Change Detection" href="chapter01-qualitative-change-detection.html" />
+    <link rel="next" title="Chapter 3: Image Composites" href="chapter03-image-composites.html" />
+    <link rel="prev" title="Chapter 1: Qualitative Change Detection" href="chapter01-qualitative-change-detection.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="docsearch:language" content="en">
@@ -75,17 +75,17 @@
 <ul class="current nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="chapter01-qualitative-change-detection.html">
-   Qualitative Change Detection
+   Chapter 1: Qualitative Change Detection
   </a>
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   Normalized Difference
+   Chapter 2: Normalized Difference
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="chapter03-image-composites.html">
-   Image Composites
+   Chapter 3: Image Composites
   </a>
  </li>
  <li class="toctree-l1">
@@ -123,6 +123,21 @@
  <li class="toctree-l1">
   <a class="reference internal" href="../02-intermediate/chapter09-raster-reduce-resolution.html">
    Raster Reduce Resolution
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../02-intermediate/chapter10-spectral-indices-math.html">
+   Spectral Indices and Math
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../02-intermediate/chapter11-image-region-statistics.html">
+   Image Region Statistics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../02-intermediate/chapter12-image-statistics-module.html">
+   Image Statistics Module
   </a>
  </li>
  <li class="toctree-l1">
@@ -204,9 +219,9 @@
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/01-beginner/chapter02-normalized-difference.md"><button type="button"
+        <a class="dropdown-buttons" href="../_sources/01-beginner/chapter02-normalized-difference.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.md</button></a>
+                data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
             onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
@@ -223,6 +238,28 @@
 
         <!-- Launch buttons -->
 
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/calekochenour/remote-sensing-textbook/master?urlpath=tree/content/01-beginner/chapter02-normalized-difference.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <a class="colab-button" href="https://colab.research.google.com/github/calekochenour/remote-sensing-textbook/blob/master/content/01-beginner/chapter02-normalized-difference.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="../_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
+        
+    </div>
+</div>
+
     </div>
 
     <!-- Table of contents -->
@@ -238,8 +275,8 @@
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#data-acquisition-pre-processing">
-   Data Acquisition &amp; Pre-Processing
+  <a class="reference internal nav-link" href="#data-acquisition-and-preprocessing">
+   Data Acquisition and Preprocessing
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -272,17 +309,19 @@
         
               <div>
                 
-  <div class="section" id="normalized-difference">
-<h1>Normalized Difference<a class="headerlink" href="#normalized-difference" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="chapter-2-normalized-difference">
+<h1>Chapter 2: Normalized Difference<a class="headerlink" href="#chapter-2-normalized-difference" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="environment-setup">
 <h2>Environment Setup<a class="headerlink" href="#environment-setup" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">initialize_earth_engine</span><span class="p">():</span>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">initialize_earth_engine</span><span class="p">():</span>
     <span class="sd">&quot;&quot;&quot;Initializes the Earth Engine Python API.</span>
-
+<span class="sd">    </span>
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
 <span class="sd">    str</span>
-
+<span class="sd">    </span>
 <span class="sd">    Example</span>
 <span class="sd">    -------</span>
 <span class="sd">        &gt;&gt;&gt; import ee</span>
@@ -305,16 +344,20 @@
     <span class="k">return</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Imported ee. Initialized Earth Engine Python API.&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">import_geemap</span><span class="p">():</span>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">import_geemap</span><span class="p">():</span>
     <span class="sd">&quot;&quot;&quot;Imports the geemap package (environment-dependent, Google Colab</span>
 <span class="sd">    vs. Jupyter/Binder).</span>
-
+<span class="sd">    </span>
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
 <span class="sd">    environment : str</span>
 <span class="sd">        Message indicating the geemap has been imported into the</span>
 <span class="sd">        environment. The message differs based on the environment.</span>
-
+<span class="sd">    </span>
 <span class="sd">    Example</span>
 <span class="sd">    -------</span>
 <span class="sd">        &gt;&gt;&gt; import_geemap()</span>
@@ -345,21 +388,42 @@
         <span class="n">environment</span> <span class="o">=</span> <span class="nb">print</span><span class="p">(</span>
             <span class="s2">&quot;Notebook running in Jupyter/Binder. Imported geemap as gm.&quot;</span>
         <span class="p">)</span>
-
+    
     <span class="k">return</span> <span class="n">environment</span>
 </pre></div>
 </div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize Earth Engine Python API</span>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize Earth Engine Python API</span>
 <span class="n">initialize_earth_engine</span><span class="p">()</span>
-
-<span class="c1"># Import geemap</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import geemap</span>
 <span class="n">import_geemap</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
-<div class="section" id="data-acquisition-pre-processing">
-<h2>Data Acquisition &amp; Pre-Processing<a class="headerlink" href="#data-acquisition-pre-processing" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get boundary for Rocky Mountain National Park, Colorado</span>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load Notebook formatter</span>
+<span class="o">%</span><span class="k">load_ext</span> nb_black
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="data-acquisition-and-preprocessing">
+<h2>Data Acquisition and Preprocessing<a class="headerlink" href="#data-acquisition-and-preprocessing" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get boundary for Rocky Mountain National Park, Colorado</span>
 <span class="n">rmnp_boundary</span> <span class="o">=</span> <span class="n">ee</span><span class="o">.</span><span class="n">FeatureCollection</span><span class="p">(</span>
     <span class="s2">&quot;users/calekochenour/Rocky_Mountain_National_Park__Boundary_Polygon&quot;</span>
 <span class="p">)</span>
@@ -388,7 +452,11 @@
 <span class="n">rmnp_snow_off_2018_l8</span> <span class="o">=</span> <span class="n">co_snow_off_2018_l8</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">rmnp_boundary</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get Sentinel-2 collection</span>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get Sentinel-2 collection</span>
 <span class="n">sentinel2_level2a</span> <span class="o">=</span> <span class="n">ee</span><span class="o">.</span><span class="n">ImageCollection</span><span class="p">(</span><span class="s2">&quot;COPERNICUS/S2_SR&quot;</span><span class="p">)</span>
 
 <span class="c1"># Filter Sentinel-2 Level 2A to snow-on conditions near RMNP, 2019</span>
@@ -432,9 +500,13 @@
 </pre></div>
 </div>
 </div>
+</div>
+</div>
 <div class="section" id="data-processing">
 <h2>Data Processing<a class="headerlink" href="#data-processing" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate NDVI for Landsat 8</span>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate NDVI for Landsat 8</span>
 <span class="n">rmnp_ndvi_snow_on_l8</span> <span class="o">=</span> <span class="n">co_snow_on_2018_l8</span><span class="o">.</span><span class="n">normalizedDifference</span><span class="p">(</span>
     <span class="p">[</span><span class="s2">&quot;B5&quot;</span><span class="p">,</span> <span class="s2">&quot;B4&quot;</span><span class="p">]</span>
 <span class="p">)</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">rmnp_boundary</span><span class="p">)</span>
@@ -454,15 +526,17 @@
 </pre></div>
 </div>
 </div>
+</div>
+</div>
 <div class="section" id="data-postprocessing">
 <h2>Data Postprocessing<a class="headerlink" href="#data-postprocessing" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># No data postprocessing in this lab.</span>
-</pre></div>
-</div>
+<p>No data postprocessing in this chapter.</p>
 </div>
 <div class="section" id="data-visualization">
 <h2>Data Visualization<a class="headerlink" href="#data-visualization" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create interactive map for visualization and set options</span>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create interactive map for visualization and set options</span>
 <span class="k">if</span> <span class="s2">&quot;rmnp_map&quot;</span> <span class="ow">in</span> <span class="nb">globals</span><span class="p">():</span>
     <span class="k">del</span> <span class="n">rmnp_map</span>
     <span class="n">rmnp_map</span> <span class="o">=</span> <span class="n">gm</span><span class="o">.</span><span class="n">Map</span><span class="p">()</span>
@@ -474,7 +548,11 @@
     <span class="n">rmnp_map</span><span class="o">.</span><span class="n">setCenter</span><span class="p">(</span><span class="n">lon</span><span class="o">=-</span><span class="mf">105.6836</span><span class="p">,</span> <span class="n">lat</span><span class="o">=</span><span class="mf">40.3428</span><span class="p">,</span> <span class="n">zoom</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set visualization parameters</span>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set visualization parameters</span>
 <span class="n">l8_vis_params_rgb</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;bands&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;B4&quot;</span><span class="p">,</span> <span class="s2">&quot;B3&quot;</span><span class="p">,</span> <span class="s2">&quot;B2&quot;</span><span class="p">],</span> <span class="s2">&quot;min&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;max&quot;</span><span class="p">:</span> <span class="mi">3000</span><span class="p">}</span>
 <span class="n">l8_vis_params_cir</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;bands&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;B5&quot;</span><span class="p">,</span> <span class="s2">&quot;B4&quot;</span><span class="p">,</span> <span class="s2">&quot;B3&quot;</span><span class="p">],</span> <span class="s2">&quot;min&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;max&quot;</span><span class="p">:</span> <span class="mi">3000</span><span class="p">}</span>
 <span class="n">s2_vis_params_rgb</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;bands&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;B4&quot;</span><span class="p">,</span> <span class="s2">&quot;B3&quot;</span><span class="p">,</span> <span class="s2">&quot;B2&quot;</span><span class="p">],</span> <span class="s2">&quot;min&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;max&quot;</span><span class="p">:</span> <span class="mi">3000</span><span class="p">}</span>
@@ -482,7 +560,11 @@
 <span class="n">vis_params_ndvi</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;min&quot;</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;max&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;palette&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;blue&quot;</span><span class="p">,</span> <span class="s2">&quot;white&quot;</span><span class="p">,</span> <span class="s2">&quot;green&quot;</span><span class="p">]}</span>
 </pre></div>
 </div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set RMNP boundary visualization parameters</span>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set RMNP boundary visualization parameters</span>
 <span class="n">rmnp_boundary_vis</span> <span class="o">=</span> <span class="p">(</span>
     <span class="n">ee</span><span class="o">.</span><span class="n">Image</span><span class="p">()</span>
     <span class="o">.</span><span class="n">byte</span><span class="p">()</span>
@@ -490,7 +572,11 @@
 <span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Add snow-on and snow-off images to map, Landsat 8, RGB and CIR</span>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Add snow-on and snow-off images to map, Landsat 8, RGB and CIR</span>
 <span class="n">rmnp_map</span><span class="o">.</span><span class="n">addLayer</span><span class="p">(</span>
     <span class="n">rmnp_snow_on_2018_l8</span><span class="p">,</span>
     <span class="n">l8_vis_params_rgb</span><span class="p">,</span>
@@ -569,16 +655,20 @@
 <span class="n">rmnp_map</span><span class="o">.</span><span class="n">addLayer</span><span class="p">(</span><span class="n">rmnp_boundary_vis</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;palette&quot;</span><span class="p">:</span> <span class="s2">&quot;FF0000&quot;</span><span class="p">},</span> <span class="s2">&quot;RMNP Boundary&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Display map</span>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Display map</span>
 <span class="n">rmnp_map</span>
 </pre></div>
 </div>
 </div>
+</div>
+</div>
 <div class="section" id="data-export">
 <h2>Data Export<a class="headerlink" href="#data-export" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># No data export in this lab.</span>
-</pre></div>
-</div>
+<p>No data export in this chapter.</p>
 </div>
 </div>
 
@@ -610,8 +700,8 @@
     
     <div class='prev-next-bottom'>
         
-    <a class='left-prev' id="prev-link" href="chapter01-qualitative-change-detection.html" title="previous page">Qualitative Change Detection</a>
-    <a class='right-next' id="next-link" href="chapter03-image-composites.html" title="next page">Image Composites</a>
+    <a class='left-prev' id="prev-link" href="chapter01-qualitative-change-detection.html" title="previous page">Chapter 1: Qualitative Change Detection</a>
+    <a class='right-next' id="next-link" href="chapter03-image-composites.html" title="next page">Chapter 3: Image Composites</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">
