@@ -1,5 +1,5 @@
 [![Launch Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/calekochenour/remote-sensing-textbook/master)
-[![Launch Google Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/calekochenour/remote-sensing-textbook/blob/master/notebooks)
+[![Launch Google Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/calekochenour/remote-sensing-textbook/blob/master/content)
 [![BSD 3-Clause License](https://img.shields.io/badge/License-BSD%203--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)
 
 # Remote Sensing with Google Earth Engine
@@ -18,11 +18,7 @@ The [remote sensing textbook](https://calekochenour.github.io/remote-sensing-tex
 
 ### `content/`
 
-Contains source files for the textbook content (both pre-build and post-build).
-
-### `notebooks/`
-
-Contains Jupyter Notebooks for the Python code in the textbook (independent of the textbook build).
+Contains source files for the Jupyter Book content (both pre-build and post-build).
 
 ### `Makefile`
 
@@ -30,4 +26,4 @@ Contains instructions to automate Jupyter Book builds and GitHub commits.
 
 ### `environment.yml`
 
-Contains all information to create the Conda environment required to run the Jupyter Notebook files in the `notebooks/` folder.  
+Contains information to create the Conda environment required to run the Jupyter Notebook files contained within the `content/` subfolders.  
