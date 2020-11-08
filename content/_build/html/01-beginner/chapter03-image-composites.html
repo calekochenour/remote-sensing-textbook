@@ -1,0 +1,624 @@
+
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chapter 3: Image Composites &#8212; Remote Sensing with Google Earth Engine</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
+    <link href="../_static/css/index.css" rel="stylesheet">
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-dropdown.css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/sphinx-book-theme.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Image Mosaics" href="chapter04-image-mosaics.html" />
+    <link rel="prev" title="Chapter 2: Normalized Difference" href="chapter02-normalized-difference.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="docsearch:language" content="en">
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../index.html">
+  
+  
+  <h1 class="site-logo" id="site-title">Remote Sensing with Google Earth Engine</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <p class="caption">
+ <span class="caption-text">
+  Beginner Workflows
+ </span>
+</p>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="chapter01-qualitative-change-detection.html">
+   Chapter 1: Qualitative Change Detection
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chapter02-normalized-difference.html">
+   Chapter 2: Normalized Difference
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Chapter 3: Image Composites
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chapter04-image-mosaics.html">
+   Image Mosaics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chapter05-image-collection-iteration.html">
+   Image Collection Iteration
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chapter06-cloud-masking.html">
+   Cloud and Shadow Masking
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chapter07-data-quality-bitmasks.html">
+   Data Quality Bitmasks
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Intermediate Workflows
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../02-intermediate/chapter08-raster-reprojection-resampling.html">
+   Raster Reprojection and Resampling
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../02-intermediate/chapter09-raster-reduce-resolution.html">
+   Raster Reduce Resolution
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../02-intermediate/chapter10-spectral-indices-math.html">
+   Spectral Indices and Math
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../02-intermediate/chapter11-image-region-statistics.html">
+   Image Region Statistics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../02-intermediate/chapter12-image-statistics-module.html">
+   Image Statistics Module
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../02-intermediate/chapter13-data-correlation.html">
+   Data Correlation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../02-intermediate/chapter14-arrays-tasseled-cap.html">
+   Arrays and Tasseled Cap
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../02-intermediate/chapter15-data-conversion-export.html">
+   Data Conversion and Export
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Advanced Workflows
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../03-advanced/chapter16-agriculture-boundaries-vaalharts.html">
+   Edge Detection of Agricultural Fields
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../03-advanced/chapter17-rice-fields-columbia.html">
+   Vegetation Change in Columbia
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../03-advanced/chapter18-alpine-treeline-colorado.html">
+   Alpine Treeline Detection
+  </a>
+ </li>
+</ul>
+
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/01-beginner/chapter03-image-composites.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+    
+</div>
+        <!-- Source interaction buttons -->
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/calekochenour/remote-sensing-textbook/master?urlpath=tree/content/01-beginner/chapter03-image-composites.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <a class="colab-button" href="https://colab.research.google.com/github/calekochenour/remote-sensing-textbook/blob/master/content/01-beginner/chapter03-image-composites.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="../_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#environment-setup">
+   Environment Setup
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#data-acquisition-and-preprocessing">
+   Data Acquisition and Preprocessing
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#data-processing">
+   Data Processing
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#data-postprocessing">
+   Data Postprocessing
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#data-visualization">
+   Data Visualization
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#data-export">
+   Data Export
+  </a>
+ </li>
+</ul>
+
+        </nav>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="chapter-3-image-composites">
+<h1>Chapter 3: Image Composites<a class="headerlink" href="#chapter-3-image-composites" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="environment-setup">
+<h2>Environment Setup<a class="headerlink" href="#environment-setup" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">initialize_earth_engine</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;Initializes the Earth Engine Python API.</span>
+<span class="sd">    </span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    str</span>
+<span class="sd">    </span>
+<span class="sd">    Example</span>
+<span class="sd">    -------</span>
+<span class="sd">        &gt;&gt;&gt; import ee</span>
+<span class="sd">        &gt;&gt;&gt; initialize_earth_engine()</span>
+<span class="sd">        Imported ee. Initialized Earth Engine Python API.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Import ee if not already imported</span>
+    <span class="kn">import</span> <span class="nn">sys</span>
+    <span class="k">if</span> <span class="s2">&quot;ee&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">sys</span><span class="o">.</span><span class="n">modules</span><span class="p">:</span>
+        <span class="kn">import</span> <span class="nn">ee</span>
+        <span class="k">global</span> <span class="n">ee</span>
+
+    <span class="c1"># Initialize Earth Engine Python API</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">ee</span><span class="o">.</span><span class="n">Initialize</span><span class="p">()</span>
+    <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+        <span class="n">ee</span><span class="o">.</span><span class="n">Authenticate</span><span class="p">()</span>
+        <span class="n">ee</span><span class="o">.</span><span class="n">Initialize</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Imported ee. Initialized Earth Engine Python API.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">import_geemap</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;Imports the geemap package (environment-dependent, Google Colab</span>
+<span class="sd">    vs. Jupyter/Binder).</span>
+<span class="sd">    </span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    environment : str</span>
+<span class="sd">        Message indicating the geemap has been imported into the</span>
+<span class="sd">        environment. The message differs based on the environment.</span>
+<span class="sd">    </span>
+<span class="sd">    Example</span>
+<span class="sd">    -------</span>
+<span class="sd">        &gt;&gt;&gt; import_geemap()</span>
+<span class="sd">        Notebook running in Jupyter/Binder. Imported geemap as gm.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Check for Google Colab</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="kn">import</span> <span class="nn">google.colab</span>
+    <span class="c1"># Notebook running in Jupyter/Binder</span>
+    <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+        <span class="n">running_in_colab</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="c1"># Notebook running in Google Colab</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">running_in_colab</span> <span class="o">=</span> <span class="kc">True</span>
+
+    <span class="c1"># Import geemap based on environment (Google Colab vs. Jupyter/Binder)</span>
+    <span class="k">if</span> <span class="n">running_in_colab</span><span class="p">:</span>
+        <span class="kn">import</span> <span class="nn">subprocess</span>
+        <span class="n">subprocess</span><span class="o">.</span><span class="n">check_call</span><span class="p">([</span><span class="s2">&quot;python&quot;</span><span class="p">,</span> <span class="s2">&quot;-m&quot;</span><span class="p">,</span> <span class="s2">&quot;pip&quot;</span><span class="p">,</span> <span class="s2">&quot;install&quot;</span><span class="p">,</span> <span class="s2">&quot;geemap&quot;</span><span class="p">])</span>
+        <span class="kn">import</span> <span class="nn">geemap.eefolium</span> <span class="k">as</span> <span class="nn">gm</span>
+        <span class="k">global</span> <span class="n">gm</span>
+        <span class="n">environment</span> <span class="o">=</span> <span class="nb">print</span><span class="p">(</span>
+            <span class="s2">&quot;Notebook running in Google Colab. Imported geemap.folium as gm.&quot;</span>
+        <span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="kn">import</span> <span class="nn">geemap</span> <span class="k">as</span> <span class="nn">gm</span>
+        <span class="k">global</span> <span class="n">gm</span>
+        <span class="n">environment</span> <span class="o">=</span> <span class="nb">print</span><span class="p">(</span>
+            <span class="s2">&quot;Notebook running in Jupyter/Binder. Imported geemap as gm.&quot;</span>
+        <span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">environment</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">add_ndvi</span><span class="p">(</span><span class="n">image</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Calculates and adds the NDVI band to a Landsat 8 image.</span>
+<span class="sd">    </span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    image : ee.image.Image object</span>
+<span class="sd">        Landsat 8 image.</span>
+<span class="sd">        </span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    image_ndvi : ee.image.Image object</span>
+<span class="sd">        Input landsat 8 image with the NDVI band added, named &#39;NDVI&#39;.</span>
+<span class="sd">        </span>
+<span class="sd">    Example</span>
+<span class="sd">    -------</span>
+<span class="sd">        &gt;&gt;&gt;</span>
+<span class="sd">        &gt;&gt;&gt;</span>
+<span class="sd">        &gt;&gt;&gt;</span>
+<span class="sd">        &gt;&gt;&gt;</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Calculate and add NDVI band</span>
+    <span class="n">image_ndvi</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">addBands</span><span class="p">(</span>
+        <span class="n">image</span><span class="o">.</span><span class="n">normalizedDifference</span><span class="p">([</span><span class="s2">&quot;B5&quot;</span><span class="p">,</span> <span class="s2">&quot;B4&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="s2">&quot;NDVI&quot;</span><span class="p">)</span>
+    <span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">image_ndvi</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize Earth Engine Python API</span>
+<span class="n">initialize_earth_engine</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import geemap</span>
+<span class="n">import_geemap</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="data-acquisition-and-preprocessing">
+<h2>Data Acquisition and Preprocessing<a class="headerlink" href="#data-acquisition-and-preprocessing" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get boundary for Rocky Mountain National Park, Colorado</span>
+<span class="n">rmnp_boundary</span> <span class="o">=</span> <span class="n">ee</span><span class="o">.</span><span class="n">FeatureCollection</span><span class="p">(</span>
+    <span class="s2">&quot;users/calekochenour/Rocky_Mountain_National_Park__Boundary_Polygon&quot;</span>
+<span class="p">)</span>
+
+<span class="c1"># Filter Sentinel-2 imagery for summer 2018</span>
+<span class="n">rmnp_summer_2018</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">ee</span><span class="o">.</span><span class="n">ImageCollection</span><span class="p">(</span><span class="s2">&quot;COPERNICUS/S2_SR&quot;</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">filterDate</span><span class="p">(</span><span class="s2">&quot;2019-06-01&quot;</span><span class="p">,</span> <span class="s2">&quot;2019-09-30&quot;</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">filterBounds</span><span class="p">(</span><span class="n">rmnp_boundary</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="c1"># rmnp_summer_2018.getInfo()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="data-processing">
+<h2>Data Processing<a class="headerlink" href="#data-processing" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create composite images</span>
+<span class="n">rmnp_summer_2018_mean</span> <span class="o">=</span> <span class="n">rmnp_summer_2018</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">rmnp_boundary</span><span class="p">)</span>
+<span class="n">rmnp_summer_2018_median</span> <span class="o">=</span> <span class="n">rmnp_summer_2018</span><span class="o">.</span><span class="n">median</span><span class="p">()</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">rmnp_boundary</span><span class="p">)</span>
+<span class="n">rmnp_summer_2018_max</span> <span class="o">=</span> <span class="n">rmnp_summer_2018</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">rmnp_boundary</span><span class="p">)</span>
+<span class="n">rmnp_summer_2018_min</span> <span class="o">=</span> <span class="n">rmnp_summer_2018</span><span class="o">.</span><span class="n">min</span><span class="p">()</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">rmnp_boundary</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="data-postprocessing">
+<h2>Data Postprocessing<a class="headerlink" href="#data-postprocessing" title="Permalink to this headline">¶</a></h2>
+<p>No data postprocessing in this chapter.</p>
+</div>
+<div class="section" id="data-visualization">
+<h2>Data Visualization<a class="headerlink" href="#data-visualization" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create interactive map for visualization and set options</span>
+<span class="k">if</span> <span class="s2">&quot;rmnp_map&quot;</span> <span class="ow">in</span> <span class="nb">globals</span><span class="p">():</span>
+    <span class="k">del</span> <span class="n">rmnp_map</span>
+    <span class="n">rmnp_map</span> <span class="o">=</span> <span class="n">gm</span><span class="o">.</span><span class="n">Map</span><span class="p">()</span>
+    <span class="n">rmnp_map</span><span class="o">.</span><span class="n">setOptions</span><span class="p">(</span><span class="s2">&quot;SATELLITE&quot;</span><span class="p">)</span>
+    <span class="n">rmnp_map</span><span class="o">.</span><span class="n">setCenter</span><span class="p">(</span><span class="n">lon</span><span class="o">=-</span><span class="mf">105.6836</span><span class="p">,</span> <span class="n">lat</span><span class="o">=</span><span class="mf">40.3428</span><span class="p">,</span> <span class="n">zoom</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">rmnp_map</span> <span class="o">=</span> <span class="n">gm</span><span class="o">.</span><span class="n">Map</span><span class="p">()</span>
+    <span class="n">rmnp_map</span><span class="o">.</span><span class="n">setOptions</span><span class="p">(</span><span class="s2">&quot;SATELLITE&quot;</span><span class="p">)</span>
+    <span class="n">rmnp_map</span><span class="o">.</span><span class="n">setCenter</span><span class="p">(</span><span class="n">lon</span><span class="o">=-</span><span class="mf">105.6836</span><span class="p">,</span> <span class="n">lat</span><span class="o">=</span><span class="mf">40.3428</span><span class="p">,</span> <span class="n">zoom</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set visualization parameters</span>
+<span class="n">s2_vis_params_rgb</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;bands&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;B4&quot;</span><span class="p">,</span> <span class="s2">&quot;B3&quot;</span><span class="p">,</span> <span class="s2">&quot;B2&quot;</span><span class="p">],</span> <span class="s2">&quot;min&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;max&quot;</span><span class="p">:</span> <span class="mi">3000</span><span class="p">}</span>
+<span class="n">vis_params_ndvi</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;min&quot;</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;max&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;palette&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;blue&quot;</span><span class="p">,</span> <span class="s2">&quot;white&quot;</span><span class="p">,</span> <span class="s2">&quot;green&quot;</span><span class="p">]}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set RMNP boundary visualization parameters</span>
+<span class="n">rmnp_boundary_vis</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">ee</span><span class="o">.</span><span class="n">Image</span><span class="p">()</span>
+    <span class="o">.</span><span class="n">byte</span><span class="p">()</span>
+    <span class="o">.</span><span class="n">paint</span><span class="p">(</span><span class="o">**</span><span class="p">{</span><span class="s2">&quot;featureCollection&quot;</span><span class="p">:</span> <span class="n">rmnp_boundary</span><span class="p">,</span> <span class="s2">&quot;color&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;width&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">})</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Add composite images</span>
+<span class="n">rmnp_map</span><span class="o">.</span><span class="n">addLayer</span><span class="p">(</span>
+    <span class="n">ee_object</span><span class="o">=</span><span class="n">rmnp_summer_2018_mean</span><span class="p">,</span>
+    <span class="n">vis_params</span><span class="o">=</span><span class="n">s2_vis_params_rgb</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Sentinel 2 - RGB - Summer 2018 - RMNP - Mean&quot;</span><span class="p">,</span>
+    <span class="n">opacity</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">rmnp_map</span><span class="o">.</span><span class="n">addLayer</span><span class="p">(</span>
+    <span class="n">rmnp_summer_2018_median</span><span class="p">,</span>
+    <span class="n">s2_vis_params_rgb</span><span class="p">,</span>
+    <span class="s2">&quot;Sentinel 2 - RGB - Summer 2018 - RMNP - Median&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">rmnp_map</span><span class="o">.</span><span class="n">addLayer</span><span class="p">(</span>
+    <span class="n">rmnp_summer_2018_max</span><span class="p">,</span>
+    <span class="n">s2_vis_params_rgb</span><span class="p">,</span>
+    <span class="s2">&quot;Sentinel 2 - RGB - Summer 2018 - RMNP - Max&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">rmnp_map</span><span class="o">.</span><span class="n">addLayer</span><span class="p">(</span>
+    <span class="n">rmnp_summer_2018_min</span><span class="p">,</span>
+    <span class="n">s2_vis_params_rgb</span><span class="p">,</span>
+    <span class="s2">&quot;Sentinel 2 - RGB - Summer 2018 - RMNP - Min&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># Add RMNP boundary to map</span>
+<span class="n">rmnp_map</span><span class="o">.</span><span class="n">addLayer</span><span class="p">(</span><span class="n">rmnp_boundary_vis</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;palette&quot;</span><span class="p">:</span> <span class="s2">&quot;FF0000&quot;</span><span class="p">},</span> <span class="s2">&quot;RMNP Boundary&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Display map</span>
+<span class="n">rmnp_map</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="data-export">
+<h2>Data Export<a class="headerlink" href="#data-export" title="Permalink to this headline">¶</a></h2>
+<p>No data export in this chapter.</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./01-beginner"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="chapter02-normalized-difference.html" title="previous page">Chapter 2: Normalized Difference</a>
+    <a class='right-next' id="next-link" href="chapter04-image-mosaics.html" title="next page">Image Mosaics</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Cale Kochenour<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    <script src="../_static/js/index.js"></script>
+    
+  </body>
+</html>
