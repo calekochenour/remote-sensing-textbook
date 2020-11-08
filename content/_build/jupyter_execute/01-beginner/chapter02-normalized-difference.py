@@ -1,15 +1,14 @@
-# Normalized Difference
+# Chapter 2: Normalized Difference
 
 ## Environment Setup
 
-```{code-block} python
 def initialize_earth_engine():
     """Initializes the Earth Engine Python API.
-
+    
     Returns
     -------
     str
-
+    
     Example
     -------
         >>> import ee
@@ -30,19 +29,17 @@ def initialize_earth_engine():
         ee.Initialize()
 
     return print("Imported ee. Initialized Earth Engine Python API.")
-```
 
-```{code-block} python
 def import_geemap():
     """Imports the geemap package (environment-dependent, Google Colab
     vs. Jupyter/Binder).
-
+    
     Returns
     -------
     environment : str
         Message indicating the geemap has been imported into the
         environment. The message differs based on the environment.
-
+    
     Example
     -------
         >>> import_geemap()
@@ -73,21 +70,20 @@ def import_geemap():
         environment = print(
             "Notebook running in Jupyter/Binder. Imported geemap as gm."
         )
-
+    
     return environment
-```
 
-```{code-block} python
 # Initialize Earth Engine Python API
 initialize_earth_engine()
 
 # Import geemap
 import_geemap()
-```
 
-## Data Acquisition & Pre-Processing
+# Load Notebook formatter
+%load_ext nb_black
 
-```{code-block} python
+## Data Acquisition and Preprocessing
+
 # Get boundary for Rocky Mountain National Park, Colorado
 rmnp_boundary = ee.FeatureCollection(
     "users/calekochenour/Rocky_Mountain_National_Park__Boundary_Polygon"
@@ -115,9 +111,7 @@ co_snow_off_2018_l8 = (
 # Clip snow-on and snow-off imagery to RMNP boundary
 rmnp_snow_on_2018_l8 = co_snow_on_2018_l8.clip(rmnp_boundary)
 rmnp_snow_off_2018_l8 = co_snow_off_2018_l8.clip(rmnp_boundary)
-```
 
-```{code-block} python
 # Get Sentinel-2 collection
 sentinel2_level2a = ee.ImageCollection("COPERNICUS/S2_SR")
 
@@ -159,11 +153,9 @@ co_snow_off_2019_s2 = (
 # Clip snow-on and snow-off imagery (Sentinel-2) to RMNP boundary
 rmnp_snow_on_2019_s2 = co_snow_on_2019_s2.clip(rmnp_boundary)
 rmnp_snow_off_2019_s2 = co_snow_off_2019_s2.clip(rmnp_boundary)
-```
 
 ## Data Processing
 
-```{code-block} python
 # Calculate NDVI for Landsat 8
 rmnp_ndvi_snow_on_l8 = co_snow_on_2018_l8.normalizedDifference(
     ["B5", "B4"]
@@ -181,17 +173,13 @@ rmnp_ndvi_snow_on_s2 = co_snow_on_2019_s2.normalizedDifference(
 rmnp_ndvi_snow_off_s2 = co_snow_off_2019_s2.normalizedDifference(
     ["B8", "B4"]
 ).clip(rmnp_boundary)
-```
 
 ## Data Postprocessing
 
-```{code-block} python
-# No data postprocessing in this lab.
-```
+No data postprocessing in this chapter.
 
 ## Data Visualization
 
-```{code-block} python
 # Create interactive map for visualization and set options
 if "rmnp_map" in globals():
     del rmnp_map
@@ -202,27 +190,21 @@ else:
     rmnp_map = gm.Map()
     rmnp_map.setOptions("SATELLITE")
     rmnp_map.setCenter(lon=-105.6836, lat=40.3428, zoom=10)
-```
 
-```{code-block} python
 # Set visualization parameters
 l8_vis_params_rgb = {"bands": ["B4", "B3", "B2"], "min": 0, "max": 3000}
 l8_vis_params_cir = {"bands": ["B5", "B4", "B3"], "min": 0, "max": 3000}
 s2_vis_params_rgb = {"bands": ["B4", "B3", "B2"], "min": 0, "max": 3000}
 s2_vis_params_cir = {"bands": ["B8", "B4", "B3"], "min": 0, "max": 3000}
 vis_params_ndvi = {"min": -1, "max": 1, "palette": ["blue", "white", "green"]}
-```
 
-```{code-block} python
 # Set RMNP boundary visualization parameters
 rmnp_boundary_vis = (
     ee.Image()
     .byte()
     .paint(**{"featureCollection": rmnp_boundary, "color": 1, "width": 3})
 )
-```
 
-```{code-block} python
 # Add snow-on and snow-off images to map, Landsat 8, RGB and CIR
 rmnp_map.addLayer(
     rmnp_snow_on_2018_l8,
@@ -300,14 +282,10 @@ rmnp_map.addLayer(
 
 # Add RMNP boundary to map
 rmnp_map.addLayer(rmnp_boundary_vis, {"palette": "FF0000"}, "RMNP Boundary")
-```
 
-```{code-block} python
 # Display map
 rmnp_map
-```
 
 ## Data Export
-```{code-block} python
-# No data export in this lab.
-```
+
+No data export in this chapter.

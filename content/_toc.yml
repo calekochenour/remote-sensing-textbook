@@ -17,9 +17,9 @@
   chapters:
   - file: 02-intermediate/chapter08-raster-reprojection-resampling
   - file: 02-intermediate/chapter09-raster-reduce-resolution
-  - file: 02-intermediate/chapter10-spectral-indices
-  - file: 02-intermediate/chapter11-image-region
-  - file: 02-intermediate/chapter12-image-statistics
+  - file: 02-intermediate/chapter10-spectral-indices-math
+  - file: 02-intermediate/chapter11-image-region-statistics
+  - file: 02-intermediate/chapter12-image-statistics-module
   - file: 02-intermediate/chapter13-data-correlation
   - file: 02-intermediate/chapter14-arrays-tasseled-cap
   - file: 02-intermediate/chapter15-data-conversion-export

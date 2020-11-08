@@ -1,15 +1,14 @@
-# Qualitative Change Detection
+# Chapter 3: Image Composites
 
 ## Environment Setup
 
-```{code-block} python
 def initialize_earth_engine():
     """Initializes the Earth Engine Python API.
-
+    
     Returns
     -------
     str
-
+    
     Example
     -------
         >>> import ee
@@ -25,24 +24,22 @@ def initialize_earth_engine():
     # Initialize Earth Engine Python API
     try:
         ee.Initialize()
-    except Exception as error:
+    except Exception:
         ee.Authenticate()
         ee.Initialize()
 
     return print("Imported ee. Initialized Earth Engine Python API.")
-```
 
-```{code-block} python
 def import_geemap():
     """Imports the geemap package (environment-dependent, Google Colab
     vs. Jupyter/Binder).
-
+    
     Returns
     -------
     environment : str
         Message indicating the geemap has been imported into the
         environment. The message differs based on the environment.
-
+    
     Example
     -------
         >>> import_geemap()
@@ -52,7 +49,7 @@ def import_geemap():
     try:
         import google.colab
     # Notebook running in Jupyter/Binder
-    except ImportError as error:
+    except ImportError:
         running_in_colab = False
     # Notebook running in Google Colab
     else:
@@ -73,62 +70,74 @@ def import_geemap():
         environment = print(
             "Notebook running in Jupyter/Binder. Imported geemap as gm."
         )
-
+    
     return environment
-```
 
-```{code-block} python
 # Initialize Earth Engine Python API
 initialize_earth_engine()
 
 # Import geemap
 import_geemap()
-```
 
-## Data Acquisition & Preprocessing
+# Load Notebook formatter
+%load_ext nb_black
 
-```{code-block} python
+def add_ndvi(image):
+    """Calculates and adds the NDVI band to a Landsat 8 image.
+    
+    Parameters
+    ----------
+    image : ee.image.Image object
+        Landsat 8 image.
+        
+    Returns
+    -------
+    image_ndvi : ee.image.Image object
+        Input landsat 8 image with the NDVI band added, named 'NDVI'.
+        
+    Example
+    -------
+        >>>
+        >>>
+        >>>
+        >>>
+    """
+    # Calculate and add NDVI band
+    image_ndvi = image.addBands(
+        image.normalizedDifference(["B5", "B4"]).rename("NDVI")
+    )
+
+    return image_ndvi
+
+## Data Acquisition and Preprocessing
+
 # Get boundary for Rocky Mountain National Park, Colorado
 rmnp_boundary = ee.FeatureCollection(
     "users/calekochenour/Rocky_Mountain_National_Park__Boundary_Polygon"
 )
 
-# Get Landsat 8 collection
-landsat8_t1_sr = ee.ImageCollection("LANDSAT/LC08/C01/T1_SR")
-
-# Filter Landsat 8 Tier 1 SR to snow-on conditions near RMNP, 2018
-co_snow_on_2018 = (
-    landsat8_t1_sr.filterDate("2018-03-01", "2018-04-30")
+# Filter Sentinel-2 imagery for summer 2018
+rmnp_summer_2018 = (
+    ee.ImageCollection("COPERNICUS/S2_SR")
+    .filterDate("2019-06-01", "2019-09-30")
     .filterBounds(rmnp_boundary)
-    .sort("CLOUD_COVER")
-    .first()
 )
-
-# Filter Landsat 8 Tier 1 SR to snow-off conditions near RMNP, 2018
-co_snow_off_2018 = (
-    landsat8_t1_sr.filterDate("2018-07-01", "2018-08-31")
-    .filterBounds(rmnp_boundary)
-    .sort("CLOUD_COVER")
-    .first()
-)
-
-# Clip snow-on and snow-off imagery to RMNP boundary
-rmnp_snow_on_2018 = co_snow_on_2018.clip(rmnp_boundary)
-rmnp_snow_off_2018 = co_snow_off_2018.clip(rmnp_boundary)
-```
+# rmnp_summer_2018.getInfo()
 
 ## Data Processing
-```{code-block} python
-# No data processing in this lab.
-```
+
+# Create composite images
+rmnp_summer_2018_mean = rmnp_summer_2018.mean().clip(rmnp_boundary)
+rmnp_summer_2018_median = rmnp_summer_2018.median().clip(rmnp_boundary)
+rmnp_summer_2018_max = rmnp_summer_2018.max().clip(rmnp_boundary)
+rmnp_summer_2018_min = rmnp_summer_2018.min().clip(rmnp_boundary)
 
 ## Data Postprocessing
-```
-# No data postprocessing in this lab.
-```
+
+No data postprocessing in this chapter.
 
 ## Data Visualization
-```{code-block} python
+
 # Create interactive map for visualization and set options
 if "rmnp_map" in globals():
     del rmnp_map
@@ -139,55 +148,50 @@ else:
     rmnp_map = gm.Map()
     rmnp_map.setOptions("SATELLITE")
     rmnp_map.setCenter(lon=-105.6836, lat=40.3428, zoom=10)
-```
 
-```{code-block} python
-# Define Landsat visualization parameters
-l8_vis_params_rgb = {"bands": ["B4", "B3", "B2"], "min": 0, "max": 3000}
-l8_vis_params_cir = {"bands": ["B5", "B4", "B3"], "min": 0, "max": 3000}
+# Set visualization parameters
+s2_vis_params_rgb = {"bands": ["B4", "B3", "B2"], "min": 0, "max": 3000}
+vis_params_ndvi = {"min": -1, "max": 1, "palette": ["blue", "white", "green"]}
 
-# Define RMNP boundary visualization parameters
+# Set RMNP boundary visualization parameters
 rmnp_boundary_vis = (
     ee.Image()
     .byte()
     .paint(**{"featureCollection": rmnp_boundary, "color": 1, "width": 3})
 )
 
-# Add snow-on and snow-off images to map, RGB and CIR
+# Add composite images
 rmnp_map.addLayer(
-    rmnp_snow_on_2018,
-    l8_vis_params_rgb,
-    "Landsat 8 - RGB - 2018 - RMNP - Snow On",
+    ee_object=rmnp_summer_2018_mean,
+    vis_params=s2_vis_params_rgb,
+    name="Sentinel 2 - RGB - Summer 2018 - RMNP - Mean",
+    opacity=1.0,
 )
 
 rmnp_map.addLayer(
-    rmnp_snow_on_2018,
-    l8_vis_params_cir,
-    "Landsat 8 - CIR - 2018 - RMNP - Snow On",
+    rmnp_summer_2018_median,
+    s2_vis_params_rgb,
+    "Sentinel 2 - RGB - Summer 2018 - RMNP - Median",
 )
 
 rmnp_map.addLayer(
-    rmnp_snow_off_2018,
-    l8_vis_params_rgb,
-    "Landsat 8 - RGB - 2018 - RMNP - Snow Off",
+    rmnp_summer_2018_max,
+    s2_vis_params_rgb,
+    "Sentinel 2 - RGB - Summer 2018 - RMNP - Max",
 )
 
 rmnp_map.addLayer(
-    rmnp_snow_off_2018,
-    l8_vis_params_cir,
-    "Landsat 8 - CIR - 2018 - RMNP - Snow Off",
+    rmnp_summer_2018_min,
+    s2_vis_params_rgb,
+    "Sentinel 2 - RGB - Summer 2018 - RMNP - Min",
 )
 
 # Add RMNP boundary to map
 rmnp_map.addLayer(rmnp_boundary_vis, {"palette": "FF0000"}, "RMNP Boundary")
-```
 
-```{code-block} python
 # Display map
 rmnp_map
-```
 
 ## Data Export
-```{code-block} python
-# No data processing in this lab.
-```
+
+No data export in this chapter.
