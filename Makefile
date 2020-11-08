@@ -5,7 +5,7 @@
 jupyter_book = content/
 
 # Set commit message
-github_commit_message = "Add workflow for [WORKFLOW NAME]"
+github_commit_message = "Add chapter for image mosaics"
 
 # Clean, build, and publish book to GitHub Pages; push all files to main
 all: publish-book push-main
@@ -22,8 +22,8 @@ build-book: clean-book
 publish-book: build-book
 	ghp-import -n -p -f -m $(github_commit_message) $(jupyter_book)_build/html
 
-# Push all content/ and notebook/ files to main branch
+# Push all content/ files to main branch
 push-main:
-	git add $(jupyter_book) notebooks/
+	git add $(jupyter_book)
 	git commit -m $(github_commit_message)
 	git push origin master
