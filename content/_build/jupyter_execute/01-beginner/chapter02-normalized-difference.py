@@ -173,7 +173,7 @@ rmnp_ndvi_snow_off_s2 = co_snow_off_2019_s2.normalizedDifference(
 
 ## Data Postprocessing
 
-No data postprocessing in this chapter.
+# No data postprocessing in this chapter.
 
 ## Data Visualization
 
@@ -285,4 +285,4 @@ rmnp_map
 
 ## Data Export
 
-No data export in this chapter.
+# No data export in this chapter.

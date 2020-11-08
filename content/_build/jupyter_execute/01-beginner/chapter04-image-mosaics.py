@@ -1,4 +1,4 @@
-# Chapter 1: Qualitative Change Detection
+# Chapter 4: Image Mosaics
 
 ## Environment Setup
 
@@ -17,8 +17,10 @@ def initialize_earth_engine():
     """
     # Import ee if not already imported
     import sys
+
     if "ee" not in sys.modules:
         import ee
+
         global ee
 
     # Initialize Earth Engine Python API
@@ -58,19 +60,22 @@ def import_geemap():
     # Import geemap based on environment (Google Colab vs. Jupyter/Binder)
     if running_in_colab:
         import subprocess
+
         subprocess.check_call(["python", "-m", "pip", "install", "geemap"])
         import geemap.eefolium as gm
+
         global gm
         environment = print(
             "Notebook running in Google Colab. Imported geemap.folium as gm."
         )
     else:
         import geemap as gm
+
         global gm
         environment = print(
             "Notebook running in Jupyter/Binder. Imported geemap as gm."
         )
-    
+
     return environment
 
 # Initialize Earth Engine Python API
@@ -81,33 +86,40 @@ import_geemap()
 
 ## Data Acquisition and Preprocessing
 
-# Get boundary for Rocky Mountain National Park, Colorado
-rmnp_boundary = ee.FeatureCollection(
-    "users/calekochenour/Rocky_Mountain_National_Park__Boundary_Polygon"
+# Get boundary for Rocky Mountain National Park, Colorado (from GEE Asset)
+vt_boundary = ee.FeatureCollection(
+    "users/calekochenour/vermont_state_boundary"
 )
 
 # Get Landsat 8 collection
 landsat8_t1_sr = ee.ImageCollection("LANDSAT/LC08/C01/T1_SR")
 
-# Filter Landsat 8 Tier 1 SR to snow-on conditions near RMNP, 2018
-co_snow_on_2018 = (
-    landsat8_t1_sr.filterDate("2018-03-01", "2018-04-30")
-    .filterBounds(rmnp_boundary)
-    .sort("CLOUD_COVER")
-    .first()
+# Filter Landsat 8 to least cloudy in September
+vermont_summer_median = (
+    landsat8_t1_sr.filter(ee.Filter.calendarRange(2013, 2020, "year"))
+    .filter(ee.Filter.calendarRange(6, 9, "month"))
+    .filterBounds(vt_boundary)
+    .filterMetadata("CLOUD_COVER", "less_than", 0.45)
+    .median()
+    .clip(vt_boundary)
 )
 
-# Filter Landsat 8 Tier 1 SR to snow-off conditions near RMNP, 2018
-co_snow_off_2018 = (
-    landsat8_t1_sr.filterDate("2018-07-01", "2018-08-31")
-    .filterBounds(rmnp_boundary)
-    .sort("CLOUD_COVER")
-    .first()
+# Load and clip the Hansen dataset
+hansen_2015 = ee.Image("UMD/hansen/global_forest_change_2015").clip(
+    vt_boundary
 )
 
-# Clip snow-on and snow-off imagery to RMNP boundary
-rmnp_snow_on_2018 = co_snow_on_2018.clip(rmnp_boundary)
-rmnp_snow_off_2018 = co_snow_off_2018.clip(rmnp_boundary)
+# Select the mask band
+datamask = hansen_2015.select("datamask")
+
+# Create the binary mask; non-water features, no data (0) and land (1)
+# Select water (2) features; water will get value of 1 (used to mask),
+#   and no data and land will get values of 0 (don't mask)
+water = datamask.eq(2)
+
+# Create water image (mask water with itself); returns only water objects
+#  that had mask values of 1
+water = water.mask(water)
 
 ## Data Processing
 
@@ -120,57 +132,48 @@ rmnp_snow_off_2018 = co_snow_off_2018.clip(rmnp_boundary)
 ## Data Visualization
 
 # Create interactive map for visualization and set options
-if "rmnp_map" in globals():
-    del rmnp_map
-    rmnp_map = gm.Map()
-    rmnp_map.setOptions("SATELLITE")
-    rmnp_map.setCenter(lon=-105.6836, lat=40.3428, zoom=10)
+if "vermont_map" in globals():
+    del vermont_map
+    vermont_map = gm.Map()
+    vermont_map.setOptions("SATELLITE")
+    vermont_map.setCenter(lon=-72.7330, lat=44.0939, zoom=7)
 else:
-    rmnp_map = gm.Map()
-    rmnp_map.setOptions("SATELLITE")
-    rmnp_map.setCenter(lon=-105.6836, lat=40.3428, zoom=10)
+    vermont_map = gm.Map()
+    vermont_map.setOptions("SATELLITE")
+    vermont_map.setCenter(lon=-72.7330, lat=44.0939, zoom=7)
 
-# Define Landsat visualization parameters
-l8_vis_params_rgb = {"bands": ["B4", "B3", "B2"], "min": 0, "max": 3000}
-l8_vis_params_cir = {"bands": ["B5", "B4", "B3"], "min": 0, "max": 3000}
+# Create visualization image for Landsat 8 median composite
+vermont_vis_rgb = vermont_summer_median.visualize(
+    **{"bands": ["B4", "B3", "B2"], "min": 0, "max": 2000}
+)
 
-# Define RMNP boundary visualization parameters
-rmnp_boundary_vis = (
+# Create visualization image for Hansen water mask
+water_vis = water.visualize(
+    **{"palette": "blue", "max": 1, "min": 0, "opacity": 0.75}
+)
+
+# Create mosaic from image visualizations
+vermont_mosaic = ee.ImageCollection([vermont_vis_rgb, water_vis]).mosaic()
+vt_boundary_vis = (
     ee.Image()
     .byte()
-    .paint(**{"featureCollection": rmnp_boundary, "color": 1, "width": 3})
+    .paint(**{"featureCollection": vt_boundary, "color": 1, "width": 3})
 )
 
-# Add snow-on and snow-off images to map, RGB and CIR
-rmnp_map.addLayer(
-    rmnp_snow_on_2018,
-    l8_vis_params_rgb,
-    "Landsat 8 - RGB - 2018 - RMNP - Snow On",
-)
+# Add indiviual visualizations to map
+vermont_map.addLayer(vermont_vis_rgb, {}, "Vermont Median RGB Visualization")
+vermont_map.addLayer(water_vis, {}, "Vermont Water Visualization")
 
-rmnp_map.addLayer(
-    rmnp_snow_on_2018,
-    l8_vis_params_cir,
-    "Landsat 8 - CIR - 2018 - RMNP - Snow On",
-)
-
-rmnp_map.addLayer(
-    rmnp_snow_off_2018,
-    l8_vis_params_rgb,
-    "Landsat 8 - RGB - 2018 - RMNP - Snow Off",
-)
-
-rmnp_map.addLayer(
-    rmnp_snow_off_2018,
-    l8_vis_params_cir,
-    "Landsat 8 - CIR - 2018 - RMNP - Snow Off",
-)
+# Add mosiac to map
+vermont_map.addLayer(vermont_mosaic, {}, "Vermont RGB & Water Mosaic")
 
 # Add RMNP boundary to map
-rmnp_map.addLayer(rmnp_boundary_vis, {"palette": "FF0000"}, "RMNP Boundary")
+vermont_map.addLayer(
+    vt_boundary_vis, {"palette": "FF0000"}, "Vermont Boundary"
+)
 
 # Display map
-rmnp_map
+vermont_map
 
 ## Data Export
 

@@ -131,7 +131,7 @@ rmnp_summer_2018_min = rmnp_summer_2018.min().clip(rmnp_boundary)
 
 ## Data Postprocessing
 
-No data postprocessing in this chapter.
+# No data postprocessing in this chapter.
 
 ## Data Visualization
 
@@ -191,4 +191,4 @@ rmnp_map
 
 ## Data Export
 
-No data export in this chapter.
+# No data export in this chapter.
