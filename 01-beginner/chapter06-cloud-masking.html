@@ -6,7 +6,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Cloud and Shadow Masking &#8212; Remote Sensing with Google Earth Engine</title>
+    <title>Chapter 6: Cloud Masking &#8212; Remote Sensing with Google Earth Engine</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
     <link href="../_static/css/index.css" rel="stylesheet">
     <link rel="stylesheet" href="../_static/sphinx-book-theme.css" type="text/css" />
@@ -100,7 +100,7 @@
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   Cloud and Shadow Masking
+   Chapter 6: Cloud Masking
   </a>
  </li>
  <li class="toctree-l1">
@@ -219,9 +219,9 @@
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/01-beginner/chapter06-cloud-masking.md"><button type="button"
+        <a class="dropdown-buttons" href="../_sources/01-beginner/chapter06-cloud-masking.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.md</button></a>
+                data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
             onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
@@ -238,6 +238,28 @@
 
         <!-- Launch buttons -->
 
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/calekochenour/remote-sensing-textbook/master?urlpath=tree/content/01-beginner/chapter06-cloud-masking.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <a class="colab-button" href="https://colab.research.google.com/github/calekochenour/remote-sensing-textbook/blob/master/content/01-beginner/chapter06-cloud-masking.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="../_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
+        
+    </div>
+</div>
+
     </div>
 
     <!-- Table of contents -->
@@ -248,8 +270,13 @@
         <nav id="bd-toc-nav">
             <ul class="nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#data-acquisition-pre-processing">
-   Data Acquisition &amp; Pre-Processing
+  <a class="reference internal nav-link" href="#environment-setup">
+   Environment Setup
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#data-acquisition-and-preprocessing">
+   Data Acquisition and Preprocessing
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -258,13 +285,13 @@
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#data-visualization">
-   Data Visualization
+  <a class="reference internal nav-link" href="#data-postprocessing">
+   Data Postprocessing
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#data-post-processing">
-   Data Post-Processing
+  <a class="reference internal nav-link" href="#data-visualization">
+   Data Visualization
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -282,37 +309,296 @@
         
               <div>
                 
-  <div class="section" id="cloud-and-shadow-masking">
-<h1>Cloud and Shadow Masking<a class="headerlink" href="#cloud-and-shadow-masking" title="Permalink to this headline">¶</a></h1>
-<p>This lesson recreates the following paper: [PLACEHOLDER]</p>
-<div class="section" id="data-acquisition-pre-processing">
-<h2>Data Acquisition &amp; Pre-Processing<a class="headerlink" href="#data-acquisition-pre-processing" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">//  No data acquisition and preprocessing in the lab.</span>
+  <div class="section" id="chapter-6-cloud-masking">
+<h1>Chapter 6: Cloud Masking<a class="headerlink" href="#chapter-6-cloud-masking" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="environment-setup">
+<h2>Environment Setup<a class="headerlink" href="#environment-setup" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">initialize_earth_engine</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;Initializes the Earth Engine Python API.</span>
+<span class="sd">    </span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    str</span>
+<span class="sd">    </span>
+<span class="sd">    Example</span>
+<span class="sd">    -------</span>
+<span class="sd">        &gt;&gt;&gt; import ee</span>
+<span class="sd">        &gt;&gt;&gt; initialize_earth_engine()</span>
+<span class="sd">        Imported ee. Initialized Earth Engine Python API.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Import ee if not already imported</span>
+    <span class="kn">import</span> <span class="nn">sys</span>
+
+    <span class="k">if</span> <span class="s2">&quot;ee&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">sys</span><span class="o">.</span><span class="n">modules</span><span class="p">:</span>
+        <span class="kn">import</span> <span class="nn">ee</span>
+
+        <span class="k">global</span> <span class="n">ee</span>
+
+    <span class="c1"># Initialize Earth Engine Python API</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">ee</span><span class="o">.</span><span class="n">Initialize</span><span class="p">()</span>
+    <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+        <span class="n">ee</span><span class="o">.</span><span class="n">Authenticate</span><span class="p">()</span>
+        <span class="n">ee</span><span class="o">.</span><span class="n">Initialize</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Imported ee. Initialized Earth Engine Python API.&quot;</span><span class="p">)</span>
 </pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">import_geemap</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;Imports the geemap package (environment-dependent, Google Colab</span>
+<span class="sd">    vs. Jupyter/Binder).</span>
+<span class="sd">    </span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    environment : str</span>
+<span class="sd">        Message indicating the geemap has been imported into the</span>
+<span class="sd">        environment. The message differs based on the environment.</span>
+<span class="sd">    </span>
+<span class="sd">    Example</span>
+<span class="sd">    -------</span>
+<span class="sd">        &gt;&gt;&gt; import_geemap()</span>
+<span class="sd">        Notebook running in Jupyter/Binder. Imported geemap as gm.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Check for Google Colab</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="kn">import</span> <span class="nn">google.colab</span>
+    <span class="c1"># Notebook running in Jupyter/Binder</span>
+    <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+        <span class="n">running_in_colab</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="c1"># Notebook running in Google Colab</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">running_in_colab</span> <span class="o">=</span> <span class="kc">True</span>
+
+    <span class="c1"># Import geemap based on environment (Google Colab vs. Jupyter/Binder)</span>
+    <span class="k">if</span> <span class="n">running_in_colab</span><span class="p">:</span>
+        <span class="kn">import</span> <span class="nn">subprocess</span>
+
+        <span class="n">subprocess</span><span class="o">.</span><span class="n">check_call</span><span class="p">([</span><span class="s2">&quot;python&quot;</span><span class="p">,</span> <span class="s2">&quot;-m&quot;</span><span class="p">,</span> <span class="s2">&quot;pip&quot;</span><span class="p">,</span> <span class="s2">&quot;install&quot;</span><span class="p">,</span> <span class="s2">&quot;geemap&quot;</span><span class="p">])</span>
+        <span class="kn">import</span> <span class="nn">geemap.eefolium</span> <span class="k">as</span> <span class="nn">gm</span>
+
+        <span class="k">global</span> <span class="n">gm</span>
+        <span class="n">environment</span> <span class="o">=</span> <span class="nb">print</span><span class="p">(</span>
+            <span class="s2">&quot;Notebook running in Google Colab. Imported geemap.folium as gm.&quot;</span>
+        <span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="kn">import</span> <span class="nn">geemap</span> <span class="k">as</span> <span class="nn">gm</span>
+
+        <span class="k">global</span> <span class="n">gm</span>
+        <span class="n">environment</span> <span class="o">=</span> <span class="nb">print</span><span class="p">(</span>
+            <span class="s2">&quot;Notebook running in Jupyter/Binder. Imported geemap as gm.&quot;</span>
+        <span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">environment</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">mask_clouds_shadows_landsat8</span><span class="p">(</span><span class="n">image</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Masks clouds and cloud shadows in a Landsat 8 image.</span>
+<span class="sd">    </span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    image : ee.image.Image object</span>
+<span class="sd">        Landsat 8 image.</span>
+<span class="sd">    </span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    masked_image : ee.image.Image object</span>
+<span class="sd">         Input image masked for clouds and cloud shadows.</span>
+<span class="sd">    </span>
+<span class="sd">    Example</span>
+<span class="sd">    -------</span>
+<span class="sd">        &gt;&gt;&gt;</span>
+<span class="sd">        &gt;&gt;&gt;</span>
+<span class="sd">        &gt;&gt;&gt;</span>
+<span class="sd">        &gt;&gt;&gt;</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Define cloud shadow (3) and cloud (5) mask bits</span>
+    <span class="n">cloud_shadow_bit_mask</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">3</span>
+    <span class="n">cloud_bit_mask</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">5</span>
+
+    <span class="c1"># Get the pixel QA band</span>
+    <span class="n">qa</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s2">&quot;pixel_qa&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Create mask image, based on both bit masks == 0</span>
+    <span class="n">mask</span> <span class="o">=</span> <span class="n">qa</span><span class="o">.</span><span class="n">bitwiseAnd</span><span class="p">(</span><span class="n">cloud_shadow_bit_mask</span><span class="p">)</span><span class="o">.</span><span class="n">eq</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="ow">and</span> <span class="n">qa</span><span class="o">.</span><span class="n">bitwiseAnd</span><span class="p">(</span>
+        <span class="n">cloud_bit_mask</span>
+    <span class="p">)</span><span class="o">.</span><span class="n">eq</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+    <span class="c1"># Mask image</span>
+    <span class="n">masked_image</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">updateMask</span><span class="p">(</span><span class="n">mask</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">masked_image</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">clip_to_rmnp</span><span class="p">(</span><span class="n">image</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Helper function to clip an image to the RMNP boundary.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Clip image to RMNP boundary</span>
+    <span class="n">clipped</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">rmnp_boundary</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">clipped</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize Earth Engine Python API</span>
+<span class="n">initialize_earth_engine</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import geemap</span>
+<span class="n">import_geemap</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="data-acquisition-and-preprocessing">
+<h2>Data Acquisition and Preprocessing<a class="headerlink" href="#data-acquisition-and-preprocessing" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get RMNP boundary</span>
+<span class="n">rmnp_boundary</span> <span class="o">=</span> <span class="n">ee</span><span class="o">.</span><span class="n">FeatureCollection</span><span class="p">(</span>
+    <span class="s2">&quot;users/calekochenour/Rocky_Mountain_National_Park__Boundary_Polygon&quot;</span>
+<span class="p">)</span>
+
+<span class="c1"># Create mean composite of unmasked images for summer 2013-2020</span>
+<span class="n">rmnp_unmasked_mean</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">ee</span><span class="o">.</span><span class="n">ImageCollection</span><span class="p">(</span><span class="s2">&quot;LANDSAT/LC08/C01/T1_SR&quot;</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">ee</span><span class="o">.</span><span class="n">Filter</span><span class="o">.</span><span class="n">calendarRange</span><span class="p">(</span><span class="mi">2013</span><span class="p">,</span> <span class="mi">2020</span><span class="p">,</span> <span class="s2">&quot;year&quot;</span><span class="p">))</span>
+    <span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">ee</span><span class="o">.</span><span class="n">Filter</span><span class="o">.</span><span class="n">calendarRange</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="s2">&quot;month&quot;</span><span class="p">))</span>
+    <span class="o">.</span><span class="n">filterBounds</span><span class="p">(</span><span class="n">rmnp_boundary</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">clip_to_rmnp</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="p">)</span>
+
+<span class="c1"># Create mean composite of masked images for summer 2013-2020</span>
+<span class="n">rmnp_masked_mean</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">ee</span><span class="o">.</span><span class="n">ImageCollection</span><span class="p">(</span><span class="s2">&quot;LANDSAT/LC08/C01/T1_SR&quot;</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">ee</span><span class="o">.</span><span class="n">Filter</span><span class="o">.</span><span class="n">calendarRange</span><span class="p">(</span><span class="mi">2013</span><span class="p">,</span> <span class="mi">2020</span><span class="p">,</span> <span class="s2">&quot;year&quot;</span><span class="p">))</span>
+    <span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">ee</span><span class="o">.</span><span class="n">Filter</span><span class="o">.</span><span class="n">calendarRange</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="s2">&quot;month&quot;</span><span class="p">))</span>
+    <span class="o">.</span><span class="n">filterBounds</span><span class="p">(</span><span class="n">rmnp_boundary</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">clip_to_rmnp</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">mask_clouds_shadows_landsat8</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
 </div>
 </div>
 <div class="section" id="data-processing">
 <h2>Data Processing<a class="headerlink" href="#data-processing" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// No data processing in this lab.</span>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># No data processing in this chapter.</span>
 </pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="data-postprocessing">
+<h2>Data Postprocessing<a class="headerlink" href="#data-postprocessing" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># No data postprocessing in this chapter.</span>
+</pre></div>
+</div>
+</div>
 </div>
 </div>
 <div class="section" id="data-visualization">
 <h2>Data Visualization<a class="headerlink" href="#data-visualization" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// No data visualization in this lab.</span>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create interactive map for visualization and set options</span>
+<span class="k">if</span> <span class="s2">&quot;rmnp_map&quot;</span> <span class="ow">in</span> <span class="nb">globals</span><span class="p">():</span>
+    <span class="k">del</span> <span class="n">rmnp_map</span>
+    <span class="n">rmnp_map</span> <span class="o">=</span> <span class="n">gm</span><span class="o">.</span><span class="n">Map</span><span class="p">()</span>
+    <span class="n">rmnp_map</span><span class="o">.</span><span class="n">setOptions</span><span class="p">(</span><span class="s2">&quot;SATELLITE&quot;</span><span class="p">)</span>
+    <span class="n">rmnp_map</span><span class="o">.</span><span class="n">setCenter</span><span class="p">(</span><span class="n">lon</span><span class="o">=-</span><span class="mf">105.6836</span><span class="p">,</span> <span class="n">lat</span><span class="o">=</span><span class="mf">40.3428</span><span class="p">,</span> <span class="n">zoom</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">rmnp_map</span> <span class="o">=</span> <span class="n">gm</span><span class="o">.</span><span class="n">Map</span><span class="p">()</span>
+    <span class="n">rmnp_map</span><span class="o">.</span><span class="n">setOptions</span><span class="p">(</span><span class="s2">&quot;SATELLITE&quot;</span><span class="p">)</span>
+    <span class="n">rmnp_map</span><span class="o">.</span><span class="n">setCenter</span><span class="p">(</span><span class="n">lon</span><span class="o">=-</span><span class="mf">105.6836</span><span class="p">,</span> <span class="n">lat</span><span class="o">=</span><span class="mf">40.3428</span><span class="p">,</span> <span class="n">zoom</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
-<div class="section" id="data-post-processing">
-<h2>Data Post-Processing<a class="headerlink" href="#data-post-processing" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// No data post-processing in this lab.</span>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set visualization parameters, Landsat 8 RGB and CIR</span>
+<span class="n">l8_vis_params_rgb</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;bands&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;B4&quot;</span><span class="p">,</span> <span class="s2">&quot;B3&quot;</span><span class="p">,</span> <span class="s2">&quot;B2&quot;</span><span class="p">],</span> <span class="s2">&quot;min&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;max&quot;</span><span class="p">:</span> <span class="mi">3000</span><span class="p">}</span>
+<span class="n">l8_vis_params_cir</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;bands&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;B5&quot;</span><span class="p">,</span> <span class="s2">&quot;B4&quot;</span><span class="p">,</span> <span class="s2">&quot;B3&quot;</span><span class="p">],</span> <span class="s2">&quot;min&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;max&quot;</span><span class="p">:</span> <span class="mi">3000</span><span class="p">}</span>
 </pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Add unmasked and masked composites</span>
+<span class="n">rmnp_map</span><span class="o">.</span><span class="n">addLayer</span><span class="p">(</span>
+    <span class="n">rmnp_unmasked_mean</span><span class="p">,</span>
+    <span class="n">l8_vis_params_rgb</span><span class="p">,</span>
+    <span class="s2">&quot;Landsat 8 - RGB - RMNP Unmasked Mean Composite&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">rmnp_map</span><span class="o">.</span><span class="n">addLayer</span><span class="p">(</span>
+    <span class="n">rmnp_masked_mean</span><span class="p">,</span>
+    <span class="n">l8_vis_params_rgb</span><span class="p">,</span>
+    <span class="s2">&quot;Landsat 8 - RGB - RMNP Masked Mean Composite&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">rmnp_map</span><span class="o">.</span><span class="n">addLayer</span><span class="p">(</span>
+    <span class="n">rmnp_unmasked_mean</span><span class="p">,</span>
+    <span class="n">l8_vis_params_cir</span><span class="p">,</span>
+    <span class="s2">&quot;Landsat 8 - CIR - RMNP Unmasked Mean Composite&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">rmnp_map</span><span class="o">.</span><span class="n">addLayer</span><span class="p">(</span>
+    <span class="n">rmnp_masked_mean</span><span class="p">,</span>
+    <span class="n">l8_vis_params_cir</span><span class="p">,</span>
+    <span class="s2">&quot;Landsat 8 - CIR - RMNP Masked Mean Composite&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Display map</span>
+<span class="n">rmnp_map</span>
+</pre></div>
+</div>
+</div>
 </div>
 </div>
 <div class="section" id="data-export">
 <h2>Data Export<a class="headerlink" href="#data-export" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// No data export in this lab.</span>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># No data export in this chapter.</span>
 </pre></div>
+</div>
+</div>
 </div>
 </div>
 </div>
