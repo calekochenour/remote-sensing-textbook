@@ -5,7 +5,7 @@
 jupyter_book = content/
 
 # Set commit message
-github_commit_message = "Add chapter for image mosaics"
+github_commit_message = "Add bibliography"
 
 # Clean, build, and publish book to GitHub Pages; push all files to main
 all: publish-book push-main
