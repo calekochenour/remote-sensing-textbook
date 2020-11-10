@@ -1,4 +1,4 @@
-# Data Quality Bitmasks
+# Chapter 7: Data Quality Bitmasks
 
 This lesson recreates the following paper: [PLACEHOLDER]
 
