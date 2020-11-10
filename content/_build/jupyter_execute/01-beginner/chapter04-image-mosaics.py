@@ -86,7 +86,7 @@ import_geemap()
 
 ## Data Acquisition and Preprocessing
 
-# Get boundary for Rocky Mountain National Park, Colorado (from GEE Asset)
+# Get boundary for Vermont
 vt_boundary = ee.FeatureCollection(
     "users/calekochenour/vermont_state_boundary"
 )
