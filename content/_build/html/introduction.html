@@ -26,6 +26,8 @@
     <script src="_static/copybutton.js"></script>
     <script src="_static/sphinx-book-theme.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
@@ -35,7 +37,7 @@
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Chapter 1: Qualitative Change Detection" href="01-beginner/chapter01-qualitative-change-detection.html" />
+    <link rel="next" title="Chapter 1: Landsat Collections" href="01-catalog/chapter01-landsat.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="docsearch:language" content="en">
@@ -68,42 +70,69 @@
 <nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
   <p class="caption">
  <span class="caption-text">
+  Data Catalog
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="01-catalog/chapter01-landsat.html">
+   Chapter 1: Landsat Collections
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="01-catalog/chapter02-sentinel.html">
+   Chapter 2: Sentinel Collections
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="01-catalog/chapter03-modis.html">
+   Chapter 3: MODIS Collections
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="01-catalog/chapter04-high-resolution.html">
+   Chapter 4: High-Resolution Collections
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
   Beginner Workflows
  </span>
 </p>
 <ul class="nav sidenav_l1">
  <li class="toctree-l1">
-  <a class="reference internal" href="01-beginner/chapter01-qualitative-change-detection.html">
+  <a class="reference internal" href="02-beginner/chapter01-qualitative-change-detection.html">
    Chapter 1: Qualitative Change Detection
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="01-beginner/chapter02-normalized-difference.html">
-   Chapter 2: Normalized Difference
+  <a class="reference internal" href="02-beginner/chapter02-normalized-difference-vegetation-index.html">
+   Chapter 2: Normalized Difference Vegetation Index
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="01-beginner/chapter03-image-composites.html">
+  <a class="reference internal" href="02-beginner/chapter03-image-composites.html">
    Chapter 3: Image Composites
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="01-beginner/chapter04-image-mosaics.html">
+  <a class="reference internal" href="02-beginner/chapter04-image-mosaics.html">
    Chapter 4: Image Mosaics
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="01-beginner/chapter05-image-collection-iteration.html">
+  <a class="reference internal" href="02-beginner/chapter05-image-collection-iteration.html">
    Chapter 5: Image Collection Iteration
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="01-beginner/chapter06-cloud-masking.html">
+  <a class="reference internal" href="02-beginner/chapter06-cloud-masking.html">
    Chapter 6: Cloud Masking
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="01-beginner/chapter07-data-quality-bitmasks.html">
+  <a class="reference internal" href="02-beginner/chapter07-data-quality-bitmasks.html">
    Chapter 7: Data Quality Bitmasks
   </a>
  </li>
@@ -115,42 +144,42 @@
 </p>
 <ul class="nav sidenav_l1">
  <li class="toctree-l1">
-  <a class="reference internal" href="02-intermediate/chapter08-raster-reprojection-resampling.html">
+  <a class="reference internal" href="03-intermediate/chapter08-raster-reprojection-resampling.html">
    Raster Reprojection and Resampling
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="02-intermediate/chapter09-raster-reduce-resolution.html">
+  <a class="reference internal" href="03-intermediate/chapter09-raster-reduce-resolution.html">
    Raster Reduce Resolution
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="02-intermediate/chapter10-spectral-indices-math.html">
+  <a class="reference internal" href="03-intermediate/chapter10-spectral-indices-math.html">
    Spectral Indices and Math
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="02-intermediate/chapter11-image-region-statistics.html">
+  <a class="reference internal" href="03-intermediate/chapter11-image-region-statistics.html">
    Image Region Statistics
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="02-intermediate/chapter12-image-statistics-module.html">
+  <a class="reference internal" href="03-intermediate/chapter12-image-statistics-module.html">
    Image Statistics Module
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="02-intermediate/chapter13-data-correlation.html">
+  <a class="reference internal" href="03-intermediate/chapter13-data-correlation.html">
    Data Correlation
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="02-intermediate/chapter14-arrays-tasseled-cap.html">
+  <a class="reference internal" href="03-intermediate/chapter14-arrays-tasseled-cap.html">
    Arrays and Tasseled Cap
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="02-intermediate/chapter15-data-conversion-export.html">
+  <a class="reference internal" href="03-intermediate/chapter15-data-conversion-export.html">
    Data Conversion and Export
   </a>
  </li>
@@ -162,18 +191,35 @@
 </p>
 <ul class="nav sidenav_l1">
  <li class="toctree-l1">
-  <a class="reference internal" href="03-advanced/chapter16-agriculture-boundaries-vaalharts.html">
+  <a class="reference internal" href="04-advanced/chapter16-agriculture-boundaries-vaalharts.html">
    Edge Detection of Agricultural Fields
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="03-advanced/chapter17-rice-fields-columbia.html">
+  <a class="reference internal" href="04-advanced/chapter17-rice-fields-columbia.html">
    Vegetation Change in Columbia
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="03-advanced/chapter18-alpine-treeline-colorado.html">
+  <a class="reference internal" href="04-advanced/chapter18-alpine-treeline-colorado.html">
    Alpine Treeline Detection
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Appendices
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="05-appendices/appendix-a-acronym-list.html">
+   Appendix A: Acronym List
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="05-appendices/appendix-b-bibliography.html">
+   Appendix B: Bibliography
   </a>
  </li>
 </ul>
@@ -292,18 +338,28 @@
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#part-1-beginner-workflows">
-     Part 1: Beginner Workflows
+    <a class="reference internal nav-link" href="#part-1-data-catalog">
+     Part 1: Data Catalog
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#part-2-intermediate-workflows">
-     Part 2: Intermediate Workflows
+    <a class="reference internal nav-link" href="#part-2-beginner-workflows">
+     Part 2: Beginner Workflows
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#part-3-advanced-workflows">
-     Part 3: Advanced Workflows
+    <a class="reference internal nav-link" href="#part-3-intermediate-workflows">
+     Part 3: Intermediate Workflows
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#part-4-advanced-workflows">
+     Part 4: Advanced Workflows
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#part-5-appendices">
+     Part 5: Appendices
     </a>
    </li>
   </ul>
@@ -311,11 +367,6 @@
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#prerequisites">
    Prerequisites
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#bibliography">
-   Bibliography
   </a>
   <ul class="nav section-nav flex-column">
   </ul>
@@ -332,7 +383,10 @@
                 
   <div class="section" id="introduction">
 <h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h1>
-<p>This book provides text and examples for how to use Google Earth Engine <a class="bibtex reference internal" href="#gorelick2017google" id="id1">[1]</a> to work through the remote sensing data workflow:</p>
+<p>Imagery is arguably one of the most important and useful geospatial data layers available today; however, it is still one of the most difficult to deploy effectively over the myriad of computing platforms available to geographic information system (GIS) users. The public now takes for granted their ability to see current aerial views of any location on the plant. There are many, many web services and applications that make use of imagery as an interactive backdrop for both the casual and expert user.</p>
+<p>Geospatial professionals also want to make use of imagery and other very large raster datasets in an analysis framework. They want to do more than simply view, zoom, pan, and rotate into 3D views. They want to run image processing and analysis algorithms to extract information and features to be used in scientific research, modeling, and decision support systems.</p>
+<p>Google Earth Engine (GEE) is an example of a cloud-based image service that combines an extensive archive of satellite imagery, historical and current, with application programming interfaces (APIs) that allow analysis to be performed on this imagery without having to move it to the user’s desktop. Noel Gorelick <a class="bibtex reference internal" href="05-appendices/appendix-b-bibliography.html#gorelick2017google" id="id1">[1]</a> has written a very nice review of the GEE program and its goals.</p>
+<p>Our goal with this online “textbook” resource is to provide example workflows, in both <code class="docutils literal notranslate"><span class="pre">Javascript</span></code> and <code class="docutils literal notranslate"><span class="pre">Python</span></code> that will enable the “student” of GEE to rapidly get up to speed and produce results. We follow a generalized workflow for most image processing tasks that includes the following steps:</p>
 <ul class="simple">
 <li><p>Acquisition and Preprocessing;</p></li>
 <li><p>Processing;</p></li>
@@ -340,52 +394,64 @@
 <li><p>Visualization; and,</p></li>
 <li><p>Export.</p></li>
 </ul>
-<p>The book includes code in <code class="docutils literal notranslate"><span class="pre">JavaScript</span></code> and <code class="docutils literal notranslate"><span class="pre">Python</span></code> languages for completing remote sensing analyses.</p>
 <div class="section" id="content">
 <h2>Content<a class="headerlink" href="#content" title="Permalink to this headline">¶</a></h2>
-<p>This book is organized into three parts, with each part containing chapters of higher complexity and longer workflows than the previous part(s).</p>
-<div class="section" id="part-1-beginner-workflows">
-<h3>Part 1: Beginner Workflows<a class="headerlink" href="#part-1-beginner-workflows" title="Permalink to this headline">¶</a></h3>
-<p>Part 1 provides introductory workflows to introduce Earth Engine functionality. Each chapter shows a few tasks and processes to familiarize the reader with the Earth Engine platform and syntax. Part 1 contains Chapters 1-7.</p>
-<p><a class="reference internal" href="01-beginner/chapter01-qualitative-change-detection.html"><span class="doc">Chapter 1</span></a> provides a workflow to observe qualitative change from snow-on to snow-off conditions in Rocky Mountain National Park, Colorado, United States.</p>
-<p><a class="reference internal" href="01-beginner/chapter02-normalized-difference.html"><span class="doc">Chapter 2</span></a> provides a workflow to demonstrate the Normalized Difference Vegetation Index (NDVI) for snow-on and snow-off conditions in Rocky Mountain National Park, Colorado, United States.</p>
-<p><a class="reference internal" href="01-beginner/chapter03-image-composites.html"><span class="doc">Chapter 3</span></a> provides a workflow to create composite images from a collection of Summer imagery in Rocky Mountain National Park, Colorado, United States.</p>
-<p><a class="reference internal" href="01-beginner/chapter04-image-mosaics.html"><span class="doc">Chapter 4</span></a> provides a workflow to create a mosaic image from water features and imagery in Vermont, United States.</p>
-<p><a class="reference internal" href="01-beginner/chapter05-image-collection-iteration.html"><span class="doc">Chapter 5</span></a> provides a workflow to iterate through an image collection and calculate the cumulative NDVI difference for imagery in Rocky Mountain National Park, Colorado, United States.</p>
-<p><a class="reference internal" href="01-beginner/chapter06-cloud-masking.html"><span class="doc">Chapter 6</span></a> provides a workflow to mask clouds and cloud shadows within imagery for Rocky Mountain National Park, Colorado, United States.</p>
-<p><a class="reference internal" href="01-beginner/chapter07-data-quality-bitmasks.html"><span class="doc">Chapter 7</span></a> provides a workflow to explore quality flag bitmasks for imagery in Rocky Mountain National Park, Colorado, United States.</p>
+<p>This textbook is organized into five parts, with each part containing chapters.</p>
+<div class="section" id="part-1-data-catalog">
+<h3>Part 1: Data Catalog<a class="headerlink" href="#part-1-data-catalog" title="Permalink to this headline">¶</a></h3>
+<p>Part 1 introduces the datasets in the <a class="reference external" href="https://developers.google.com/earth-engine/datasets">Earth Engine Data Catalog</a>. Earth Engine organizes data into the following categories:</p>
+<ul class="simple">
+<li><p>Climate and Weather;</p></li>
+<li><p>Imagery; and,</p></li>
+<li><p>Geophysical.</p></li>
+</ul>
+<p>The chapters in Part 1 explore these categories and subsequent data collections in-depth to provide information necessary for using the data in Earth Engine.</p>
+</div>
+<div class="section" id="part-2-beginner-workflows">
+<h3>Part 2: Beginner Workflows<a class="headerlink" href="#part-2-beginner-workflows" title="Permalink to this headline">¶</a></h3>
+<p>Part 2 provides introductory workflows to introduce Earth Engine functionality. Each chapter shows a few tasks and processes to familiarize the reader with the Earth Engine platform and syntax. Part 2 contains Chapters 1-7.</p>
+<p><a class="reference internal" href="02-beginner/chapter01-qualitative-change-detection.html"><span class="doc">Chapter 1</span></a> provides a workflow to observe qualitative change from snow-on to snow-off conditions in Rocky Mountain National Park, Colorado, United States.</p>
+<p><a class="reference internal" href="02-beginner/chapter02-normalized-difference-vegetation-index.html"><span class="doc">Chapter 2</span></a> provides a workflow to demonstrate the Normalized Difference Vegetation Index (NDVI) for snow-on and snow-off conditions in Rocky Mountain National Park, Colorado, United States.</p>
+<p><a class="reference internal" href="02-beginner/chapter03-image-composites.html"><span class="doc">Chapter 3</span></a> provides a workflow to create composite images from a collection of Summer imagery in Rocky Mountain National Park, Colorado, United States.</p>
+<p><a class="reference internal" href="02-beginner/chapter04-image-mosaics.html"><span class="doc">Chapter 4</span></a> provides a workflow to create a mosaic image from water features and imagery in Vermont, United States.</p>
+<p><a class="reference internal" href="02-beginner/chapter05-image-collection-iteration.html"><span class="doc">Chapter 5</span></a> provides a workflow to iterate through an image collection and calculate the cumulative NDVI difference for imagery in Rocky Mountain National Park, Colorado, United States.</p>
+<p><a class="reference internal" href="02-beginner/chapter06-cloud-masking.html"><span class="doc">Chapter 6</span></a> provides a workflow to mask clouds and cloud shadows within imagery for Rocky Mountain National Park, Colorado, United States.</p>
+<p><a class="reference internal" href="02-beginner/chapter07-data-quality-bitmasks.html"><span class="doc">Chapter 7</span></a> provides a workflow to explore quality flag bitmasks for imagery in Rocky Mountain National Park, Colorado, United States.</p>
 <p>Chapter quick reference:</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="01-beginner/chapter01-qualitative-change-detection.html"><span class="doc">Chapter 1: Qualitative Change Detection</span></a></p></li>
-<li><p><a class="reference internal" href="01-beginner/chapter02-normalized-difference.html"><span class="doc">Chapter 2: Normalized Difference</span></a></p></li>
-<li><p><a class="reference internal" href="01-beginner/chapter03-image-composites.html"><span class="doc">Chapter 3: Image Composites</span></a></p></li>
-<li><p><a class="reference internal" href="01-beginner/chapter04-image-mosaics.html"><span class="doc">Chapter 4: Image Mosaics</span></a></p></li>
-<li><p><a class="reference internal" href="01-beginner/chapter05-image-collection-iteration.html"><span class="doc">Chapter 5: Image Collection Iteration</span></a></p></li>
-<li><p><a class="reference internal" href="01-beginner/chapter06-cloud-masking.html"><span class="doc">Chapter 6: Cloud Masking</span></a></p></li>
-<li><p><a class="reference internal" href="01-beginner/chapter07-data-quality-bitmasks.html"><span class="doc">Chapter 7: Data Quality Bitmasks</span></a></p></li>
+<li><p><a class="reference internal" href="02-beginner/chapter01-qualitative-change-detection.html"><span class="doc">Chapter 1: Qualitative Change Detection</span></a></p></li>
+<li><p><a class="reference internal" href="02-beginner/chapter02-normalized-difference-vegetation-index.html"><span class="doc">Chapter 2: Normalized Difference Vegetation Index</span></a></p></li>
+<li><p><a class="reference internal" href="02-beginner/chapter03-image-composites.html"><span class="doc">Chapter 3: Image Composites</span></a></p></li>
+<li><p><a class="reference internal" href="02-beginner/chapter04-image-mosaics.html"><span class="doc">Chapter 4: Image Mosaics</span></a></p></li>
+<li><p><a class="reference internal" href="02-beginner/chapter05-image-collection-iteration.html"><span class="doc">Chapter 5: Image Collection Iteration</span></a></p></li>
+<li><p><a class="reference internal" href="02-beginner/chapter06-cloud-masking.html"><span class="doc">Chapter 6: Cloud Masking</span></a></p></li>
+<li><p><a class="reference internal" href="02-beginner/chapter07-data-quality-bitmasks.html"><span class="doc">Chapter 7: Data Quality Bitmasks</span></a></p></li>
 </ul>
 </div>
-<div class="section" id="part-2-intermediate-workflows">
-<h3>Part 2: Intermediate Workflows<a class="headerlink" href="#part-2-intermediate-workflows" title="Permalink to this headline">¶</a></h3>
-<p>Part 2 provides workflows that piece together tasks and processes from Part 1 in order to create more complex and meaningful workflows, and introduces more complex tasks and processes.</p>
+<div class="section" id="part-3-intermediate-workflows">
+<h3>Part 3: Intermediate Workflows<a class="headerlink" href="#part-3-intermediate-workflows" title="Permalink to this headline">¶</a></h3>
+<p>Part 3 provides workflows that piece together tasks and processes from Part 2 in order to create more complex and meaningful workflows, and introduces more complex tasks and processes.</p>
 </div>
-<div class="section" id="part-3-advanced-workflows">
-<h3>Part 3: Advanced Workflows<a class="headerlink" href="#part-3-advanced-workflows" title="Permalink to this headline">¶</a></h3>
-<p>Part 3 provides full scientific workflows in Earth Engine that have been re-created from existing, peer-reviewed papers and/or ongoing remote sensing projects. One of the goals of this book is to promote and provide open and reproducible science workflows, and this chapter is dedicated to creating this type of workflow within the Earth Engine platform.</p>
+<div class="section" id="part-4-advanced-workflows">
+<h3>Part 4: Advanced Workflows<a class="headerlink" href="#part-4-advanced-workflows" title="Permalink to this headline">¶</a></h3>
+<p>Part 4 provides full scientific workflows in Earth Engine that have been re-created from existing, peer-reviewed papers and/or ongoing remote sensing projects. One of the goals of this book is to promote and provide open and reproducible science workflows, and this chapter is dedicated to creating this type of workflow within the Earth Engine platform.</p>
+</div>
+<div class="section" id="part-5-appendices">
+<h3>Part 5: Appendices<a class="headerlink" href="#part-5-appendices" title="Permalink to this headline">¶</a></h3>
+<p>Part 5 provides supplemental information in the form of appendices. Current appendices include:</p>
+<ul class="simple">
+<li><p>Acronym List; and,</p></li>
+<li><p>Bibliography.</p></li>
+</ul>
 </div>
 </div>
 <div class="section" id="prerequisites">
 <h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this headline">¶</a></h2>
 <p>In order to reproduce the computational workflows in this book, you must have an active <a class="reference external" href="https://earthengine.google.com/">Google Earth Engine account</a>.</p>
+<div class="toctree-wrapper compound">
 </div>
-<div class="section" id="bibliography">
-<h2>Bibliography<a class="headerlink" href="#bibliography" title="Permalink to this headline">¶</a></h2>
-<p id="bibtex-bibliography-introduction-0"><dl class="citation">
-<dt class="bibtex label" id="gorelick2017google"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
-<dd><p>Noel Gorelick, Matt Hancher, Mike Dixon, Simon Ilyushchenko, David Thau, and Rebecca Moore. Google earth engine: planetary-scale geospatial analysis for everyone. <em>Remote Sensing of Environment</em>, 2017. URL: <a class="reference external" href="https://doi.org/10.1016/j.rse.2017.06.031">https://doi.org/10.1016/j.rse.2017.06.031</a>, <a class="reference external" href="https://doi.org/10.1016/j.rse.2017.06.031">doi:10.1016/j.rse.2017.06.031</a>.</p>
-</dd>
-</dl>
-</p>
+<div class="toctree-wrapper compound">
+</div>
 <div class="toctree-wrapper compound">
 </div>
 <div class="toctree-wrapper compound">
@@ -423,7 +489,7 @@
     
     <div class='prev-next-bottom'>
         
-    <a class='right-next' id="next-link" href="01-beginner/chapter01-qualitative-change-detection.html" title="next page">Chapter 1: Qualitative Change Detection</a>
+    <a class='right-next' id="next-link" href="01-catalog/chapter01-landsat.html" title="next page">Chapter 1: Landsat Collections</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">

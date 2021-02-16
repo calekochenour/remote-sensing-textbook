@@ -1,0 +1,1591 @@
+
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chapter 1: Landsat Collections &#8212; Remote Sensing with Google Earth Engine</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
+    <link href="../_static/css/index.css" rel="stylesheet">
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-dropdown.css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/sphinx-book-theme.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Chapter 2: Sentinel Collections" href="chapter02-sentinel.html" />
+    <link rel="prev" title="Introduction" href="../introduction.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="docsearch:language" content="en">
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../index.html">
+  
+  
+  <h1 class="site-logo" id="site-title">Remote Sensing with Google Earth Engine</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <p class="caption">
+ <span class="caption-text">
+  Data Catalog
+ </span>
+</p>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Chapter 1: Landsat Collections
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chapter02-sentinel.html">
+   Chapter 2: Sentinel Collections
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chapter03-modis.html">
+   Chapter 3: MODIS Collections
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chapter04-high-resolution.html">
+   Chapter 4: High-Resolution Collections
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Beginner Workflows
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../02-beginner/chapter01-qualitative-change-detection.html">
+   Chapter 1: Qualitative Change Detection
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../02-beginner/chapter02-normalized-difference-vegetation-index.html">
+   Chapter 2: Normalized Difference Vegetation Index
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../02-beginner/chapter03-image-composites.html">
+   Chapter 3: Image Composites
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../02-beginner/chapter04-image-mosaics.html">
+   Chapter 4: Image Mosaics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../02-beginner/chapter05-image-collection-iteration.html">
+   Chapter 5: Image Collection Iteration
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../02-beginner/chapter06-cloud-masking.html">
+   Chapter 6: Cloud Masking
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../02-beginner/chapter07-data-quality-bitmasks.html">
+   Chapter 7: Data Quality Bitmasks
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Intermediate Workflows
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../03-intermediate/chapter08-raster-reprojection-resampling.html">
+   Raster Reprojection and Resampling
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../03-intermediate/chapter09-raster-reduce-resolution.html">
+   Raster Reduce Resolution
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../03-intermediate/chapter10-spectral-indices-math.html">
+   Spectral Indices and Math
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../03-intermediate/chapter11-image-region-statistics.html">
+   Image Region Statistics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../03-intermediate/chapter12-image-statistics-module.html">
+   Image Statistics Module
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../03-intermediate/chapter13-data-correlation.html">
+   Data Correlation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../03-intermediate/chapter14-arrays-tasseled-cap.html">
+   Arrays and Tasseled Cap
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../03-intermediate/chapter15-data-conversion-export.html">
+   Data Conversion and Export
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Advanced Workflows
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../04-advanced/chapter16-agriculture-boundaries-vaalharts.html">
+   Edge Detection of Agricultural Fields
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../04-advanced/chapter17-rice-fields-columbia.html">
+   Vegetation Change in Columbia
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../04-advanced/chapter18-alpine-treeline-colorado.html">
+   Alpine Treeline Detection
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Appendices
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../05-appendices/appendix-a-acronym-list.html">
+   Appendix A: Acronym List
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../05-appendices/appendix-b-bibliography.html">
+   Appendix B: Bibliography
+  </a>
+ </li>
+</ul>
+
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/01-catalog/chapter01-landsat.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+    
+</div>
+        <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/calekochenour/remote-sensing-textbook"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/calekochenour/remote-sensing-textbook/issues/new?title=Issue%20on%20page%20%2F01-catalog/chapter01-landsat.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        <a class="edit-button" href="https://github.com/calekochenour/remote-sensing-textbook/edit/master/content/01-catalog/chapter01-landsat.ipynb"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/calekochenour/remote-sensing-textbook/master?urlpath=tree/content/01-catalog/chapter01-landsat.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <a class="colab-button" href="https://colab.research.google.com/github/calekochenour/remote-sensing-textbook/blob/master/content/01-catalog/chapter01-landsat.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="../_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#landsat-8">
+   Landsat 8
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#surface-reflectance-sr">
+     Surface Reflectance (SR)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#top-of-atmosphere-toa">
+     Top of Atmosphere (TOA)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#raw-images">
+     Raw Images
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#derived-datasets">
+     Derived Datasets
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#specifications-and-quality">
+     Specifications and Quality
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#surface-reflectance-specifications">
+       Surface Reflectance Specifications
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#pixel-quality-assessment-qa-band">
+       Pixel Quality Assessment (QA) Band
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#radiometric-saturation-qa-band">
+       Radiometric Saturation QA Band
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#surface-reflectance-aerosol-band">
+       Surface Reflectance Aerosol Band
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#landsat-7">
+   Landsat 7
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#surface-reflectance">
+     Surface Reflectance
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     Top of Atmosphere (TOA)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     Raw Images
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id3">
+     Derived Datasets
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id4">
+     Specifications and Quality
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id5">
+       Surface Reflectance Specifications
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#surface-reflectance-cloud-quality-assessment-band">
+       Surface Reflectance Cloud Quality Assessment Band
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#pixel-quality-assessment-band">
+       Pixel Quality Assessment Band
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#radiometric-saturation-quality-assessment-band">
+       Radiometric Saturation Quality Assessment Band
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#landsat-5">
+   Landsat 5
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id6">
+     Surface Reflectance
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id7">
+     Top of Atmosphere (TOA)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id8">
+     Raw Images
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id9">
+     Derived Datasets
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#landsat-4">
+   Landsat 4
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id10">
+     Surface Reflectance
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id11">
+     Top of Atmosphere (TOA)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id12">
+     Raw Images
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id13">
+     Derived Datasets
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#landsat-multispectral-scanner-mss-1-5">
+   Landsat Multispectral Scanner (MSS) 1-5
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id14">
+     Raw Images
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+        </nav>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="chapter-1-landsat-collections">
+<h1>Chapter 1: Landsat Collections<a class="headerlink" href="#chapter-1-landsat-collections" title="Permalink to this headline">¶</a></h1>
+<p><a class="reference external" href="https://developers.google.com/earth-engine/datasets/catalog/landsat">Landsat</a> platform.</p>
+<p>Landsat processing <a class="reference external" href="https://developers.google.com/earth-engine/guides/landsat#landsat-collection-structure">tiers</a>.</p>
+<div class="section" id="landsat-8">
+<h2>Landsat 8<a class="headerlink" href="#landsat-8" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://developers.google.com/earth-engine/datasets/catalog/landsat-8">Landsat 8</a> collection.</p>
+<div class="section" id="surface-reflectance-sr">
+<h3>Surface Reflectance (SR)<a class="headerlink" href="#surface-reflectance-sr" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>USGS Landsat 8 Surface Reflectance Tier 1</p></li>
+<li><p>USGS Landsat 8 Surface Reflectance Tier 2</p></li>
+</ul>
+</div>
+<div class="section" id="top-of-atmosphere-toa">
+<h3>Top of Atmosphere (TOA)<a class="headerlink" href="#top-of-atmosphere-toa" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>USGS Landsat 8 Collection 1 Tier 1 TOA Reflectance</p></li>
+<li><p>USGS Landsat 8 Collection 1 Tier 1 and Real-Time data TOA Reflectance</p></li>
+<li><p>USGS Landsat 8 Collection 1 Tier 2 TOA Reflectance</p></li>
+</ul>
+</div>
+<div class="section" id="raw-images">
+<h3>Raw Images<a class="headerlink" href="#raw-images" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>USGS Landsat 8 Collection 1 Tier 1 Raw Scenes</p></li>
+<li><p>USGS Landsat 8 Collection 1 Tier 1 and Real-Time data Raw Scenes</p></li>
+<li><p>USGS Landsat 8 Collection 1 Tier 2 Raw Scenes</p></li>
+</ul>
+</div>
+<div class="section" id="derived-datasets">
+<h3>Derived Datasets<a class="headerlink" href="#derived-datasets" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Burned Area Index (BAI)</p></li>
+<li><p>Enhanced Vegetation Index (EVI)</p></li>
+<li><p>Normalized Difference Vegetation Index (NDVI)</p></li>
+<li><p>Normalized Burn Ratio Thermal (NBRT)</p></li>
+<li><p>Normalized Difference Snow Index (NDSI)</p></li>
+<li><p>Normalized Difference Water Index (NDWI)</p></li>
+</ul>
+</div>
+<div class="section" id="specifications-and-quality">
+<h3>Specifications and Quality<a class="headerlink" href="#specifications-and-quality" title="Permalink to this headline">¶</a></h3>
+<p>Section 6 of the Landsat 8 Collection 1 (C1) Land Surface Reflectance Code (LaSRC) <a class="reference external" href="https://prd-wret.s3.us-west-2.amazonaws.com/assets/palladium/production/atoms/files/LSDS-1368_L8_C1-LandSurfaceReflectanceCode-LASRC_ProductGuide-v3.pdf">product guide</a> provides information related to the SR specifications as well to the data quality measurements.</p>
+<div class="section" id="surface-reflectance-specifications">
+<h4>Surface Reflectance Specifications<a class="headerlink" href="#surface-reflectance-specifications" title="Permalink to this headline">¶</a></h4>
+<table class="colwidths-auto table" id="table-landsat8-sr-specs">
+<caption><span class="caption-number">Table 1 </span><span class="caption-text">Surface Reflectance Specifications</span><a class="headerlink" href="#table-landsat8-sr-specs" title="Permalink to this table">¶</a></caption>
+<thead>
+<tr class="row-odd"><th class="text-align:left head"><p>Band Designation</p></th>
+<th class="text-align:left head"><p>Band Name</p></th>
+<th class="text-align:left head"><p>Data Type</p></th>
+<th class="text-align:left head"><p>Units</p></th>
+<th class="text-align:left head"><p>Range</p></th>
+<th class="text-align:left head"><p>Valid Range</p></th>
+<th class="text-align:left head"><p>Fill Value</p></th>
+<th class="text-align:left head"><p>Saturate Value</p></th>
+<th class="text-align:left head"><p>Scale Factor</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-align:left"><p>ProductID_sr_band1</p></td>
+<td class="text-align:left"><p>Band 1</p></td>
+<td class="text-align:left"><p>16-Bit Signed Integer</p></td>
+<td class="text-align:left"><p>Reflectance</p></td>
+<td class="text-align:left"><p>-2000 - 16000</p></td>
+<td class="text-align:left"><p>0 - 10000</p></td>
+<td class="text-align:left"><p>-9999</p></td>
+<td class="text-align:left"><p>20000</p></td>
+<td class="text-align:left"><p>0.0001</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p>ProductID_sr_band2</p></td>
+<td class="text-align:left"><p>Band 2</p></td>
+<td class="text-align:left"><p>16-Bit Signed Integer</p></td>
+<td class="text-align:left"><p>Reflectance</p></td>
+<td class="text-align:left"><p>-2000 - 16000</p></td>
+<td class="text-align:left"><p>0 - 10000</p></td>
+<td class="text-align:left"><p>-9999</p></td>
+<td class="text-align:left"><p>20000</p></td>
+<td class="text-align:left"><p>0.0001</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:left"><p>ProductID_sr_band3</p></td>
+<td class="text-align:left"><p>Band 3</p></td>
+<td class="text-align:left"><p>16-Bit Signed Integer</p></td>
+<td class="text-align:left"><p>Reflectance</p></td>
+<td class="text-align:left"><p>-2000 - 16000</p></td>
+<td class="text-align:left"><p>0 - 10000</p></td>
+<td class="text-align:left"><p>-9999</p></td>
+<td class="text-align:left"><p>20000</p></td>
+<td class="text-align:left"><p>0.0001</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p>ProductID_sr_band4</p></td>
+<td class="text-align:left"><p>Band 4</p></td>
+<td class="text-align:left"><p>16-Bit Signed Integer</p></td>
+<td class="text-align:left"><p>Reflectance</p></td>
+<td class="text-align:left"><p>-2000 - 16000</p></td>
+<td class="text-align:left"><p>0 - 10000</p></td>
+<td class="text-align:left"><p>-9999</p></td>
+<td class="text-align:left"><p>20000</p></td>
+<td class="text-align:left"><p>0.0001</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:left"><p>ProductID_sr_band5</p></td>
+<td class="text-align:left"><p>Band 5</p></td>
+<td class="text-align:left"><p>16-Bit Signed Integer</p></td>
+<td class="text-align:left"><p>Reflectance</p></td>
+<td class="text-align:left"><p>-2000 - 16000</p></td>
+<td class="text-align:left"><p>0 - 10000</p></td>
+<td class="text-align:left"><p>-9999</p></td>
+<td class="text-align:left"><p>20000</p></td>
+<td class="text-align:left"><p>0.0001</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p>ProductID_sr_band6</p></td>
+<td class="text-align:left"><p>Band 6</p></td>
+<td class="text-align:left"><p>16-Bit Signed Integer</p></td>
+<td class="text-align:left"><p>Reflectance</p></td>
+<td class="text-align:left"><p>-2000 - 16000</p></td>
+<td class="text-align:left"><p>0 - 10000</p></td>
+<td class="text-align:left"><p>-9999</p></td>
+<td class="text-align:left"><p>20000</p></td>
+<td class="text-align:left"><p>0.0001</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:left"><p>ProductID_sr_band7</p></td>
+<td class="text-align:left"><p>Band 7</p></td>
+<td class="text-align:left"><p>16-Bit Signed Integer</p></td>
+<td class="text-align:left"><p>Reflectance</p></td>
+<td class="text-align:left"><p>-2000 - 16000</p></td>
+<td class="text-align:left"><p>0 - 10000</p></td>
+<td class="text-align:left"><p>-9999</p></td>
+<td class="text-align:left"><p>20000</p></td>
+<td class="text-align:left"><p>0.0001</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p>ProductID_pixel_qa</p></td>
+<td class="text-align:left"><p>Level 2 Quality Band</p></td>
+<td class="text-align:left"><p>16-Bit Unsigned Integer</p></td>
+<td class="text-align:left"><p>Bit Index</p></td>
+<td class="text-align:left"><p>0 - 32768</p></td>
+<td class="text-align:left"><p>0 - 32768</p></td>
+<td class="text-align:left"><p>1 (Bit 0)</p></td>
+<td class="text-align:left"><p>NA</p></td>
+<td class="text-align:left"><p>NA</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:left"><p>ProductID_sr_aerosol</p></td>
+<td class="text-align:left"><p>Aerosol QA</p></td>
+<td class="text-align:left"><p>8-Bit Unsigned Integer</p></td>
+<td class="text-align:left"><p>Bit Index</p></td>
+<td class="text-align:left"><p>0 - 255</p></td>
+<td class="text-align:left"><p>0 - 255</p></td>
+<td class="text-align:left"><p>NA</p></td>
+<td class="text-align:left"><p>NA</p></td>
+<td class="text-align:left"><p>NA</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p>ProductID_radsat_qa</p></td>
+<td class="text-align:left"><p>Radiometric Saturation QA</p></td>
+<td class="text-align:left"><p>16-Bit Unsigned Integer</p></td>
+<td class="text-align:left"><p>Bit Index</p></td>
+<td class="text-align:left"><p>0 - 32768</p></td>
+<td class="text-align:left"><p>0 - 32768</p></td>
+<td class="text-align:left"><p>1 (Bit 0)</p></td>
+<td class="text-align:left"><p>NA</p></td>
+<td class="text-align:left"><p>NA</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:left"><p>ProductID_MTL.txt</p></td>
+<td class="text-align:left"><p>Level 1 Metadata File</p></td>
+<td class="text-align:left"><p>NA</p></td>
+<td class="text-align:left"><p>NA</p></td>
+<td class="text-align:left"><p>NA</p></td>
+<td class="text-align:left"><p>NA</p></td>
+<td class="text-align:left"><p>NA</p></td>
+<td class="text-align:left"><p>NA</p></td>
+<td class="text-align:left"><p>NA</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p>ProductID_ANG.txt</p></td>
+<td class="text-align:left"><p>Level 1 Angle Coefficient File</p></td>
+<td class="text-align:left"><p>NA</p></td>
+<td class="text-align:left"><p>NA</p></td>
+<td class="text-align:left"><p>NA</p></td>
+<td class="text-align:left"><p>NA</p></td>
+<td class="text-align:left"><p>NA</p></td>
+<td class="text-align:left"><p>NA</p></td>
+<td class="text-align:left"><p>NA</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="pixel-quality-assessment-qa-band">
+<h4>Pixel Quality Assessment (QA) Band<a class="headerlink" href="#pixel-quality-assessment-qa-band" title="Permalink to this headline">¶</a></h4>
+<table class="colwidths-auto table" id="table-landsat8-pixel-qa-index">
+<caption><span class="caption-number">Table 2 </span><span class="caption-text">Landsat 8 Pixel Quality Assessment Bit Index</span><a class="headerlink" href="#table-landsat8-pixel-qa-index" title="Permalink to this table">¶</a></caption>
+<thead>
+<tr class="row-odd"><th class="text-align:left head"><p>Bit</p></th>
+<th class="text-align:left head"><p>Bit Value</p></th>
+<th class="text-align:left head"><p>Cumulative Sum</p></th>
+<th class="text-align:left head"><p>Attribute</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-align:left"><p>0</p></td>
+<td class="text-align:left"><p>1</p></td>
+<td class="text-align:left"><p>1</p></td>
+<td class="text-align:left"><p>Fill</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p>1</p></td>
+<td class="text-align:left"><p>2</p></td>
+<td class="text-align:left"><p>3</p></td>
+<td class="text-align:left"><p>Clear</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:left"><p>2</p></td>
+<td class="text-align:left"><p>4</p></td>
+<td class="text-align:left"><p>7</p></td>
+<td class="text-align:left"><p>Water</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p>3</p></td>
+<td class="text-align:left"><p>8</p></td>
+<td class="text-align:left"><p>15</p></td>
+<td class="text-align:left"><p>Cloud Shadow</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:left"><p>4</p></td>
+<td class="text-align:left"><p>16</p></td>
+<td class="text-align:left"><p>31</p></td>
+<td class="text-align:left"><p>Snow</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p>5</p></td>
+<td class="text-align:left"><p>32</p></td>
+<td class="text-align:left"><p>63</p></td>
+<td class="text-align:left"><p>Cloud</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:left"><p>6-7</p></td>
+<td class="text-align:left"><p>64 / 128</p></td>
+<td class="text-align:left"><p>127 / 255</p></td>
+<td class="text-align:left"><p>Cloud Confidence<br>00 (0) = None<br>01 (1) = Low<br>10 (2) = Medium<br>11 (3) = High</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p>8-9</p></td>
+<td class="text-align:left"><p>256 / 512</p></td>
+<td class="text-align:left"><p>511 / 1023</p></td>
+<td class="text-align:left"><p>Cirrus Confidence<br>00 (0) = Not Set<br>01 (1) = Low from OLI Band 9 Reflectance<br>10 (2) = Medium from OLI Band 9 Reflectance (Not Used)<br>11 (3) = High from OLI Band 9 Reflectance</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:left"><p>10</p></td>
+<td class="text-align:left"><p>1024</p></td>
+<td class="text-align:left"><p>2047</p></td>
+<td class="text-align:left"><p>Terrain Occlusion</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p>11</p></td>
+<td class="text-align:left"><p>2048</p></td>
+<td class="text-align:left"><p>4095</p></td>
+<td class="text-align:left"><p>Unused</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:left"><p>12</p></td>
+<td class="text-align:left"><p>4096</p></td>
+<td class="text-align:left"><p>8191</p></td>
+<td class="text-align:left"><p>Unused</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p>13</p></td>
+<td class="text-align:left"><p>8192</p></td>
+<td class="text-align:left"><p>16383</p></td>
+<td class="text-align:left"><p>Unused</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:left"><p>14</p></td>
+<td class="text-align:left"><p>16384</p></td>
+<td class="text-align:left"><p>32767</p></td>
+<td class="text-align:left"><p>Unused</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p>15</p></td>
+<td class="text-align:left"><p>32768</p></td>
+<td class="text-align:left"><p>655535</p></td>
+<td class="text-align:left"><p>Unused</p></td>
+</tr>
+</tbody>
+</table>
+<table class="colwidths-auto table" id="table-landsat8-pixel-qa-values">
+<caption><span class="caption-number">Table 3 </span><span class="caption-text">Landsat 8 Pixel Quality Assessment Values</span><a class="headerlink" href="#table-landsat8-pixel-qa-values" title="Permalink to this table">¶</a></caption>
+<thead>
+<tr class="row-odd"><th class="text-align:left head"><p>Attribute</p></th>
+<th class="text-align:left head"><p>Pixel Value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-align:left"><p>Fill</p></td>
+<td class="text-align:left"><p>1</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p>Clear</p></td>
+<td class="text-align:left"><p>322, 386, 834, 898, 1346</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:left"><p>Water</p></td>
+<td class="text-align:left"><p>324, 388, 836, 900, 1348</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p>Cloud Shadow</p></td>
+<td class="text-align:left"><p>328, 392, 840, 904, 1350</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:left"><p>Snow/Ice</p></td>
+<td class="text-align:left"><p>336, 368, 400, 432, 848, 880, 912, 944, 1352</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p>Cloud</p></td>
+<td class="text-align:left"><p>352, 368, 416, 432, 480, 864, 880, 928, 944, 992</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:left"><p>Low Confidence Cloud</p></td>
+<td class="text-align:left"><p>322, 324, 328, 336, 352, 368, 834, 836, 840, 848, 864, 880</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p>Medium Confidence Cloud</p></td>
+<td class="text-align:left"><p>386, 388, 392, 400, 416, 432, 898, 900, 904, 928, 944</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:left"><p>High Confidence Cloud</p></td>
+<td class="text-align:left"><p>480, 992</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p>Low Confidence Cirrus</p></td>
+<td class="text-align:left"><p>322, 324, 328, 336, 352, 368, 386, 388, 392, 400, 416, 432, 480</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:left"><p>High Confidence Cirrus</p></td>
+<td class="text-align:left"><p>834, 836, 840, 848, 864, 880,898,900, 904, 912, 928, 944, 992</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p>Terrain Occlusion</p></td>
+<td class="text-align:left"><p>1346, 1348, 1350, 135</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="radiometric-saturation-qa-band">
+<h4>Radiometric Saturation QA Band<a class="headerlink" href="#radiometric-saturation-qa-band" title="Permalink to this headline">¶</a></h4>
+<table class="colwidths-auto table" id="table-landsat8-radsat-qa-index">
+<caption><span class="caption-number">Table 4 </span><span class="caption-text">Landsat 8 Radiometric Saturation Quality Assessment Bit Index</span><a class="headerlink" href="#table-landsat8-radsat-qa-index" title="Permalink to this table">¶</a></caption>
+<thead>
+<tr class="row-odd"><th class="text-align:left head"><p>Bit</p></th>
+<th class="text-align:left head"><p>Bit Value</p></th>
+<th class="text-align:left head"><p>Cumulative Sum</p></th>
+<th class="text-align:left head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-align:left"><p>0</p></td>
+<td class="text-align:left"><p>1</p></td>
+<td class="text-align:left"><p>1</p></td>
+<td class="text-align:left"><p>Data Fill Flag (0 valid data, 1 invalid data)</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p>1</p></td>
+<td class="text-align:left"><p>2</p></td>
+<td class="text-align:left"><p>3</p></td>
+<td class="text-align:left"><p>Band 1 Data Saturation Flag (0 valid data, 1 saturated data)</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:left"><p>2</p></td>
+<td class="text-align:left"><p>4</p></td>
+<td class="text-align:left"><p>7</p></td>
+<td class="text-align:left"><p>Band 2 Data Saturation Flag (0 valid data, 1 saturated data)</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p>3</p></td>
+<td class="text-align:left"><p>8</p></td>
+<td class="text-align:left"><p>15</p></td>
+<td class="text-align:left"><p>Band 3 Data Saturation Flag (0 valid data, 1 saturated data)</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:left"><p>4</p></td>
+<td class="text-align:left"><p>16</p></td>
+<td class="text-align:left"><p>31</p></td>
+<td class="text-align:left"><p>Band 4 Data Saturation Flag (0 valid data, 1 saturated data)</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p>5</p></td>
+<td class="text-align:left"><p>32</p></td>
+<td class="text-align:left"><p>63</p></td>
+<td class="text-align:left"><p>Band 5 Data Saturation Flag (0 valid data, 1 saturated data)</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:left"><p>6</p></td>
+<td class="text-align:left"><p>64</p></td>
+<td class="text-align:left"><p>127</p></td>
+<td class="text-align:left"><p>Band 6 Data Saturation Flag (0 valid data, 1 saturated data)</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p>7</p></td>
+<td class="text-align:left"><p>128</p></td>
+<td class="text-align:left"><p>255</p></td>
+<td class="text-align:left"><p>Band 7 Data Saturation Flag (0 valid data, 1 saturated data)</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:left"><p>8</p></td>
+<td class="text-align:left"><p>NA</p></td>
+<td class="text-align:left"><p>NA</p></td>
+<td class="text-align:left"><p>Not Used</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p>9</p></td>
+<td class="text-align:left"><p>512</p></td>
+<td class="text-align:left"><p>1023</p></td>
+<td class="text-align:left"><p>Band 9 Data Saturation Flag (0 valid data, 1 saturated data)</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:left"><p>10</p></td>
+<td class="text-align:left"><p>1024</p></td>
+<td class="text-align:left"><p>2047</p></td>
+<td class="text-align:left"><p>Band 10 Data Saturation Flag (0 valid data, 1 saturated data)</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p>11</p></td>
+<td class="text-align:left"><p>2048</p></td>
+<td class="text-align:left"><p>4095</p></td>
+<td class="text-align:left"><p>Band 11 Data Saturation Flag (0 valid data, 1 saturated data)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="surface-reflectance-aerosol-band">
+<h4>Surface Reflectance Aerosol Band<a class="headerlink" href="#surface-reflectance-aerosol-band" title="Permalink to this headline">¶</a></h4>
+<table class="colwidths-auto table" id="table-landsat8-aerosol-index">
+<caption><span class="caption-number">Table 5 </span><span class="caption-text">Landsat 8 Internal Surface Reflectance Aerosol Quality Assessment Bit Index</span><a class="headerlink" href="#table-landsat8-aerosol-index" title="Permalink to this table">¶</a></caption>
+<thead>
+<tr class="row-odd"><th class="text-align:left head"><p>Bit</p></th>
+<th class="text-align:left head"><p>Bit Value</p></th>
+<th class="text-align:left head"><p>Cumulative Sum</p></th>
+<th class="text-align:left head"><p>Attribute</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-align:left"><p>0</p></td>
+<td class="text-align:left"><p>1</p></td>
+<td class="text-align:left"><p>1</p></td>
+<td class="text-align:left"><p>Fill</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p>1</p></td>
+<td class="text-align:left"><p>2</p></td>
+<td class="text-align:left"><p>3</p></td>
+<td class="text-align:left"><p>Valid Aerosol Retrieval (center pixel of 3x3 pixel window)</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:left"><p>2</p></td>
+<td class="text-align:left"><p>4</p></td>
+<td class="text-align:left"><p>7</p></td>
+<td class="text-align:left"><p>Water Pixel (or water pixel was used in the fill-the-window interpolation)</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p>3</p></td>
+<td class="text-align:left"><p>8</p></td>
+<td class="text-align:left"><p>15</p></td>
+<td class="text-align:left"><p>Cloud or Cirrus</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:left"><p>4</p></td>
+<td class="text-align:left"><p>16</p></td>
+<td class="text-align:left"><p>31</p></td>
+<td class="text-align:left"><p>Cloud Shadow</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p>5</p></td>
+<td class="text-align:left"><p>32</p></td>
+<td class="text-align:left"><p>63</p></td>
+<td class="text-align:left"><p>Non-center window pixel for which aerosol was interpolated from surrounding 3x3 window center pixels</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:left"><p>6-7</p></td>
+<td class="text-align:left"><p>64 / 128</p></td>
+<td class="text-align:left"><p>127 / 255</p></td>
+<td class="text-align:left"><p>Aerosol Level<br>00 (0) = Climatology<br>01 (1) = Low<br>10 (2) = Medium<br>11 (3) = High</p></td>
+</tr>
+</tbody>
+</table>
+<table class="colwidths-auto table" id="table-landsat8-aerosol-values">
+<caption><span class="caption-number">Table 6 </span><span class="caption-text">Landsat 8 Surface Reflectance Aerosol Values</span><a class="headerlink" href="#table-landsat8-aerosol-values" title="Permalink to this table">¶</a></caption>
+<thead>
+<tr class="row-odd"><th class="text-align:left head"><p>Attribute</p></th>
+<th class="text-align:left head"><p>Pixel Value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-align:left"><p>Fill</p></td>
+<td class="text-align:left"><p>1</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p>Valid Aerosol Retrieval (center pixel of 3x3 window)</p></td>
+<td class="text-align:left"><p>2,66, 130, 194</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:left"><p>Water Pixel (or water pixel was used in the fill-the-window interpolation)</p></td>
+<td class="text-align:left"><p>4, 68, 100, 132, 164, 196, 228</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p>Cloud or Cirrus</p></td>
+<td class="text-align:left"><p>8, 72, 136, 200</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:left"><p>Cloud Shadow</p></td>
+<td class="text-align:left"><p>16, 80, 144, 208</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p>Non-center window pixel for which aerosol was interpolated from surrounding 3x3 center pixels</p></td>
+<td class="text-align:left"><p>32, 96, 100, 160, 164, 224, 228</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:left"><p>Low-level aerosol</p></td>
+<td class="text-align:left"><p>66, 68, 72, 80, 96, 100</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p>Medium-level aerosol</p></td>
+<td class="text-align:left"><p>130, 132, 136, 144, 160, 164</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:left"><p>High-level aerosol</p></td>
+<td class="text-align:left"><p>194, 196, 200, 208, 224, 228</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="section" id="landsat-7">
+<h2>Landsat 7<a class="headerlink" href="#landsat-7" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://developers.google.com/earth-engine/datasets/catalog/landsat-7">Landsat 7</a> collection.</p>
+<div class="section" id="surface-reflectance">
+<h3>Surface Reflectance<a class="headerlink" href="#surface-reflectance" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>USGS Landsat 7 Surface Reflectance Tier 1</p></li>
+<li><p>USGS Landsat 7 Surface Reflectance Tier 2</p></li>
+</ul>
+</div>
+<div class="section" id="id1">
+<h3>Top of Atmosphere (TOA)<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>USGS Landsat 7 Collection 1 Tier 1 TOA Reflectance</p></li>
+<li><p>USGS Landsat 7 Collection 1 Tier 1 and Real-Time data TOA Reflectance</p></li>
+<li><p>USGS Landsat 7 Collection 1 Tier 2 TOA Reflectance</p></li>
+</ul>
+</div>
+<div class="section" id="id2">
+<h3>Raw Images<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>USGS Landsat 7 Collection 1 Tier 1 Raw Scenes</p></li>
+<li><p>USGS Landsat 7 Collection 1 Tier 1 and Real-Time data Raw Scenes</p></li>
+<li><p>USGS Landsat 7 Collection 1 Tier 2 Raw Scenes</p></li>
+</ul>
+</div>
+<div class="section" id="id3">
+<h3>Derived Datasets<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Burned Area Index (BAI)</p></li>
+<li><p>Enhanced Vegetation Index (EVI)</p></li>
+<li><p>Normalized Difference Vegetation Index (NDVI)</p></li>
+<li><p>Normalized Burn Ratio Thermal (NBRT)</p></li>
+<li><p>Normalized Difference Snow Index (NDSI)</p></li>
+<li><p>Normalized Difference Water Index (NDWI)</p></li>
+</ul>
+</div>
+<div class="section" id="id4">
+<h3>Specifications and Quality<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<p>Section 5 of the Landsat 4-7 Collection 1 (C1) Surface Reflectance  Landsat Ecosystem Disturbance Adaptive Processing System (LEDAPS) <a class="reference external" href="https://prd-wret.s3.us-west-2.amazonaws.com/assets/palladium/production/atoms/files/LSDS-1370_L4-7_C1-SurfaceReflectance-LEDAPS_ProductGuide-v3.pdf">product guide</a> provides information related to the SR specifications as well to the data quality measurements.</p>
+<div class="section" id="id5">
+<h4>Surface Reflectance Specifications<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h4>
+<table class="colwidths-auto table" id="table-landsat4to7-sr-specs">
+<caption><span class="caption-number">Table 7 </span><span class="caption-text">Landsat 4-7 Surface Reflectance Specifications</span><a class="headerlink" href="#table-landsat4to7-sr-specs" title="Permalink to this table">¶</a></caption>
+<thead>
+<tr class="row-odd"><th class="text-align:left head"><p>Band Designation</p></th>
+<th class="text-align:left head"><p>Band Name</p></th>
+<th class="text-align:left head"><p>Data Type</p></th>
+<th class="text-align:left head"><p>Units</p></th>
+<th class="text-align:left head"><p>Range</p></th>
+<th class="text-align:left head"><p>Valid Range</p></th>
+<th class="text-align:left head"><p>Fill Value</p></th>
+<th class="text-align:left head"><p>Saturate Value</p></th>
+<th class="text-align:left head"><p>Scale Factor</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-align:left"><p>ProductID_sr_band1</p></td>
+<td class="text-align:left"><p>Band 1</p></td>
+<td class="text-align:left"><p>16-Bit Signed Integer</p></td>
+<td class="text-align:left"><p>Reflectance</p></td>
+<td class="text-align:left"><p>-2000 - 16000</p></td>
+<td class="text-align:left"><p>0 - 10000</p></td>
+<td class="text-align:left"><p>-9999</p></td>
+<td class="text-align:left"><p>20000</p></td>
+<td class="text-align:left"><p>0.0001</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p>ProductID_sr_band2</p></td>
+<td class="text-align:left"><p>Band 2</p></td>
+<td class="text-align:left"><p>16-Bit Signed Integer</p></td>
+<td class="text-align:left"><p>Reflectance</p></td>
+<td class="text-align:left"><p>-2000 - 16000</p></td>
+<td class="text-align:left"><p>0 - 10000</p></td>
+<td class="text-align:left"><p>-9999</p></td>
+<td class="text-align:left"><p>20000</p></td>
+<td class="text-align:left"><p>0.0001</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:left"><p>ProductID_sr_band3</p></td>
+<td class="text-align:left"><p>Band 3</p></td>
+<td class="text-align:left"><p>16-Bit Signed Integer</p></td>
+<td class="text-align:left"><p>Reflectance</p></td>
+<td class="text-align:left"><p>-2000 - 16000</p></td>
+<td class="text-align:left"><p>0 - 10000</p></td>
+<td class="text-align:left"><p>-9999</p></td>
+<td class="text-align:left"><p>20000</p></td>
+<td class="text-align:left"><p>0.0001</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p>ProductID_sr_band4</p></td>
+<td class="text-align:left"><p>Band 4</p></td>
+<td class="text-align:left"><p>16-Bit Signed Integer</p></td>
+<td class="text-align:left"><p>Reflectance</p></td>
+<td class="text-align:left"><p>-2000 - 16000</p></td>
+<td class="text-align:left"><p>0 - 10000</p></td>
+<td class="text-align:left"><p>-9999</p></td>
+<td class="text-align:left"><p>20000</p></td>
+<td class="text-align:left"><p>0.0001</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:left"><p>ProductID_sr_band5</p></td>
+<td class="text-align:left"><p>Band 5</p></td>
+<td class="text-align:left"><p>16-Bit Signed Integer</p></td>
+<td class="text-align:left"><p>Reflectance</p></td>
+<td class="text-align:left"><p>-2000 - 16000</p></td>
+<td class="text-align:left"><p>0 - 10000</p></td>
+<td class="text-align:left"><p>-9999</p></td>
+<td class="text-align:left"><p>20000</p></td>
+<td class="text-align:left"><p>0.0001</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p>ProductID_sr_band6</p></td>
+<td class="text-align:left"><p>Band 6</p></td>
+<td class="text-align:left"><p>16-Bit Signed Integer</p></td>
+<td class="text-align:left"><p>Reflectance</p></td>
+<td class="text-align:left"><p>-2000 - 16000</p></td>
+<td class="text-align:left"><p>0 - 10000</p></td>
+<td class="text-align:left"><p>-9999</p></td>
+<td class="text-align:left"><p>20000</p></td>
+<td class="text-align:left"><p>0.0001</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:left"><p>ProductID_sr_band7</p></td>
+<td class="text-align:left"><p>Band 7</p></td>
+<td class="text-align:left"><p>16-Bit Signed Integer</p></td>
+<td class="text-align:left"><p>Reflectance</p></td>
+<td class="text-align:left"><p>-2000 - 16000</p></td>
+<td class="text-align:left"><p>0 - 10000</p></td>
+<td class="text-align:left"><p>-9999</p></td>
+<td class="text-align:left"><p>20000</p></td>
+<td class="text-align:left"><p>0.0001</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p>ProductID_sr_atmos_opacity</p></td>
+<td class="text-align:left"><p>Atmospheric Opacity</p></td>
+<td class="text-align:left"><p>16-Bit Signed Integer</p></td>
+<td class="text-align:left"><p>Unitless</p></td>
+<td class="text-align:left"><p>-2000 - 16000</p></td>
+<td class="text-align:left"><p>0 - 10000</p></td>
+<td class="text-align:left"><p>-9999</p></td>
+<td class="text-align:left"><p>NA</p></td>
+<td class="text-align:left"><p>0.0010</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:left"><p>ProductID_pixel_qa</p></td>
+<td class="text-align:left"><p>Level 2 Quality Band</p></td>
+<td class="text-align:left"><p>16-Bit Unsigned Integer</p></td>
+<td class="text-align:left"><p>Bit Index</p></td>
+<td class="text-align:left"><p>0 - 32768</p></td>
+<td class="text-align:left"><p>0 - 32768</p></td>
+<td class="text-align:left"><p>1 (Bit 0)</p></td>
+<td class="text-align:left"><p>NA</p></td>
+<td class="text-align:left"><p>NA</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p>ProductID_radsat_qa</p></td>
+<td class="text-align:left"><p>Radiometric Saturation QA</p></td>
+<td class="text-align:left"><p>16-Bit Unsigned Integer</p></td>
+<td class="text-align:left"><p>Bit Index</p></td>
+<td class="text-align:left"><p>0 - 32768</p></td>
+<td class="text-align:left"><p>0 - 32768</p></td>
+<td class="text-align:left"><p>1 (Bit 0)</p></td>
+<td class="text-align:left"><p>NA</p></td>
+<td class="text-align:left"><p>NA</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:left"><p>ProductID_sr_cloud_qa</p></td>
+<td class="text-align:left"><p>Surface Reflectance Cloud QA</p></td>
+<td class="text-align:left"><p>8-Bit Unsigned Integer</p></td>
+<td class="text-align:left"><p>Bit Index</p></td>
+<td class="text-align:left"><p>0 - 255</p></td>
+<td class="text-align:left"><p>0 - 63</p></td>
+<td class="text-align:left"><p>NA</p></td>
+<td class="text-align:left"><p>NA</p></td>
+<td class="text-align:left"><p>NA</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p>ProductID_MTL.txt</p></td>
+<td class="text-align:left"><p>Level 1 Metadata File</p></td>
+<td class="text-align:left"><p>NA</p></td>
+<td class="text-align:left"><p>NA</p></td>
+<td class="text-align:left"><p>NA</p></td>
+<td class="text-align:left"><p>NA</p></td>
+<td class="text-align:left"><p>NA</p></td>
+<td class="text-align:left"><p>NA</p></td>
+<td class="text-align:left"><p>NA</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:left"><p>ProductID_ANG.txt</p></td>
+<td class="text-align:left"><p>Level 1 Angle Coefficient File</p></td>
+<td class="text-align:left"><p>NA</p></td>
+<td class="text-align:left"><p>NA</p></td>
+<td class="text-align:left"><p>NA</p></td>
+<td class="text-align:left"><p>NA</p></td>
+<td class="text-align:left"><p>NA</p></td>
+<td class="text-align:left"><p>NA</p></td>
+<td class="text-align:left"><p>NA</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="surface-reflectance-cloud-quality-assessment-band">
+<h4>Surface Reflectance Cloud Quality Assessment Band<a class="headerlink" href="#surface-reflectance-cloud-quality-assessment-band" title="Permalink to this headline">¶</a></h4>
+<table class="colwidths-auto table" id="table-landsat4to7-cloud-qa-index">
+<caption><span class="caption-number">Table 8 </span><span class="caption-text">Landsat 4-7 Surface Reflectance Cloud Quality Assessment Bit Index</span><a class="headerlink" href="#table-landsat4to7-cloud-qa-index" title="Permalink to this table">¶</a></caption>
+<thead>
+<tr class="row-odd"><th class="text-align:left head"><p>Bit</p></th>
+<th class="text-align:left head"><p>Attribute</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-align:left"><p>0</p></td>
+<td class="text-align:left"><p>Dark Dense Vegetation (DDV)</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p>1</p></td>
+<td class="text-align:left"><p>Cloud</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:left"><p>2</p></td>
+<td class="text-align:left"><p>Cloud Shadow</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p>3</p></td>
+<td class="text-align:left"><p>Adjacent to Cloud</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:left"><p>4</p></td>
+<td class="text-align:left"><p>Snow</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p>5</p></td>
+<td class="text-align:left"><p>Water</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:left"><p>6</p></td>
+<td class="text-align:left"><p>Unused</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p>7</p></td>
+<td class="text-align:left"><p>Unused</p></td>
+</tr>
+</tbody>
+</table>
+<table class="colwidths-auto table" id="table-landsat4to7-cloud-qa-values">
+<caption><span class="caption-number">Table 9 </span><span class="caption-text">Landsat 4-7 Surface Reflectance Cloud Quality Assessment Values</span><a class="headerlink" href="#table-landsat4to7-cloud-qa-values" title="Permalink to this table">¶</a></caption>
+<thead>
+<tr class="row-odd"><th class="text-align:left head"><p>Attribute</p></th>
+<th class="text-align:left head"><p>Pixel Value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-align:left"><p>DDV</p></td>
+<td class="text-align:left"><p>1, 9</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p>Cloud</p></td>
+<td class="text-align:left"><p>2, 34</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:left"><p>Cloud Shadow</p></td>
+<td class="text-align:left"><p>4, 12, 20, 36, 52</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p>Adjacent to Cloud</p></td>
+<td class="text-align:left"><p>8, 12, 24, 40, 56</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:left"><p>Snow</p></td>
+<td class="text-align:left"><p>16, 20, 24, 48, 52, 56</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p>Water</p></td>
+<td class="text-align:left"><p>32, 34, 36, 40, 48, 52, 56</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="pixel-quality-assessment-band">
+<h4>Pixel Quality Assessment Band<a class="headerlink" href="#pixel-quality-assessment-band" title="Permalink to this headline">¶</a></h4>
+<table class="colwidths-auto table" id="table-landsat4to7-pixel-qa-index">
+<caption><span class="caption-number">Table 10 </span><span class="caption-text">Landsat 4-7 Pixel Quality Assessment Bit Index</span><a class="headerlink" href="#table-landsat4to7-pixel-qa-index" title="Permalink to this table">¶</a></caption>
+<thead>
+<tr class="row-odd"><th class="text-align:left head"><p>Bit</p></th>
+<th class="text-align:left head"><p>Bit Value</p></th>
+<th class="text-align:left head"><p>Cumulative Sum</p></th>
+<th class="text-align:left head"><p>Attribute</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-align:left"><p>0</p></td>
+<td class="text-align:left"><p>1</p></td>
+<td class="text-align:left"><p>1</p></td>
+<td class="text-align:left"><p>Fill</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p>1</p></td>
+<td class="text-align:left"><p>2</p></td>
+<td class="text-align:left"><p>3</p></td>
+<td class="text-align:left"><p>Clear</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:left"><p>2</p></td>
+<td class="text-align:left"><p>4</p></td>
+<td class="text-align:left"><p>7</p></td>
+<td class="text-align:left"><p>Water</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p>3</p></td>
+<td class="text-align:left"><p>8</p></td>
+<td class="text-align:left"><p>15</p></td>
+<td class="text-align:left"><p>Cloud Shadow</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:left"><p>4</p></td>
+<td class="text-align:left"><p>16</p></td>
+<td class="text-align:left"><p>31</p></td>
+<td class="text-align:left"><p>Snow</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p>5</p></td>
+<td class="text-align:left"><p>32</p></td>
+<td class="text-align:left"><p>63</p></td>
+<td class="text-align:left"><p>Cloud</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:left"><p>6-7</p></td>
+<td class="text-align:left"><p>64 / 128</p></td>
+<td class="text-align:left"><p>127 / 255</p></td>
+<td class="text-align:left"><p>Cloud Confidence<br>00 (0) = None<br>01 (1) = Low<br>10 (2) = Medium<br>11 (3) = High</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p>8</p></td>
+<td class="text-align:left"><p>256</p></td>
+<td class="text-align:left"><p>511</p></td>
+<td class="text-align:left"><p>Unused</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:left"><p>9</p></td>
+<td class="text-align:left"><p>512</p></td>
+<td class="text-align:left"><p>1023</p></td>
+<td class="text-align:left"><p>Unused</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p>10</p></td>
+<td class="text-align:left"><p>1024</p></td>
+<td class="text-align:left"><p>2047</p></td>
+<td class="text-align:left"><p>Unused</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:left"><p>11</p></td>
+<td class="text-align:left"><p>2048</p></td>
+<td class="text-align:left"><p>4095</p></td>
+<td class="text-align:left"><p>Unused</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p>12</p></td>
+<td class="text-align:left"><p>4096</p></td>
+<td class="text-align:left"><p>8191</p></td>
+<td class="text-align:left"><p>Unused</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:left"><p>13</p></td>
+<td class="text-align:left"><p>8192</p></td>
+<td class="text-align:left"><p>16383</p></td>
+<td class="text-align:left"><p>Unused</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p>14</p></td>
+<td class="text-align:left"><p>16384</p></td>
+<td class="text-align:left"><p>32767</p></td>
+<td class="text-align:left"><p>Unused</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:left"><p>15</p></td>
+<td class="text-align:left"><p>32768</p></td>
+<td class="text-align:left"><p>65535</p></td>
+<td class="text-align:left"><p>Unused</p></td>
+</tr>
+</tbody>
+</table>
+<table class="colwidths-auto table" id="table-landsat4to7-pixel-qa-values">
+<caption><span class="caption-number">Table 11 </span><span class="caption-text">Landsat 4-7 Pixel Quality Assessment Values</span><a class="headerlink" href="#table-landsat4to7-pixel-qa-values" title="Permalink to this table">¶</a></caption>
+<thead>
+<tr class="row-odd"><th class="text-align:left head"><p>Attribute</p></th>
+<th class="text-align:left head"><p>Pixel Value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-align:left"><p>Fill</p></td>
+<td class="text-align:left"><p>1</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p>Clear</p></td>
+<td class="text-align:left"><p>66, 130</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:left"><p>Water</p></td>
+<td class="text-align:left"><p>68, 132</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p>Cloud Shadow</p></td>
+<td class="text-align:left"><p>72, 136</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:left"><p>Snow/Ice</p></td>
+<td class="text-align:left"><p>80, 112, 144, 176</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p>Cloud</p></td>
+<td class="text-align:left"><p>96, 112, 160, 176, 224</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:left"><p>Low Confidence Cloud</p></td>
+<td class="text-align:left"><p>66, 68, 72, 80, 96, 112</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p>Medium Confidence Cloud</p></td>
+<td class="text-align:left"><p>130, 132, 136, 144, 160, 176</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:left"><p>High Confidence Cloud</p></td>
+<td class="text-align:left"><p>224</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="radiometric-saturation-quality-assessment-band">
+<h4>Radiometric Saturation Quality Assessment Band<a class="headerlink" href="#radiometric-saturation-quality-assessment-band" title="Permalink to this headline">¶</a></h4>
+<table class="colwidths-auto table" id="table-landsat4to7-radsat-qa-index">
+<caption><span class="caption-number">Table 12 </span><span class="caption-text">Landsat 4-7 Radiometric Saturation Quality Assessment Bit Index</span><a class="headerlink" href="#table-landsat4to7-radsat-qa-index" title="Permalink to this table">¶</a></caption>
+<thead>
+<tr class="row-odd"><th class="text-align:left head"><p>Bit</p></th>
+<th class="text-align:left head"><p>Bit Value</p></th>
+<th class="text-align:left head"><p>Cumulative Sum</p></th>
+<th class="text-align:left head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-align:left"><p>0</p></td>
+<td class="text-align:left"><p>1</p></td>
+<td class="text-align:left"><p>1</p></td>
+<td class="text-align:left"><p>Data Fill Flag (0 valid data, 1 invalid data)</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p>1</p></td>
+<td class="text-align:left"><p>2</p></td>
+<td class="text-align:left"><p>3</p></td>
+<td class="text-align:left"><p>Band 1 Data Saturation Flag (0 valid data, 1 saturated data)</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:left"><p>2</p></td>
+<td class="text-align:left"><p>4</p></td>
+<td class="text-align:left"><p>7</p></td>
+<td class="text-align:left"><p>Band 2 Data Saturation Flag (0 valid data, 1 saturated data)</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p>3</p></td>
+<td class="text-align:left"><p>8</p></td>
+<td class="text-align:left"><p>15</p></td>
+<td class="text-align:left"><p>Band 3 Data Saturation Flag (0 valid data, 1 saturated data)</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:left"><p>4</p></td>
+<td class="text-align:left"><p>16</p></td>
+<td class="text-align:left"><p>31</p></td>
+<td class="text-align:left"><p>Band 4 Data Saturation Flag (0 valid data, 1 saturated data)</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p>5</p></td>
+<td class="text-align:left"><p>32</p></td>
+<td class="text-align:left"><p>63</p></td>
+<td class="text-align:left"><p>Band 5 Data Saturation Flag (0 valid data, 1 saturated data)</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:left"><p>6</p></td>
+<td class="text-align:left"><p>64</p></td>
+<td class="text-align:left"><p>127</p></td>
+<td class="text-align:left"><p>Band 6 Data Saturation Flag (0 valid data, 1 saturated data)</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p>7</p></td>
+<td class="text-align:left"><p>128</p></td>
+<td class="text-align:left"><p>255</p></td>
+<td class="text-align:left"><p>Band 7 Data Saturation Flag (0 valid data, 1 saturated data)</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:left"><p>8</p></td>
+<td class="text-align:left"><p>NA</p></td>
+<td class="text-align:left"><p>NA</p></td>
+<td class="text-align:left"><p>Not Used</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="section" id="landsat-5">
+<h2>Landsat 5<a class="headerlink" href="#landsat-5" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://developers.google.com/earth-engine/datasets/catalog/landsat-5">Landsat 5</a> collection.</p>
+<div class="section" id="id6">
+<h3>Surface Reflectance<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>USGS Landsat 5 Surface Reflectance Tier 1</p></li>
+<li><p>USGS Landsat 5 Surface Reflectance Tier 2</p></li>
+</ul>
+</div>
+<div class="section" id="id7">
+<h3>Top of Atmosphere (TOA)<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>USGS Landsat 5 TM Collection 1 Tier 1 TOA Reflectance</p></li>
+<li><p>USGS Landsat 5 TM Collection 1 Tier 2 TOA Reflectance</p></li>
+</ul>
+</div>
+<div class="section" id="id8">
+<h3>Raw Images<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>USGS Landsat 5 TM Collection 1 Tier 1 Raw Scenes</p></li>
+<li><p>USGS Landsat 5 TM Collection 1 Tier 2 Raw Scenes</p></li>
+<li><p>USGS Landsat 5 MSS Collection 1 Tier 1 Raw Scenes</p></li>
+<li><p>USGS Landsat 5 MSS Collection 1 Tier 2 Raw Scenes</p></li>
+</ul>
+</div>
+<div class="section" id="id9">
+<h3>Derived Datasets<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Burned Area Index (BAI)</p></li>
+<li><p>Enhanced Vegetation Index (EVI)</p></li>
+<li><p>Normalized Difference Vegetation Index (NDVI)</p></li>
+<li><p>Normalized Burn Ratio Thermal (NBRT)</p></li>
+<li><p>Normalized Difference Snow Index (NDSI)</p></li>
+<li><p>Normalized Difference Water Index (NDWI)</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="landsat-4">
+<h2>Landsat 4<a class="headerlink" href="#landsat-4" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://developers.google.com/earth-engine/datasets/catalog/landsat-4">Landsat 4</a> collection.</p>
+<div class="section" id="id10">
+<h3>Surface Reflectance<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>USGS Landsat 4 Surface Reflectance Tier 1</p></li>
+<li><p>USGS Landsat 4 Surface Reflectance Tier 2</p></li>
+</ul>
+</div>
+<div class="section" id="id11">
+<h3>Top of Atmosphere (TOA)<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>USGS Landsat 4 TM Collection 1 Tier 1 TOA Reflectance</p></li>
+<li><p>USGS Landsat 4 TM Collection 1 Tier 2 TOA Reflectance</p></li>
+</ul>
+</div>
+<div class="section" id="id12">
+<h3>Raw Images<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>USGS Landsat 4 TM Collection 1 Tier 1 Raw Scenes</p></li>
+<li><p>USGS Landsat 4 TM Collection 1 Tier 2 Raw Scenes</p></li>
+<li><p>USGS Landsat 4 MSS Collection 1 Tier 1 Raw Scenes</p></li>
+<li><p>USGS Landsat 4 MSS Collection 1 Tier 2 Raw Scenes</p></li>
+</ul>
+</div>
+<div class="section" id="id13">
+<h3>Derived Datasets<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Burned Area Index (BAI)</p></li>
+<li><p>Enhanced Vegetation Index (EVI)</p></li>
+<li><p>Normalized Difference Vegetation Index (NDVI)</p></li>
+<li><p>Normalized Burn Ratio Thermal (NBRT)</p></li>
+<li><p>Normalized Difference Snow Index (NDSI)</p></li>
+<li><p>Normalized Difference Water Index (NDWI)</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="landsat-multispectral-scanner-mss-1-5">
+<h2>Landsat Multispectral Scanner (MSS) 1-5<a class="headerlink" href="#landsat-multispectral-scanner-mss-1-5" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://developers.google.com/earth-engine/datasets/catalog/landsat-mss">MSS</a> collections.</p>
+<div class="section" id="id14">
+<h3>Raw Images<a class="headerlink" href="#id14" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>USGS Landsat 1 MSS Collection 1 Tier 1 Raw Scenes</p></li>
+<li><p>USGS Landsat 1 MSS Collection 1 Tier 2 Raw Scenes</p></li>
+<li><p>USGS Landsat 2 MSS Collection 1 Tier 1 Raw Scenes</p></li>
+<li><p>USGS Landsat 2 MSS Collection 1 Tier 2 Raw Scenes</p></li>
+<li><p>USGS Landsat 3 MSS Collection 1 Tier 1 Raw Scenes</p></li>
+<li><p>USGS Landsat 3 MSS Collection 1 Tier 2 Raw Scenes</p></li>
+<li><p>USGS Landsat 4 MSS Collection 1 Tier 1 Raw Scenes</p></li>
+<li><p>USGS Landsat 4 MSS Collection 1 Tier 2 Raw Scenes</p></li>
+<li><p>USGS Landsat 5 MSS Collection 1 Tier 1 Raw Scenes</p></li>
+<li><p>USGS Landsat 5 MSS Collection 1 Tier 2 Raw Scenes</p></li>
+</ul>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./01-catalog"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="../introduction.html" title="previous page">Introduction</a>
+    <a class='right-next' id="next-link" href="chapter02-sentinel.html" title="next page">Chapter 2: Sentinel Collections</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Cale Kochenour<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    <script src="../_static/js/index.js"></script>
+    
+  </body>
+</html>
