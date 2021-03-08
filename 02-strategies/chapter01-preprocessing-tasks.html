@@ -6,7 +6,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Raster Reprojection and Resampling &#8212; Remote Sensing with Google Earth Engine</title>
+    <title>Chapter 1: Preprocessing Tasks &#8212; Remote Sensing with Google Earth Engine</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
     <link href="../_static/css/index.css" rel="stylesheet">
     <link rel="stylesheet" href="../_static/sphinx-book-theme.css" type="text/css" />
@@ -37,8 +37,8 @@
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Raster Reduce Resolution" href="chapter09-raster-reduce-resolution.html" />
-    <link rel="prev" title="Chapter 7: Data Quality Bitmasks" href="../02-beginner/chapter07-data-quality-bitmasks.html" />
+    <link rel="next" title="Chapter 2: Tips and Tricks" href="chapter02-tips-and-tricks.html" />
+    <link rel="prev" title="Chapter 4: High-Resolution Collections" href="../01-catalog/chapter04-high-resolution.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="docsearch:language" content="en">
@@ -98,42 +98,59 @@
 </ul>
 <p class="caption">
  <span class="caption-text">
+  Workflow Strategies
+ </span>
+</p>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Chapter 1: Preprocessing Tasks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chapter02-tips-and-tricks.html">
+   Chapter 2: Tips and Tricks
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
   Beginner Workflows
  </span>
 </p>
 <ul class="nav sidenav_l1">
  <li class="toctree-l1">
-  <a class="reference internal" href="../02-beginner/chapter01-qualitative-change-detection.html">
+  <a class="reference internal" href="../03-beginner/chapter01-qualitative-change-detection.html">
    Chapter 1: Qualitative Change Detection
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../02-beginner/chapter02-normalized-difference-vegetation-index.html">
+  <a class="reference internal" href="../03-beginner/chapter02-normalized-difference-vegetation-index.html">
    Chapter 2: Normalized Difference Vegetation Index
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../02-beginner/chapter03-image-composites.html">
+  <a class="reference internal" href="../03-beginner/chapter03-image-composites.html">
    Chapter 3: Image Composites
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../02-beginner/chapter04-image-mosaics.html">
+  <a class="reference internal" href="../03-beginner/chapter04-image-mosaics.html">
    Chapter 4: Image Mosaics
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../02-beginner/chapter05-image-collection-iteration.html">
+  <a class="reference internal" href="../03-beginner/chapter05-image-collection-iteration.html">
    Chapter 5: Image Collection Iteration
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../02-beginner/chapter06-cloud-masking.html">
+  <a class="reference internal" href="../03-beginner/chapter06-cloud-masking.html">
    Chapter 6: Cloud Masking
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../02-beginner/chapter07-data-quality-bitmasks.html">
+  <a class="reference internal" href="../03-beginner/chapter07-data-quality-bitmasks.html">
    Chapter 7: Data Quality Bitmasks
   </a>
  </li>
@@ -143,44 +160,44 @@
   Intermediate Workflows
  </span>
 </p>
-<ul class="current nav sidenav_l1">
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../04-intermediate/chapter08-raster-reprojection-resampling.html">
    Raster Reprojection and Resampling
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="chapter09-raster-reduce-resolution.html">
+  <a class="reference internal" href="../04-intermediate/chapter09-raster-reduce-resolution.html">
    Raster Reduce Resolution
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="chapter10-spectral-indices-math.html">
+  <a class="reference internal" href="../04-intermediate/chapter10-spectral-indices-math.html">
    Spectral Indices and Math
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="chapter11-image-region-statistics.html">
+  <a class="reference internal" href="../04-intermediate/chapter11-image-region-statistics.html">
    Image Region Statistics
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="chapter12-image-statistics-module.html">
+  <a class="reference internal" href="../04-intermediate/chapter12-image-statistics-module.html">
    Image Statistics Module
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="chapter13-data-correlation.html">
+  <a class="reference internal" href="../04-intermediate/chapter13-data-correlation.html">
    Data Correlation
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="chapter14-arrays-tasseled-cap.html">
+  <a class="reference internal" href="../04-intermediate/chapter14-arrays-tasseled-cap.html">
    Arrays and Tasseled Cap
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="chapter15-data-conversion-export.html">
+  <a class="reference internal" href="../04-intermediate/chapter15-data-conversion-export.html">
    Data Conversion and Export
   </a>
  </li>
@@ -192,17 +209,17 @@
 </p>
 <ul class="nav sidenav_l1">
  <li class="toctree-l1">
-  <a class="reference internal" href="../04-advanced/chapter16-agriculture-boundaries-vaalharts.html">
+  <a class="reference internal" href="../05-advanced/chapter16-agriculture-boundaries-vaalharts.html">
    Edge Detection of Agricultural Fields
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../04-advanced/chapter17-rice-fields-columbia.html">
+  <a class="reference internal" href="../05-advanced/chapter17-rice-fields-columbia.html">
    Vegetation Change in Columbia
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../04-advanced/chapter18-alpine-treeline-colorado.html">
+  <a class="reference internal" href="../05-advanced/chapter18-alpine-treeline-colorado.html">
    Alpine Treeline Detection
   </a>
  </li>
@@ -214,12 +231,12 @@
 </p>
 <ul class="nav sidenav_l1">
  <li class="toctree-l1">
-  <a class="reference internal" href="../05-appendices/appendix-a-acronym-list.html">
+  <a class="reference internal" href="../06-appendices/appendix-a-acronym-list.html">
    Appendix A: Acronym List
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../05-appendices/appendix-b-bibliography.html">
+  <a class="reference internal" href="../06-appendices/appendix-b-bibliography.html">
    Appendix B: Bibliography
   </a>
  </li>
@@ -265,9 +282,9 @@
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/03-intermediate/chapter08-raster-reprojection-resampling.md"><button type="button"
+        <a class="dropdown-buttons" href="../_sources/02-strategies/chapter01-preprocessing-tasks.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.md</button></a>
+                data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
             onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
@@ -285,10 +302,10 @@
                 data-toggle="tooltip" data-placement="left" title="Source repository"><i
                     class="fab fa-github"></i>repository</button></a>
         <a class="issues-button"
-            href="https://github.com/calekochenour/remote-sensing-textbook/issues/new?title=Issue%20on%20page%20%2F03-intermediate/chapter08-raster-reprojection-resampling.html&body=Your%20issue%20content%20here."><button
+            href="https://github.com/calekochenour/remote-sensing-textbook/issues/new?title=Issue%20on%20page%20%2F02-strategies/chapter01-preprocessing-tasks.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
-        <a class="edit-button" href="https://github.com/calekochenour/remote-sensing-textbook/edit/master/content/03-intermediate/chapter08-raster-reprojection-resampling.md"><button
+        <a class="edit-button" href="https://github.com/calekochenour/remote-sensing-textbook/edit/master/content/02-strategies/chapter01-preprocessing-tasks.ipynb"><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
     </div>
@@ -302,6 +319,28 @@
 
         <!-- Launch buttons -->
 
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/calekochenour/remote-sensing-textbook/master?urlpath=tree/content/02-strategies/chapter01-preprocessing-tasks.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <a class="colab-button" href="https://colab.research.google.com/github/calekochenour/remote-sensing-textbook/blob/master/content/02-strategies/chapter01-preprocessing-tasks.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="../_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
+        
+    </div>
+</div>
+
     </div>
 
     <!-- Table of contents -->
@@ -312,28 +351,28 @@
         <nav id="bd-toc-nav">
             <ul class="nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#data-acquisition-pre-processing">
-   Data Acquisition &amp; Pre-Processing
+  <a class="reference internal nav-link" href="#find-imagery">
+   Find Imagery
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#data-processing">
-   Data Processing
+  <a class="reference internal nav-link" href="#create-add-bands">
+   Create/Add Bands
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#data-visualization">
-   Data Visualization
+  <a class="reference internal nav-link" href="#mask-pixels">
+   Mask Pixels
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#data-post-processing">
-   Data Post-Processing
+  <a class="reference internal nav-link" href="#scale-data">
+   Scale Data
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#data-export">
-   Data Export
+  <a class="reference internal nav-link" href="#clip-imagery">
+   Clip Imagery
   </a>
  </li>
 </ul>
@@ -346,38 +385,54 @@
         
               <div>
                 
-  <div class="section" id="raster-reprojection-and-resampling">
-<h1>Raster Reprojection and Resampling<a class="headerlink" href="#raster-reprojection-and-resampling" title="Permalink to this headline">¶</a></h1>
-<p>This lesson recreates the following paper: [PLACEHOLDER]</p>
-<div class="section" id="data-acquisition-pre-processing">
-<h2>Data Acquisition &amp; Pre-Processing<a class="headerlink" href="#data-acquisition-pre-processing" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">//  No data acquisition and preprocessing in the lab.</span>
-</pre></div>
+  <div class="section" id="chapter-1-preprocessing-tasks">
+<h1>Chapter 1: Preprocessing Tasks<a class="headerlink" href="#chapter-1-preprocessing-tasks" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="find-imagery">
+<h2>Find Imagery<a class="headerlink" href="#find-imagery" title="Permalink to this headline">¶</a></h2>
+<p>Criteria to filter collections on include, but are not limited to:</p>
+<ul class="simple">
+<li><p>Location (point, bounding box, polygon AOI);</p></li>
+<li><p>Date or date range;</p></li>
+<li><p>Other metadata/image properties (cloud cover, sensing time, WRS path/row for Landsat); and/or,</p></li>
+<li><p>Sorting / getting first image (usually least cloudy).</p></li>
+</ul>
 </div>
+<div class="section" id="create-add-bands">
+<h2>Create/Add Bands<a class="headerlink" href="#create-add-bands" title="Permalink to this headline">¶</a></h2>
+<p>This could be index layers and/or masks. Possible layers include, but are not limited to:</p>
+<ul class="simple">
+<li><p>NDVI;</p></li>
+<li><p>NDWI;</p></li>
+<li><p>NBR;</p></li>
+<li><p>Water mask (from manual thresholding / equation or quality band);</p></li>
+<li><p>Cloud mask (from manual thresholding / equation or quality band); and/or,</p></li>
+<li><p>Shadow mask (from manual thresholding / equation or quality band).</p></li>
+</ul>
 </div>
-<div class="section" id="data-processing">
-<h2>Data Processing<a class="headerlink" href="#data-processing" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// No data processing in this lab.</span>
-</pre></div>
+<div class="section" id="mask-pixels">
+<h2>Mask Pixels<a class="headerlink" href="#mask-pixels" title="Permalink to this headline">¶</a></h2>
+<p>Pixels for masking consideration include, but are not limited to:</p>
+<ul class="simple">
+<li><p>Water;</p></li>
+<li><p>Clouds;</p></li>
+<li><p>Shadows;</p></li>
+<li><p>Snow;</p></li>
+<li><p>Terrain Occlusion;</p></li>
+<li><p>Fill Value;</p></li>
+<li><p>Invalid Values (outside valid range);</p></li>
+<li><p>Sensor problems (radiometric saturation QA band and/or Saturate Value);</p></li>
+<li><p>Scene classification / land cover (from platform band and/or other dataset layers);</p></li>
+<li><p>Other QA bitmasks / flags (platform- or sensor-dependent, e.g., Mandatory Quality Flag); and/or,</p></li>
+<li><p>Custom (sensor band or index layers or sensor bands, e.g., NDVI &lt; 0).</p></li>
+</ul>
 </div>
+<div class="section" id="scale-data">
+<h2>Scale Data<a class="headerlink" href="#scale-data" title="Permalink to this headline">¶</a></h2>
+<p>Look for scale factor in the product specifications. Often a number of type float similar to 0.0001, 0.001, or 0.01, used to scale data to collected sensor values. Unscaled data (of type integer) reduces the data storage size, compared to scaled data (of type float).</p>
 </div>
-<div class="section" id="data-visualization">
-<h2>Data Visualization<a class="headerlink" href="#data-visualization" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// No data visualization in this lab.</span>
-</pre></div>
-</div>
-</div>
-<div class="section" id="data-post-processing">
-<h2>Data Post-Processing<a class="headerlink" href="#data-post-processing" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// No data post-processing in this lab.</span>
-</pre></div>
-</div>
-</div>
-<div class="section" id="data-export">
-<h2>Data Export<a class="headerlink" href="#data-export" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// No data export in this lab.</span>
-</pre></div>
-</div>
+<div class="section" id="clip-imagery">
+<h2>Clip Imagery<a class="headerlink" href="#clip-imagery" title="Permalink to this headline">¶</a></h2>
+<p>Clip the image or collection to the specific Area of Interest (AOI). This will reduce processing time of analysis tasks.</p>
 </div>
 </div>
 
@@ -394,7 +449,7 @@
         },
         kernelOptions: {
             kernelName: "python3",
-            path: "./03-intermediate"
+            path: "./02-strategies"
         },
         predefinedOutput: true
     }
@@ -409,8 +464,8 @@
     
     <div class='prev-next-bottom'>
         
-    <a class='left-prev' id="prev-link" href="../02-beginner/chapter07-data-quality-bitmasks.html" title="previous page">Chapter 7: Data Quality Bitmasks</a>
-    <a class='right-next' id="next-link" href="chapter09-raster-reduce-resolution.html" title="next page">Raster Reduce Resolution</a>
+    <a class='left-prev' id="prev-link" href="../01-catalog/chapter04-high-resolution.html" title="previous page">Chapter 4: High-Resolution Collections</a>
+    <a class='right-next' id="next-link" href="chapter02-tips-and-tricks.html" title="next page">Chapter 2: Tips and Tricks</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">
