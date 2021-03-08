@@ -1,0 +1,531 @@
+
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Appendix A: Acronym List &#8212; Remote Sensing with Google Earth Engine</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
+    <link href="../_static/css/index.css" rel="stylesheet">
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-dropdown.css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/sphinx-book-theme.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Appendix B: Bibliography" href="appendix-b-bibliography.html" />
+    <link rel="prev" title="Alpine Treeline Detection" href="../05-advanced/chapter18-alpine-treeline-colorado.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="docsearch:language" content="en">
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../index.html">
+  
+  
+  <h1 class="site-logo" id="site-title">Remote Sensing with Google Earth Engine</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <p class="caption">
+ <span class="caption-text">
+  Data Catalog
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../01-catalog/chapter01-landsat.html">
+   Chapter 1: Landsat Collections
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../01-catalog/chapter02-sentinel.html">
+   Chapter 2: Sentinel Collections
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../01-catalog/chapter03-modis.html">
+   Chapter 3: MODIS Collections
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../01-catalog/chapter04-high-resolution.html">
+   Chapter 4: High-Resolution Collections
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Workflow Strategies
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../02-strategies/chapter01-preprocessing-tasks.html">
+   Chapter 1: Preprocessing Tasks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../02-strategies/chapter02-tips-and-tricks.html">
+   Chapter 2: Tips and Tricks
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Beginner Workflows
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../03-beginner/chapter01-qualitative-change-detection.html">
+   Chapter 1: Qualitative Change Detection
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../03-beginner/chapter02-normalized-difference-vegetation-index.html">
+   Chapter 2: Normalized Difference Vegetation Index
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../03-beginner/chapter03-image-composites.html">
+   Chapter 3: Image Composites
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../03-beginner/chapter04-image-mosaics.html">
+   Chapter 4: Image Mosaics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../03-beginner/chapter05-image-collection-iteration.html">
+   Chapter 5: Image Collection Iteration
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../03-beginner/chapter06-cloud-masking.html">
+   Chapter 6: Cloud Masking
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../03-beginner/chapter07-data-quality-bitmasks.html">
+   Chapter 7: Data Quality Bitmasks
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Intermediate Workflows
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../04-intermediate/chapter08-raster-reprojection-resampling.html">
+   Raster Reprojection and Resampling
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../04-intermediate/chapter09-raster-reduce-resolution.html">
+   Raster Reduce Resolution
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../04-intermediate/chapter10-spectral-indices-math.html">
+   Spectral Indices and Math
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../04-intermediate/chapter11-image-region-statistics.html">
+   Image Region Statistics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../04-intermediate/chapter12-image-statistics-module.html">
+   Image Statistics Module
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../04-intermediate/chapter13-data-correlation.html">
+   Data Correlation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../04-intermediate/chapter14-arrays-tasseled-cap.html">
+   Arrays and Tasseled Cap
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../04-intermediate/chapter15-data-conversion-export.html">
+   Data Conversion and Export
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Advanced Workflows
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../05-advanced/chapter16-agriculture-boundaries-vaalharts.html">
+   Edge Detection of Agricultural Fields
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../05-advanced/chapter17-rice-fields-columbia.html">
+   Vegetation Change in Columbia
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../05-advanced/chapter18-alpine-treeline-colorado.html">
+   Alpine Treeline Detection
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Appendices
+ </span>
+</p>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Appendix A: Acronym List
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="appendix-b-bibliography.html">
+   Appendix B: Bibliography
+  </a>
+ </li>
+</ul>
+
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/06-appendices/appendix-a-acronym-list.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+    
+</div>
+        <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/calekochenour/remote-sensing-textbook"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/calekochenour/remote-sensing-textbook/issues/new?title=Issue%20on%20page%20%2F06-appendices/appendix-a-acronym-list.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        <a class="edit-button" href="https://github.com/calekochenour/remote-sensing-textbook/edit/master/content/06-appendices/appendix-a-acronym-list.ipynb"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/calekochenour/remote-sensing-textbook/master?urlpath=tree/content/06-appendices/appendix-a-acronym-list.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <a class="colab-button" href="https://colab.research.google.com/github/calekochenour/remote-sensing-textbook/blob/master/content/06-appendices/appendix-a-acronym-list.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="../_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            
+        </nav>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="appendix-a-acronym-list">
+<h1>Appendix A: Acronym List<a class="headerlink" href="#appendix-a-acronym-list" title="Permalink to this headline">¶</a></h1>
+<table class="colwidths-auto table" id="table-acronym-list">
+<caption><span class="caption-number">Table 16 </span><span class="caption-text">Acronym List</span><a class="headerlink" href="#table-acronym-list" title="Permalink to this table">¶</a></caption>
+<thead>
+<tr class="row-odd"><th class="text-align:left head"><p>Abbreviation</p></th>
+<th class="text-align:left head"><p>Definition</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-align:left"><p>API</p></td>
+<td class="text-align:left"><p>Application Programming Interface</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p>BAI</p></td>
+<td class="text-align:left"><p>Burned Area Index</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:left"><p>BRDF</p></td>
+<td class="text-align:left"><p>Bidirectional Reflectance Distribution Function</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p>C1</p></td>
+<td class="text-align:left"><p>Collection 1</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:left"><p>DDV</p></td>
+<td class="text-align:left"><p>Dark Dense Vegetation</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p>DQR</p></td>
+<td class="text-align:left"><p>Data Quality Report</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:left"><p>EFR</p></td>
+<td class="text-align:left"><p>Earth Observation Full Resolution</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p>EOS</p></td>
+<td class="text-align:left"><p>Earth Observing System</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:left"><p>ESA</p></td>
+<td class="text-align:left"><p>European Space Agency</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p>EVI</p></td>
+<td class="text-align:left"><p>Enhanced Vegetation Index</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:left"><p>GEE</p></td>
+<td class="text-align:left"><p>Google Earth Engine</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p>GIS</p></td>
+<td class="text-align:left"><p>Geographic Information System</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:left"><p>GRD</p></td>
+<td class="text-align:left"><p>Ground Range Detected</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p>LaSRC</p></td>
+<td class="text-align:left"><p>Land Surface Reflectance Code</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:left"><p>LEDAPS</p></td>
+<td class="text-align:left"><p>Landsat Ecosystem Disturbance Adaptive Processing System</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p>MODIS</p></td>
+<td class="text-align:left"><p>Moderate Resolution Imaging Spectroradiometer</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:left"><p>MSI</p></td>
+<td class="text-align:left"><p>Multispectral Instrument</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p>MSS</p></td>
+<td class="text-align:left"><p>Multispectral Scanner</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:left"><p>NAIP</p></td>
+<td class="text-align:left"><p>National Agriculture Imagery Program</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p>NASA</p></td>
+<td class="text-align:left"><p>National Aeronautics and Space Administration</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:left"><p>NBRT</p></td>
+<td class="text-align:left"><p>Normalized Burn Ration Thermal</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p>NDVI</p></td>
+<td class="text-align:left"><p>Normalized Difference Vegetation Index</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:left"><p>NDSI</p></td>
+<td class="text-align:left"><p>Normalized Difference Snow Index</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p>NDWI</p></td>
+<td class="text-align:left"><p>Normalized Difference Water Index</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:left"><p>OLCI</p></td>
+<td class="text-align:left"><p>Ocean and Land Color Instrument</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p>OLI</p></td>
+<td class="text-align:left"><p>Operational Land Imager</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:left"><p>QA</p></td>
+<td class="text-align:left"><p>Quality Assessment</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p>RGB</p></td>
+<td class="text-align:left"><p>Red-Green-Blue</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:left"><p>SAR</p></td>
+<td class="text-align:left"><p>Synthetic Aperture Radar</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p>S2AC</p></td>
+<td class="text-align:left"><p>Sentinel-2 Atmospheric Correction</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:left"><p>SC</p></td>
+<td class="text-align:left"><p>Scene Classification</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p>SR</p></td>
+<td class="text-align:left"><p>Surface Reflection</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:left"><p>SRTM</p></td>
+<td class="text-align:left"><p>Shuttle Radar Topography Mission</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p>TOA</p></td>
+<td class="text-align:left"><p>Top of Atmosphere</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:left"><p>TROPOMI</p></td>
+<td class="text-align:left"><p>Tropospheric Monitoring Instrument</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./06-appendices"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="../05-advanced/chapter18-alpine-treeline-colorado.html" title="previous page">Alpine Treeline Detection</a>
+    <a class='right-next' id="next-link" href="appendix-b-bibliography.html" title="next page">Appendix B: Bibliography</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Cale Kochenour<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    <script src="../_static/js/index.js"></script>
+    
+  </body>
+</html>

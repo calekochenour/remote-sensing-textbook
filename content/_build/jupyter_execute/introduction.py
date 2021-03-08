@@ -28,45 +28,52 @@ Part 1 introduces the datasets in the [Earth Engine Data Catalog](https://develo
 
 The chapters in Part 1 explore these categories and subsequent data collections in-depth to provide information necessary for using the data in Earth Engine.
 
-### Part 2: Beginner Workflows
+### Part 2: Workflow Strategies
 
-Part 2 provides introductory workflows to introduce Earth Engine functionality. Each chapter shows a few tasks and processes to familiarize the reader with the Earth Engine platform and syntax. Part 2 contains Chapters 1-7.
+Part 2 introduces best practices for remote sensing workflows. Topics include:
+ 
+* Common preprocessing tasks; and,
+* GEE-specific tips and tricks.
 
-{doc}`Chapter 1 <./02-beginner/chapter01-qualitative-change-detection>` provides a workflow to observe qualitative change from snow-on to snow-off conditions in Rocky Mountain National Park, Colorado, United States. 
+### Part 3: Beginner Workflows
 
-{doc}`Chapter 2 <./02-beginner/chapter02-normalized-difference-vegetation-index>` provides a workflow to demonstrate the Normalized Difference Vegetation Index (NDVI) for snow-on and snow-off conditions in Rocky Mountain National Park, Colorado, United States.
+Part 3 provides introductory workflows to introduce Earth Engine functionality. Each chapter shows a few tasks and processes to familiarize the reader with the Earth Engine platform and syntax. Part 2 contains Chapters 1-7.
 
-{doc}`Chapter 3 <./02-beginner/chapter03-image-composites>` provides a workflow to create composite images from a collection of Summer imagery in Rocky Mountain National Park, Colorado, United States.
+{doc}`Chapter 1 <./03-beginner/chapter01-qualitative-change-detection>` provides a workflow to observe qualitative change from snow-on to snow-off conditions in Rocky Mountain National Park, Colorado, United States. 
 
-{doc}`Chapter 4 <./02-beginner/chapter04-image-mosaics>` provides a workflow to create a mosaic image from water features and imagery in Vermont, United States.
+{doc}`Chapter 2 <./03-beginner/chapter02-normalized-difference-vegetation-index>` provides a workflow to demonstrate the Normalized Difference Vegetation Index (NDVI) for snow-on and snow-off conditions in Rocky Mountain National Park, Colorado, United States.
 
-{doc}`Chapter 5 <./02-beginner/chapter05-image-collection-iteration>` provides a workflow to iterate through an image collection and calculate the cumulative NDVI difference for imagery in Rocky Mountain National Park, Colorado, United States. 
+{doc}`Chapter 3 <./03-beginner/chapter03-image-composites>` provides a workflow to create composite images from a collection of Summer imagery in Rocky Mountain National Park, Colorado, United States.
 
-{doc}`Chapter 6 <./02-beginner/chapter06-cloud-masking>` provides a workflow to mask clouds and cloud shadows within imagery for Rocky Mountain National Park, Colorado, United States.
+{doc}`Chapter 4 <./03-beginner/chapter04-image-mosaics>` provides a workflow to create a mosaic image from water features and imagery in Vermont, United States.
 
-{doc}`Chapter 7 <./02-beginner/chapter07-data-quality-bitmasks>` provides a workflow to explore quality flag bitmasks for imagery in Rocky Mountain National Park, Colorado, United States.
+{doc}`Chapter 5 <./03-beginner/chapter05-image-collection-iteration>` provides a workflow to iterate through an image collection and calculate the cumulative NDVI difference for imagery in Rocky Mountain National Park, Colorado, United States. 
+
+{doc}`Chapter 6 <./03-beginner/chapter06-cloud-masking>` provides a workflow to mask clouds and cloud shadows within imagery for Rocky Mountain National Park, Colorado, United States.
+
+{doc}`Chapter 7 <./03-beginner/chapter07-data-quality-bitmasks>` provides a workflow to explore quality flag bitmasks for imagery in Rocky Mountain National Park, Colorado, United States.
 
 Chapter quick reference:
 
-* {doc}`./02-beginner/chapter01-qualitative-change-detection`
-* {doc}`./02-beginner/chapter02-normalized-difference-vegetation-index`
-* {doc}`./02-beginner/chapter03-image-composites`
-* {doc}`./02-beginner/chapter04-image-mosaics`
-* {doc}`./02-beginner/chapter05-image-collection-iteration`
-* {doc}`./02-beginner/chapter06-cloud-masking`
-* {doc}`./02-beginner/chapter07-data-quality-bitmasks`
+* {doc}`./03-beginner/chapter01-qualitative-change-detection`
+* {doc}`./03-beginner/chapter02-normalized-difference-vegetation-index`
+* {doc}`./03-beginner/chapter03-image-composites`
+* {doc}`./03-beginner/chapter04-image-mosaics`
+* {doc}`./03-beginner/chapter05-image-collection-iteration`
+* {doc}`./03-beginner/chapter06-cloud-masking`
+* {doc}`./03-beginner/chapter07-data-quality-bitmasks`
 
-### Part 3: Intermediate Workflows 
+### Part 4: Intermediate Workflows 
 
-Part 3 provides workflows that piece together tasks and processes from Part 2 in order to create more complex and meaningful workflows, and introduces more complex tasks and processes.
+Part 4 provides workflows that piece together tasks and processes from Part 2 in order to create more complex and meaningful workflows, and introduces more complex tasks and processes.
 
-### Part 4: Advanced Workflows
+### Part 5: Advanced Workflows
 
-Part 4 provides full scientific workflows in Earth Engine that have been re-created from existing, peer-reviewed papers and/or ongoing remote sensing projects. One of the goals of this book is to promote and provide open and reproducible science workflows, and this chapter is dedicated to creating this type of workflow within the Earth Engine platform.
+Part 5 provides full scientific workflows in Earth Engine that have been re-created from existing, peer-reviewed papers and/or ongoing remote sensing projects. One of the goals of this book is to promote and provide open and reproducible science workflows, and this chapter is dedicated to creating this type of workflow within the Earth Engine platform.
 
-### Part 5: Appendices
+### Part 6: Appendices
 
-Part 5 provides supplemental information in the form of appendices. Current appendices include:
+Part 6 provides supplemental information in the form of appendices. Current appendices include:
 
 * Acronym List; and,
 * Bibliography.
@@ -91,15 +98,25 @@ In order to reproduce the computational workflows in this book, you must have an
 ```{toctree}
 :hidden:
 :titlesonly:
+:caption: Workflow Strategies
+
+02-strategies/chapter01-preprocessing-tasks
+02-strategies/chapter02-tips-and-tricks
+```
+
+
+```{toctree}
+:hidden:
+:titlesonly:
 :caption: Beginner Workflows
 
-02-beginner/chapter01-qualitative-change-detection
-02-beginner/chapter02-normalized-difference-vegetation-index
-02-beginner/chapter03-image-composites
-02-beginner/chapter04-image-mosaics
-02-beginner/chapter05-image-collection-iteration
-02-beginner/chapter06-cloud-masking
-02-beginner/chapter07-data-quality-bitmasks
+03-beginner/chapter01-qualitative-change-detection
+03-beginner/chapter02-normalized-difference-vegetation-index
+03-beginner/chapter03-image-composites
+03-beginner/chapter04-image-mosaics
+03-beginner/chapter05-image-collection-iteration
+03-beginner/chapter06-cloud-masking
+03-beginner/chapter07-data-quality-bitmasks
 ```
 
 
@@ -108,14 +125,14 @@ In order to reproduce the computational workflows in this book, you must have an
 :titlesonly:
 :caption: Intermediate Workflows
 
-03-intermediate/chapter08-raster-reprojection-resampling
-03-intermediate/chapter09-raster-reduce-resolution
-03-intermediate/chapter10-spectral-indices-math
-03-intermediate/chapter11-image-region-statistics
-03-intermediate/chapter12-image-statistics-module
-03-intermediate/chapter13-data-correlation
-03-intermediate/chapter14-arrays-tasseled-cap
-03-intermediate/chapter15-data-conversion-export
+04-intermediate/chapter08-raster-reprojection-resampling
+04-intermediate/chapter09-raster-reduce-resolution
+04-intermediate/chapter10-spectral-indices-math
+04-intermediate/chapter11-image-region-statistics
+04-intermediate/chapter12-image-statistics-module
+04-intermediate/chapter13-data-correlation
+04-intermediate/chapter14-arrays-tasseled-cap
+04-intermediate/chapter15-data-conversion-export
 ```
 
 
@@ -124,9 +141,9 @@ In order to reproduce the computational workflows in this book, you must have an
 :titlesonly:
 :caption: Advanced Workflows
 
-04-advanced/chapter16-agriculture-boundaries-vaalharts
-04-advanced/chapter17-rice-fields-columbia
-04-advanced/chapter18-alpine-treeline-colorado
+05-advanced/chapter16-agriculture-boundaries-vaalharts
+05-advanced/chapter17-rice-fields-columbia
+05-advanced/chapter18-alpine-treeline-colorado
 ```
 
 
@@ -135,6 +152,6 @@ In order to reproduce the computational workflows in this book, you must have an
 :titlesonly:
 :caption: Appendices
 
-05-appendices/appendix-a-acronym-list
-05-appendices/appendix-b-bibliography
+06-appendices/appendix-a-acronym-list
+06-appendices/appendix-b-bibliography
 ```

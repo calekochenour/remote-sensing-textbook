@@ -9,38 +9,44 @@
     - file: 01-catalog/chapter03-modis
     - file: 01-catalog/chapter04-high-resolution
 
+# Workflow strategies
+- part: Workflow Strategies
+  chapters:
+    - file: 02-strategies/chapter01-preprocessing-tasks
+    - file: 02-strategies/chapter02-tips-and-tricks
+
 # Beginner workflows
 - part: Beginner Workflows
   chapters:
-    - file: 02-beginner/chapter01-qualitative-change-detection
-    - file: 02-beginner/chapter02-normalized-difference-vegetation-index
-    - file: 02-beginner/chapter03-image-composites
-    - file: 02-beginner/chapter04-image-mosaics
-    - file: 02-beginner/chapter05-image-collection-iteration
-    - file: 02-beginner/chapter06-cloud-masking
-    - file: 02-beginner/chapter07-data-quality-bitmasks
+    - file: 03-beginner/chapter01-qualitative-change-detection
+    - file: 03-beginner/chapter02-normalized-difference-vegetation-index
+    - file: 03-beginner/chapter03-image-composites
+    - file: 03-beginner/chapter04-image-mosaics
+    - file: 03-beginner/chapter05-image-collection-iteration
+    - file: 03-beginner/chapter06-cloud-masking
+    - file: 03-beginner/chapter07-data-quality-bitmasks
 
 # Intermedite workflows
 - part: Intermediate Workflows
   chapters:
-  - file: 03-intermediate/chapter08-raster-reprojection-resampling
-  - file: 03-intermediate/chapter09-raster-reduce-resolution
-  - file: 03-intermediate/chapter10-spectral-indices-math
-  - file: 03-intermediate/chapter11-image-region-statistics
-  - file: 03-intermediate/chapter12-image-statistics-module
-  - file: 03-intermediate/chapter13-data-correlation
-  - file: 03-intermediate/chapter14-arrays-tasseled-cap
-  - file: 03-intermediate/chapter15-data-conversion-export
+  - file: 04-intermediate/chapter08-raster-reprojection-resampling
+  - file: 04-intermediate/chapter09-raster-reduce-resolution
+  - file: 04-intermediate/chapter10-spectral-indices-math
+  - file: 04-intermediate/chapter11-image-region-statistics
+  - file: 04-intermediate/chapter12-image-statistics-module
+  - file: 04-intermediate/chapter13-data-correlation
+  - file: 04-intermediate/chapter14-arrays-tasseled-cap
+  - file: 04-intermediate/chapter15-data-conversion-export
 
 # Advanced workflows
 - part: Advanced Workflows
   chapters:
-  - file: 04-advanced/chapter16-agriculture-boundaries-vaalharts
-  - file: 04-advanced/chapter17-rice-fields-columbia
-  - file: 04-advanced/chapter18-alpine-treeline-colorado
+  - file: 05-advanced/chapter16-agriculture-boundaries-vaalharts
+  - file: 05-advanced/chapter17-rice-fields-columbia
+  - file: 05-advanced/chapter18-alpine-treeline-colorado
 
 # Appendices
 - part: Appendices
   chapters:
-  - file: 05-appendices/appendix-a-acronym-list
-  - file: 05-appendices/appendix-b-bibliography
+  - file: 06-appendices/appendix-a-acronym-list
+  - file: 06-appendices/appendix-b-bibliography
