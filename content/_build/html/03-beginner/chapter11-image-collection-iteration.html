@@ -1,0 +1,663 @@
+
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chapter 11: Image Collection Iteration &#8212; Remote Sensing with Google Earth Engine</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
+    <link href="../_static/css/index.css" rel="stylesheet">
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-dropdown.css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/sphinx-book-theme.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Chapter 12: Cloud Masking" href="chapter12-cloud-masking.html" />
+    <link rel="prev" title="Chapter 10: Image Mosaics" href="chapter10-image-mosaics.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="docsearch:language" content="en">
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../index.html">
+  
+  
+  <h1 class="site-logo" id="site-title">Remote Sensing with Google Earth Engine</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <p class="caption">
+ <span class="caption-text">
+  Data Catalog
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../01-catalog/chapter01-landsat.html">
+   Chapter 1: Landsat Collections
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../01-catalog/chapter02-sentinel.html">
+   Chapter 2: Sentinel Collections
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../01-catalog/chapter03-modis.html">
+   Chapter 3: MODIS Collections
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../01-catalog/chapter04-high-resolution.html">
+   Chapter 4: High-Resolution Collections
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Workflow Strategies
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../02-strategies/chapter05-preprocessing-tasks.html">
+   Chapter 5: Preprocessing Tasks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../02-strategies/chapter06-tips-and-tricks.html">
+   Chapter 6: Tips and Tricks
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Beginner Workflows
+ </span>
+</p>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="chapter07-qualitative-change-detection.html">
+   Chapter 7: Qualitative Change Detection
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chapter08-normalized-difference-vegetation-index.html">
+   Chapter 8: Normalized Difference Vegetation Index
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chapter09-image-composites.html">
+   Chapter 9: Image Composites
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chapter10-image-mosaics.html">
+   Chapter 10: Image Mosaics
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Chapter 11: Image Collection Iteration
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chapter12-cloud-masking.html">
+   Chapter 12: Cloud Masking
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chapter13-data-quality-bitmasks.html">
+   Chapter 13: Data Quality Bitmasks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chapter14-image-to-asset.html">
+   Chapter 14: Image to Asset
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Intermediate Workflows
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../04-intermediate/chapter15-raster-reprojection-resampling.html">
+   Chapter 15: Raster Reprojection and Resampling
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../04-intermediate/chapter16-raster-reduce-resolution.html">
+   Chapter 16: Raster Reduce Resolution
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../04-intermediate/chapter17-spectral-indices-math.html">
+   Chapter 17: Spectral Indices and Math
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../04-intermediate/chapter18-image-region-statistics.html">
+   Chapter 18: Image Region Statistics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../04-intermediate/chapter19-image-statistics-module.html">
+   Chapter 19: Image Statistics Module
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../04-intermediate/chapter20-data-correlation.html">
+   Chapter 20: Data Correlation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../04-intermediate/chapter21-arrays-tasseled-cap.html">
+   Chapter 21: Arrays and Tasseled Cap
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../04-intermediate/chapter22-data-conversion-export.html">
+   Chapter 22: Data Conversion and Export
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../04-intermediate/chapter23-image-collection-export.html">
+   Chapter 23: Image Collection Export
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Advanced Workflows
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../05-advanced/chapter24-agriculture-boundaries-vaalharts.html">
+   Chapter 24: Edge Detection of Agricultural Fields
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../05-advanced/chapter25-rice-fields-columbia.html">
+   Chapter 25: Rice Fields in Columbia
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../05-advanced/chapter26-alpine-treeline-colorado.html">
+   Chapter 26: Alpine Treeline in Colorado
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Appendices
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../06-appendices/appendix-a-acronym-list.html">
+   Appendix A: Acronym List
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../06-appendices/appendix-b-bibliography.html">
+   Appendix B: Bibliography
+  </a>
+ </li>
+</ul>
+
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/03-beginner/chapter11-image-collection-iteration.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+    
+</div>
+        <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/calekochenour/remote-sensing-textbook"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/calekochenour/remote-sensing-textbook/issues/new?title=Issue%20on%20page%20%2F03-beginner/chapter11-image-collection-iteration.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        <a class="edit-button" href="https://github.com/calekochenour/remote-sensing-textbook/edit/master/content/03-beginner/chapter11-image-collection-iteration.md"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#functions">
+   Functions
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#data-acquisition-preprocessing">
+   Data Acquisition &amp; Preprocessing
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#data-processing">
+   Data Processing
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#data-postprocessing">
+   Data Postprocessing
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#data-visualization">
+   Data Visualization
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#data-export">
+   Data Export
+  </a>
+ </li>
+</ul>
+
+        </nav>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="chapter-11-image-collection-iteration">
+<h1>Chapter 11: Image Collection Iteration<a class="headerlink" href="#chapter-11-image-collection-iteration" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="cm">/**</span>
+<span class="cm"> * Calculate and add NDVI band to Landsat 8 image</span>
+<span class="cm"> * @param  {ee.Image} image - Landsat 8 image</span>
+<span class="cm"> * @return {ee.Image}       - Landsat 8 image with NDVI band added</span>
+<span class="cm"> */</span>
+<span class="kd">var</span> <span class="nx">add_ndvi</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">image</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">ndvi</span> <span class="o">=</span> <span class="nx">image</span><span class="p">.</span><span class="nx">normalizedDifference</span><span class="p">([</span><span class="s1">&#39;B5&#39;</span><span class="p">,</span> <span class="s1">&#39;B4&#39;</span><span class="p">]).</span><span class="nx">rename</span><span class="p">(</span><span class="s1">&#39;NDVI&#39;</span><span class="p">);</span>
+  <span class="k">return</span> <span class="nx">image</span><span class="p">.</span><span class="nx">addBands</span><span class="p">(</span><span class="nx">ndvi</span><span class="p">);</span>
+<span class="p">};</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * Mask Landsat 8 image with cloud and shadow masks</span>
+<span class="cm"> * @param  {ee.Image} image - Landsat 8 image</span>
+<span class="cm"> * @param  {ee.List}  list  - List with initialize image</span>
+<span class="cm"> * @return {ee.Image}       - Masked Landsat 8 image</span>
+<span class="cm"> */</span>
+<span class="kd">var</span> <span class="nx">accumulate</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">image</span><span class="p">,</span> <span class="nx">list</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// Get the latest cumulative anomaly image from the end of the list with</span>
+  <span class="c1">// get(-1).  Since the type of the list argument to the function is unknown,</span>
+  <span class="c1">// it needs to be cast to a List. Since the return type of get() is unknown,</span>
+  <span class="c1">// cast it to Image</span>
+  <span class="kd">var</span> <span class="nx">previous</span> <span class="o">=</span> <span class="nx">ee</span><span class="p">.</span><span class="nx">Image</span><span class="p">(</span><span class="nx">ee</span><span class="p">.</span><span class="nx">List</span><span class="p">(</span><span class="nx">list</span><span class="p">).</span><span class="nx">get</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">));</span>
+  <span class="c1">// Add the current anomaly to make a new cumulative anomaly image</span>
+  <span class="kd">var</span> <span class="nx">added</span> <span class="o">=</span> <span class="nx">image</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">previous</span><span class="p">)</span>
+    <span class="c1">// Propagate metadata to the new image</span>
+    <span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;system:time_start&#39;</span><span class="p">,</span> <span class="nx">image</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;system:time_start&#39;</span><span class="p">));</span>
+  <span class="c1">// Return the list with the cumulative anomaly inserted</span>
+  <span class="k">return</span> <span class="nx">ee</span><span class="p">.</span><span class="nx">List</span><span class="p">(</span><span class="nx">list</span><span class="p">).</span><span class="nx">add</span><span class="p">(</span><span class="nx">added</span><span class="p">);</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="data-acquisition-preprocessing">
+<h2>Data Acquisition &amp; Preprocessing<a class="headerlink" href="#data-acquisition-preprocessing" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// Define boundary for Rocky Mountain National Park, Colorado (from GEE Asset)</span>
+<span class="kd">var</span> <span class="nx">rmnp_boundary</span> <span class="o">=</span> <span class="nx">ee</span><span class="p">.</span><span class="nx">FeatureCollection</span><span class="p">(</span><span class="s2">&quot;users/calekochenour/Rocky_Mountain_National_Park__Boundary_Polygon&quot;</span><span class="p">);</span>
+<span class="c1">// print(rmnp_boundary);</span>
+
+<span class="c1">// Define Landsat 8 collection</span>
+<span class="kd">var</span> <span class="nx">landsat8_t1_sr</span> <span class="o">=</span> <span class="nx">ee</span><span class="p">.</span><span class="nx">ImageCollection</span><span class="p">(</span><span class="s1">&#39;LANDSAT/LC08/C01/T1_SR&#39;</span><span class="p">);</span>
+
+<span class="c1">// Add NDVI band to each image in the collection (with mapping)</span>
+<span class="kd">var</span> <span class="nx">landsat8_t1_sr_ndvi</span> <span class="o">=</span> <span class="nx">landsat8_t1_sr</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">add_ndvi</span><span class="p">).</span><span class="nx">select</span><span class="p">(</span><span class="s1">&#39;NDVI&#39;</span><span class="p">);</span>
+
+<span class="c1">// Filter Landsat 8 NDVI collection for June-September for 2013-2018 (baseline/reference data)</span>
+<span class="kd">var</span> <span class="nx">rmnp_summer_ndvi</span> <span class="o">=</span> <span class="nx">landsat8_t1_sr_ndvi</span>
+  <span class="p">.</span><span class="nx">filter</span><span class="p">(</span><span class="nx">ee</span><span class="p">.</span><span class="nx">Filter</span><span class="p">.</span><span class="nx">calendarRange</span><span class="p">(</span><span class="mi">2013</span><span class="p">,</span> <span class="mi">2018</span><span class="p">,</span> <span class="s1">&#39;year&#39;</span><span class="p">))</span>
+  <span class="p">.</span><span class="nx">filter</span><span class="p">(</span><span class="nx">ee</span><span class="p">.</span><span class="nx">Filter</span><span class="p">.</span><span class="nx">calendarRange</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="s1">&#39;month&#39;</span><span class="p">))</span>
+  <span class="p">.</span><span class="nx">filterBounds</span><span class="p">(</span><span class="nx">rmnp_boundary</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">sort</span><span class="p">(</span><span class="s1">&#39;system:time_start&#39;</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
+<span class="nx">print</span><span class="p">(</span><span class="nx">rmnp_summer_ndvi</span><span class="p">,</span> <span class="s1">&#39;NDVI&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="data-processing">
+<h2>Data Processing<a class="headerlink" href="#data-processing" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// Compute mean for the entire NDVI collection; clip to RMNP</span>
+<span class="kd">var</span> <span class="nx">rmnp_summer_ndvi_mean</span> <span class="o">=</span> <span class="nx">rmnp_summer_ndvi</span><span class="p">.</span><span class="nx">mean</span><span class="p">().</span><span class="nx">clip</span><span class="p">(</span><span class="nx">rmnp_boundary</span><span class="p">);</span>
+
+<span class="c1">// Compute NDVI difference (image - reference mean) series for all images post-baseline (2019-2020)</span>
+<span class="kd">var</span> <span class="nx">rmnp_ndvi_diff_series</span> <span class="o">=</span> <span class="nx">landsat8_t1_sr_ndvi</span>
+  <span class="p">.</span><span class="nx">filter</span><span class="p">(</span><span class="nx">ee</span><span class="p">.</span><span class="nx">Filter</span><span class="p">.</span><span class="nx">calendarRange</span><span class="p">(</span><span class="mi">2019</span><span class="p">,</span> <span class="mi">2020</span><span class="p">,</span> <span class="s1">&#39;year&#39;</span><span class="p">))</span>
+  <span class="p">.</span><span class="nx">filter</span><span class="p">(</span><span class="nx">ee</span><span class="p">.</span><span class="nx">Filter</span><span class="p">.</span><span class="nx">calendarRange</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="s1">&#39;month&#39;</span><span class="p">))</span>
+  <span class="p">.</span><span class="nx">filterBounds</span><span class="p">(</span><span class="nx">rmnp_boundary</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">image</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">image</span><span class="p">.</span><span class="nx">clip</span><span class="p">(</span><span class="nx">rmnp_boundary</span><span class="p">)})</span>
+  <span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">image</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">image</span><span class="p">.</span><span class="nx">subtract</span><span class="p">(</span><span class="nx">rmnp_summer_ndvi_mean</span><span class="p">).</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;system:time_start&#39;</span><span class="p">,</span> <span class="nx">image</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;system:time_start&#39;</span><span class="p">));</span>
+<span class="p">});</span>
+<span class="nx">print</span><span class="p">(</span><span class="nx">rmnp_ndvi_diff_series</span><span class="p">,</span> <span class="s2">&quot;NDVI Difference Series (collection)&quot;</span><span class="p">);</span>
+
+<span class="c1">// Compute min and max accumulated NDVI difference (for plotting min/max)</span>
+<span class="kd">var</span> <span class="nx">ndvi_diff_min</span> <span class="o">=</span> <span class="nx">ee</span><span class="p">.</span><span class="nb">Number</span><span class="p">(</span><span class="nx">rmnp_ndvi_diff_series</span><span class="p">.</span><span class="nx">sum</span><span class="p">().</span><span class="nx">reduceRegion</span><span class="p">({</span>
+  <span class="nx">reducer</span><span class="o">:</span> <span class="nx">ee</span><span class="p">.</span><span class="nx">Reducer</span><span class="p">.</span><span class="nx">min</span><span class="p">(),</span>
+  <span class="nx">geometry</span><span class="o">:</span> <span class="nx">rmnp_boundary</span><span class="p">.</span><span class="nx">geometry</span><span class="p">(),</span>
+  <span class="nx">scale</span><span class="o">:</span> <span class="mi">30</span><span class="p">,</span>
+  <span class="nx">maxPixels</span><span class="o">:</span> <span class="mi">1</span><span class="nx">e9</span>
+<span class="p">}).</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;NDVI&#39;</span><span class="p">));</span>
+
+<span class="kd">var</span> <span class="nx">ndvi_diff_max</span> <span class="o">=</span> <span class="nx">ee</span><span class="p">.</span><span class="nb">Number</span><span class="p">(</span><span class="nx">rmnp_ndvi_diff_series</span><span class="p">.</span><span class="nx">sum</span><span class="p">().</span><span class="nx">reduceRegion</span><span class="p">({</span>
+  <span class="nx">reducer</span><span class="o">:</span> <span class="nx">ee</span><span class="p">.</span><span class="nx">Reducer</span><span class="p">.</span><span class="nx">max</span><span class="p">(),</span>
+  <span class="nx">geometry</span><span class="o">:</span> <span class="nx">rmnp_boundary</span><span class="p">.</span><span class="nx">geometry</span><span class="p">(),</span>
+  <span class="nx">scale</span><span class="o">:</span> <span class="mi">30</span><span class="p">,</span>
+  <span class="nx">maxPixels</span><span class="o">:</span> <span class="mi">1</span><span class="nx">e9</span>
+<span class="p">}).</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;NDVI&#39;</span><span class="p">));</span>
+
+<span class="c1">// Print min/max to the Console</span>
+<span class="nx">print</span><span class="p">(</span><span class="s1">&#39;Accumulated NDVI Difference Min: &#39;</span><span class="p">,</span> <span class="nx">ndvi_diff_min</span><span class="p">);</span>
+<span class="nx">print</span><span class="p">(</span><span class="s1">&#39;Accumulated NDVI Difference Max: &#39;</span><span class="p">,</span> <span class="nx">ndvi_diff_max</span><span class="p">);</span>
+
+<span class="c1">// Type of object</span>
+<span class="nx">print</span><span class="p">(</span><span class="s1">&#39;Type: &#39;</span><span class="p">,</span> <span class="nx">ndvi_diff_min</span><span class="p">.</span><span class="nx">name</span><span class="p">());</span>
+
+<span class="c1">// Get the timestamp from the most recent image in the reference collection</span>
+<span class="kd">var</span> <span class="nx">time_0</span> <span class="o">=</span> <span class="nx">rmnp_summer_ndvi</span><span class="p">.</span><span class="nx">first</span><span class="p">().</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;system:time_start&#39;</span><span class="p">);</span>
+<span class="nx">print</span><span class="p">(</span><span class="s1">&#39;Time Zero: &#39;</span><span class="p">,</span> <span class="nx">time_0</span><span class="p">);</span>
+
+<span class="c1">// Initialize difference (anomaly) accumulation to 0 (image with all 0s and timestamp time_0)</span>
+<span class="kd">var</span> <span class="nx">initialized_accumulation</span> <span class="o">=</span> <span class="nx">ee</span><span class="p">.</span><span class="nx">List</span><span class="p">([</span>
+  <span class="c1">// Rename the first band from &#39;constant&#39; (default) to &#39;NDVI&#39;</span>
+  <span class="nx">ee</span><span class="p">.</span><span class="nx">Image</span><span class="p">(</span><span class="mi">0</span><span class="p">).</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;system:time_start&#39;</span><span class="p">,</span> <span class="nx">time_0</span><span class="p">).</span><span class="nx">select</span><span class="p">([</span><span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;NDVI&#39;</span><span class="p">]).</span><span class="nx">clip</span><span class="p">(</span><span class="nx">rmnp_boundary</span><span class="p">)</span>
+<span class="p">]);</span> <span class="c1">// This is a list</span>
+<span class="nx">print</span><span class="p">(</span><span class="s1">&#39;Initialzed accumulation: &#39;</span><span class="p">,</span> <span class="nx">initialized_accumulation</span><span class="p">);</span>
+<span class="nx">print</span><span class="p">(</span><span class="s1">&#39;Type: &#39;</span><span class="p">,</span> <span class="nx">initialized_accumulation</span><span class="p">.</span><span class="nx">name</span><span class="p">());</span>
+
+<span class="c1">// Create an ImageCollection of cumulative anomaly images (NDVI differences)</span>
+<span class="c1">// Cast return object of .iterate() to type List, as it is by default unknown (ComputedObject)</span>
+<span class="kd">var</span> <span class="nx">ndvi_diff_cumulative</span> <span class="o">=</span> <span class="nx">ee</span><span class="p">.</span><span class="nx">ImageCollection</span><span class="p">(</span>
+  <span class="c1">// .iterate() takes a function as param 1 and the initial state as param 2</span>
+  <span class="nx">ee</span><span class="p">.</span><span class="nx">List</span><span class="p">(</span><span class="nx">rmnp_ndvi_diff_series</span><span class="p">.</span><span class="nx">iterate</span><span class="p">(</span><span class="nx">accumulate</span><span class="p">,</span> <span class="nx">initialized_accumulation</span><span class="p">))</span>
+<span class="p">);</span>
+<span class="nx">print</span><span class="p">(</span><span class="s1">&#39;Accumulated collection via iteration: &#39;</span><span class="p">,</span> <span class="nx">ndvi_diff_cumulative</span><span class="p">);</span>
+<span class="nx">print</span><span class="p">(</span><span class="s1">&#39;Accumulated collection via iteration type: &#39;</span><span class="p">,</span> <span class="nx">ndvi_diff_cumulative</span><span class="p">.</span><span class="nx">name</span><span class="p">());</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="data-postprocessing">
+<h2>Data Postprocessing<a class="headerlink" href="#data-postprocessing" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// No data postprocessing in this lab.</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="data-visualization">
+<h2>Data Visualization<a class="headerlink" href="#data-visualization" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// Define NDVI visualization parameters</span>
+<span class="kd">var</span> <span class="nx">vis_params_ndvi</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="s1">&#39;min&#39;</span><span class="o">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>
+  <span class="s1">&#39;max&#39;</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+  <span class="c1">// palette: [&#39;blue&#39;, &#39;white&#39;, &#39;green&#39;]</span>
+ <span class="s1">&#39;palette&#39;</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="s1">&#39;yellow&#39;</span><span class="p">,</span> <span class="s1">&#39;green&#39;</span><span class="p">]</span>
+<span class="p">};</span>
+
+<span class="c1">// Define RMNP boundary visualization parameters</span>
+<span class="kd">var</span> <span class="nx">empty</span> <span class="o">=</span> <span class="nx">ee</span><span class="p">.</span><span class="nx">Image</span><span class="p">().</span><span class="kr">byte</span><span class="p">();</span>
+
+<span class="kd">var</span> <span class="nx">vt_boundary_vis</span> <span class="o">=</span> <span class="nx">empty</span><span class="p">.</span><span class="nx">paint</span><span class="p">({</span>
+  <span class="nx">featureCollection</span><span class="o">:</span> <span class="nx">rmnp_boundary</span><span class="p">,</span>
+  <span class="nx">color</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+  <span class="nx">width</span><span class="o">:</span> <span class="mi">3</span>
+<span class="p">});</span>
+
+<span class="c1">// Center map to Rocky Mountain National Park, Colorado</span>
+<span class="nx">Map</span><span class="p">.</span><span class="nx">setCenter</span><span class="p">(</span><span class="o">-</span><span class="mf">105.6836</span><span class="p">,</span> <span class="mf">40.3428</span><span class="p">,</span> <span class="mi">10</span><span class="p">);</span>
+
+<span class="c1">// Add layers to map</span>
+<span class="nx">Map</span><span class="p">.</span><span class="nx">addLayer</span><span class="p">(</span>
+  <span class="nx">rmnp_summer_ndvi_mean</span><span class="p">,</span>
+   <span class="nx">vis_params_ndvi</span><span class="p">,</span>
+  <span class="s1">&#39;Landsat 8 - NDVI Mean - Jun/Sep 2013/2020&#39;</span><span class="p">);</span>
+
+  <span class="c1">// Display accumulated NDVI differences (anomalies from 6-year mean)</span>
+<span class="nx">Map</span><span class="p">.</span><span class="nx">addLayer</span><span class="p">(</span>
+  <span class="nx">rmnp_ndvi_diff_series</span><span class="p">.</span><span class="nx">sum</span><span class="p">(),</span>
+  <span class="p">{</span>
+    <span class="nx">min</span><span class="o">:</span> <span class="o">-</span><span class="mf">2.5899382242647437</span><span class="p">,</span>
+    <span class="nx">max</span><span class="o">:</span> <span class="mf">2.548139614675886</span><span class="p">,</span>
+    <span class="nx">palette</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;FF0000&#39;</span><span class="p">,</span> <span class="s1">&#39;000000&#39;</span><span class="p">,</span> <span class="s1">&#39;00FF00&#39;</span><span class="p">]</span>
+  <span class="p">},</span>
+  <span class="s1">&#39;Cumulative NDVI Difference&#39;</span>
+<span class="p">);</span>
+
+<span class="c1">// Add RMNP boundary to map</span>
+<span class="nx">Map</span><span class="p">.</span><span class="nx">addLayer</span><span class="p">(</span>
+  <span class="nx">vt_boundary_vis</span><span class="p">,</span>
+  <span class="p">{</span><span class="s1">&#39;palette&#39;</span><span class="o">:</span> <span class="s1">&#39;FF0000&#39;</span><span class="p">},</span>
+  <span class="s1">&#39;RMNP Boundary&#39;</span><span class="p">);</span>
+
+<span class="c1">// Define chart titles</span>
+<span class="kd">var</span> <span class="nx">chart_titles</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="nx">title</span><span class="o">:</span> <span class="s1">&#39;Cumulative NDVI Difference Over Time&#39;</span><span class="p">,</span>
+  <span class="nx">hAxis</span><span class="o">:</span> <span class="p">{</span><span class="nx">title</span><span class="o">:</span> <span class="s1">&#39;Time&#39;</span><span class="p">},</span>
+  <span class="nx">vAxis</span><span class="o">:</span> <span class="p">{</span><span class="nx">title</span><span class="o">:</span> <span class="s1">&#39;Cumulative NDVI Difference&#39;</span><span class="p">},</span>
+<span class="p">};</span>
+
+<span class="c1">// Define test points (pixels) for charting</span>
+<span class="kd">var</span> <span class="nx">ute_trail_west_tree</span> <span class="o">=</span> <span class="nx">ee</span><span class="p">.</span><span class="nx">Geometry</span><span class="p">.</span><span class="nx">Point</span><span class="p">([</span><span class="o">-</span><span class="mf">105.77114730224609</span><span class="p">,</span> <span class="mf">40.44397929249563</span><span class="p">]);</span>
+<span class="kd">var</span> <span class="nx">ute_trail_west_rock</span> <span class="o">=</span> <span class="nx">ee</span><span class="p">.</span><span class="nx">Geometry</span><span class="p">.</span><span class="nx">Point</span><span class="p">([</span><span class="o">-</span><span class="mf">105.76848655090332</span><span class="p">,</span> <span class="mf">40.43672831058668</span><span class="p">]);</span>
+<span class="kd">var</span> <span class="nx">ute_trail_east_tree</span> <span class="o">=</span> <span class="nx">ee</span><span class="p">.</span><span class="nx">Geometry</span><span class="p">.</span><span class="nx">Point</span><span class="p">([</span><span class="o">-</span><span class="mf">105.6988694765701</span><span class="p">,</span> <span class="mf">40.39268322603617</span><span class="p">]);</span>
+<span class="kd">var</span> <span class="nx">ute_trail_east_rock</span> <span class="o">=</span> <span class="nx">ee</span><span class="p">.</span><span class="nx">Geometry</span><span class="p">.</span><span class="nx">Point</span><span class="p">([</span><span class="o">-</span><span class="mf">105.69552207971951</span><span class="p">,</span> <span class="mf">40.3929447073708</span><span class="p">]);</span>
+
+<span class="c1">// Add charts to Console</span>
+<span class="nx">print</span><span class="p">(</span><span class="s1">&#39;Ute Trail West - Trees&#39;</span><span class="p">,</span>
+  <span class="nx">ui</span><span class="p">.</span><span class="nx">Chart</span><span class="p">.</span><span class="nx">image</span><span class="p">.</span><span class="nx">series</span><span class="p">(</span>
+    <span class="nx">ndvi_diff_cumulative</span><span class="p">,</span>
+    <span class="nx">ute_trail_west_tree</span><span class="p">,</span>
+    <span class="nx">ee</span><span class="p">.</span><span class="nx">Reducer</span><span class="p">.</span><span class="nx">first</span><span class="p">(),</span>
+    <span class="mi">500</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">setOptions</span><span class="p">(</span><span class="nx">chart_titles</span><span class="p">)</span>
+<span class="p">);</span>
+
+<span class="nx">print</span><span class="p">(</span><span class="s1">&#39;Ute Trail West - Rocks&#39;</span><span class="p">,</span>
+  <span class="nx">ui</span><span class="p">.</span><span class="nx">Chart</span><span class="p">.</span><span class="nx">image</span><span class="p">.</span><span class="nx">series</span><span class="p">(</span>
+    <span class="nx">ndvi_diff_cumulative</span><span class="p">,</span>
+    <span class="nx">ute_trail_west_rock</span><span class="p">,</span>
+    <span class="nx">ee</span><span class="p">.</span><span class="nx">Reducer</span><span class="p">.</span><span class="nx">first</span><span class="p">(),</span>
+    <span class="mi">500</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">setOptions</span><span class="p">(</span><span class="nx">chart_titles</span><span class="p">)</span>
+<span class="p">);</span>
+
+<span class="nx">print</span><span class="p">(</span><span class="s1">&#39;Ute Trail East - Trees&#39;</span><span class="p">,</span>
+  <span class="nx">ui</span><span class="p">.</span><span class="nx">Chart</span><span class="p">.</span><span class="nx">image</span><span class="p">.</span><span class="nx">series</span><span class="p">(</span>
+    <span class="nx">ndvi_diff_cumulative</span><span class="p">,</span>
+    <span class="nx">ute_trail_east_tree</span><span class="p">,</span>
+    <span class="nx">ee</span><span class="p">.</span><span class="nx">Reducer</span><span class="p">.</span><span class="nx">first</span><span class="p">(),</span>
+    <span class="mi">500</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">setOptions</span><span class="p">(</span><span class="nx">chart_titles</span><span class="p">)</span>
+<span class="p">);</span>
+
+<span class="nx">print</span><span class="p">(</span><span class="s1">&#39;Ute Trail East - Rocks&#39;</span><span class="p">,</span>
+  <span class="nx">ui</span><span class="p">.</span><span class="nx">Chart</span><span class="p">.</span><span class="nx">image</span><span class="p">.</span><span class="nx">series</span><span class="p">(</span>
+    <span class="nx">ndvi_diff_cumulative</span><span class="p">,</span>
+    <span class="nx">ute_trail_east_rock</span><span class="p">,</span>
+    <span class="nx">ee</span><span class="p">.</span><span class="nx">Reducer</span><span class="p">.</span><span class="nx">first</span><span class="p">(),</span>
+    <span class="mi">500</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">setOptions</span><span class="p">(</span><span class="nx">chart_titles</span><span class="p">)</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="data-export">
+<h2>Data Export<a class="headerlink" href="#data-export" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// No data export in this lab.</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./03-beginner"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="chapter10-image-mosaics.html" title="previous page">Chapter 10: Image Mosaics</a>
+    <a class='right-next' id="next-link" href="chapter12-cloud-masking.html" title="next page">Chapter 12: Cloud Masking</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Cale Kochenour<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    <script src="../_static/js/index.js"></script>
+    
+  </body>
+</html>

@@ -100,8 +100,8 @@ In order to reproduce the computational workflows in this book, you must have an
 :titlesonly:
 :caption: Workflow Strategies
 
-02-strategies/chapter01-preprocessing-tasks
-02-strategies/chapter02-tips-and-tricks
+02-strategies/chapter05-preprocessing-tasks
+02-strategies/chapter06-tips-and-tricks
 ```
 
 
@@ -110,13 +110,14 @@ In order to reproduce the computational workflows in this book, you must have an
 :titlesonly:
 :caption: Beginner Workflows
 
-03-beginner/chapter01-qualitative-change-detection
-03-beginner/chapter02-normalized-difference-vegetation-index
-03-beginner/chapter03-image-composites
-03-beginner/chapter04-image-mosaics
-03-beginner/chapter05-image-collection-iteration
-03-beginner/chapter06-cloud-masking
-03-beginner/chapter07-data-quality-bitmasks
+03-beginner/chapter07-qualitative-change-detection
+03-beginner/chapter08-normalized-difference-vegetation-index
+03-beginner/chapter09-image-composites
+03-beginner/chapter10-image-mosaics
+03-beginner/chapter11-image-collection-iteration
+03-beginner/chapter12-cloud-masking
+03-beginner/chapter13-data-quality-bitmasks
+03-beginner/chapter14-image-to-asset
 ```
 
 
@@ -125,14 +126,15 @@ In order to reproduce the computational workflows in this book, you must have an
 :titlesonly:
 :caption: Intermediate Workflows
 
-04-intermediate/chapter08-raster-reprojection-resampling
-04-intermediate/chapter09-raster-reduce-resolution
-04-intermediate/chapter10-spectral-indices-math
-04-intermediate/chapter11-image-region-statistics
-04-intermediate/chapter12-image-statistics-module
-04-intermediate/chapter13-data-correlation
-04-intermediate/chapter14-arrays-tasseled-cap
-04-intermediate/chapter15-data-conversion-export
+04-intermediate/chapter15-raster-reprojection-resampling
+04-intermediate/chapter16-raster-reduce-resolution
+04-intermediate/chapter17-spectral-indices-math
+04-intermediate/chapter18-image-region-statistics
+04-intermediate/chapter19-image-statistics-module
+04-intermediate/chapter20-data-correlation
+04-intermediate/chapter21-arrays-tasseled-cap
+04-intermediate/chapter22-data-conversion-export
+04-intermediate/chapter23-image-collection-export
 ```
 
 
@@ -141,9 +143,9 @@ In order to reproduce the computational workflows in this book, you must have an
 :titlesonly:
 :caption: Advanced Workflows
 
-05-advanced/chapter16-agriculture-boundaries-vaalharts
-05-advanced/chapter17-rice-fields-columbia
-05-advanced/chapter18-alpine-treeline-colorado
+05-advanced/chapter24-agriculture-boundaries-vaalharts
+05-advanced/chapter25-rice-fields-columbia
+05-advanced/chapter26-alpine-treeline-colorado
 ```
 
 

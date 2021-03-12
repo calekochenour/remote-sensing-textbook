@@ -1,0 +1,781 @@
+
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chapter 24: Edge Detection of Agricultural Fields &#8212; Remote Sensing with Google Earth Engine</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
+    <link href="../_static/css/index.css" rel="stylesheet">
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-dropdown.css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/sphinx-book-theme.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Chapter 25: Rice Fields in Columbia" href="chapter25-rice-fields-columbia.html" />
+    <link rel="prev" title="Chapter 23: Image Collection Export" href="../04-intermediate/chapter23-image-collection-export.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="docsearch:language" content="en">
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../index.html">
+  
+  
+  <h1 class="site-logo" id="site-title">Remote Sensing with Google Earth Engine</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <p class="caption">
+ <span class="caption-text">
+  Data Catalog
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../01-catalog/chapter01-landsat.html">
+   Chapter 1: Landsat Collections
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../01-catalog/chapter02-sentinel.html">
+   Chapter 2: Sentinel Collections
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../01-catalog/chapter03-modis.html">
+   Chapter 3: MODIS Collections
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../01-catalog/chapter04-high-resolution.html">
+   Chapter 4: High-Resolution Collections
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Workflow Strategies
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../02-strategies/chapter05-preprocessing-tasks.html">
+   Chapter 5: Preprocessing Tasks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../02-strategies/chapter06-tips-and-tricks.html">
+   Chapter 6: Tips and Tricks
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Beginner Workflows
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../03-beginner/chapter07-qualitative-change-detection.html">
+   Chapter 7: Qualitative Change Detection
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../03-beginner/chapter08-normalized-difference-vegetation-index.html">
+   Chapter 8: Normalized Difference Vegetation Index
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../03-beginner/chapter09-image-composites.html">
+   Chapter 9: Image Composites
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../03-beginner/chapter10-image-mosaics.html">
+   Chapter 10: Image Mosaics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../03-beginner/chapter11-image-collection-iteration.html">
+   Chapter 11: Image Collection Iteration
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../03-beginner/chapter12-cloud-masking.html">
+   Chapter 12: Cloud Masking
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../03-beginner/chapter13-data-quality-bitmasks.html">
+   Chapter 13: Data Quality Bitmasks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../03-beginner/chapter14-image-to-asset.html">
+   Chapter 14: Image to Asset
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Intermediate Workflows
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../04-intermediate/chapter15-raster-reprojection-resampling.html">
+   Chapter 15: Raster Reprojection and Resampling
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../04-intermediate/chapter16-raster-reduce-resolution.html">
+   Chapter 16: Raster Reduce Resolution
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../04-intermediate/chapter17-spectral-indices-math.html">
+   Chapter 17: Spectral Indices and Math
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../04-intermediate/chapter18-image-region-statistics.html">
+   Chapter 18: Image Region Statistics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../04-intermediate/chapter19-image-statistics-module.html">
+   Chapter 19: Image Statistics Module
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../04-intermediate/chapter20-data-correlation.html">
+   Chapter 20: Data Correlation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../04-intermediate/chapter21-arrays-tasseled-cap.html">
+   Chapter 21: Arrays and Tasseled Cap
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../04-intermediate/chapter22-data-conversion-export.html">
+   Chapter 22: Data Conversion and Export
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../04-intermediate/chapter23-image-collection-export.html">
+   Chapter 23: Image Collection Export
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Advanced Workflows
+ </span>
+</p>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Chapter 24: Edge Detection of Agricultural Fields
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chapter25-rice-fields-columbia.html">
+   Chapter 25: Rice Fields in Columbia
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chapter26-alpine-treeline-colorado.html">
+   Chapter 26: Alpine Treeline in Colorado
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Appendices
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../06-appendices/appendix-a-acronym-list.html">
+   Appendix A: Acronym List
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../06-appendices/appendix-b-bibliography.html">
+   Appendix B: Bibliography
+  </a>
+ </li>
+</ul>
+
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/05-advanced/chapter24-agriculture-boundaries-vaalharts.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+    
+</div>
+        <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/calekochenour/remote-sensing-textbook"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/calekochenour/remote-sensing-textbook/issues/new?title=Issue%20on%20page%20%2F05-advanced/chapter24-agriculture-boundaries-vaalharts.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        <a class="edit-button" href="https://github.com/calekochenour/remote-sensing-textbook/edit/master/content/05-advanced/chapter24-agriculture-boundaries-vaalharts.md"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#functions">
+   Functions
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#data-acquisition-preprocessing">
+   Data Acquisition &amp; Preprocessing
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#data-processing">
+   Data Processing
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#data-postprocessing">
+   Data Postprocessing
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#data-visualization">
+   Data Visualization
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#data-export">
+   Data Export
+  </a>
+ </li>
+</ul>
+
+        </nav>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="chapter-24-edge-detection-of-agricultural-fields">
+<h1>Chapter 24: Edge Detection of Agricultural Fields<a class="headerlink" href="#chapter-24-edge-detection-of-agricultural-fields" title="Permalink to this headline">¶</a></h1>
+<p>Partial implementation of “A comparison of object-based image analysis approaches for field boundary delineation using multi temporal Sentinel-2 imagery” (Watkins and van Niekerk, 2019).</p>
+<p>Reference:</p>
+<ul class="simple">
+<li><p>Publication: Computers and Electronics in Agriculture</p></li>
+<li><p>Issue: Volume 158, March 2019, Pages 294-302</p></li>
+<li><p>DOI: https://doi.org/10.1016/j.compag.2019.02.009</p></li>
+<li><p>Webinar: https://www.youtube.com/watch?v=EuyEzjH1vHo&amp;t=1387s</p></li>
+</ul>
+<div class="section" id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="cm">/**</span>
+<span class="cm"> * Create and aggregate Canny Edge layers for Red, Green, Blue, and Near-Infrared</span>
+<span class="cm"> * @param  {ee.Image}      image      Sentinel-2 Level-1C image</span>
+<span class="cm"> * @param  {int or float}  threshold  Value for edge detection magnitude</span>
+<span class="cm"> * @param  {int or float}  sigma      Value for gaussian filter applied before edge detection</span>
+<span class="cm"> * @return {ee.Image}                 Aggregate Canny Edges for R/G/B/NIR</span>
+<span class="cm"> */</span>
+<span class="kd">function</span> <span class="nx">aggregate_canny_edges</span><span class="p">(</span><span class="nx">image</span><span class="p">,</span> <span class="nx">threshold</span><span class="p">,</span> <span class="nx">sigma</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// Get Canny edge for Red, Green, Blue, and NIR</span>
+  <span class="kd">var</span> <span class="nx">canny_red</span> <span class="o">=</span> <span class="nx">ee</span><span class="p">.</span><span class="nx">Algorithms</span><span class="p">.</span><span class="nx">CannyEdgeDetector</span><span class="p">({</span>
+    <span class="nx">image</span><span class="o">:</span> <span class="nx">image</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s1">&#39;B4&#39;</span><span class="p">),</span> <span class="nx">threshold</span><span class="o">:</span> <span class="nx">threshold</span><span class="p">,</span> <span class="nx">sigma</span><span class="o">:</span> <span class="nx">sigma</span>
+  <span class="p">});</span>
+
+  <span class="kd">var</span> <span class="nx">canny_green</span> <span class="o">=</span> <span class="nx">ee</span><span class="p">.</span><span class="nx">Algorithms</span><span class="p">.</span><span class="nx">CannyEdgeDetector</span><span class="p">({</span>
+    <span class="nx">image</span><span class="o">:</span> <span class="nx">image</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s1">&#39;B3&#39;</span><span class="p">),</span> <span class="nx">threshold</span><span class="o">:</span> <span class="nx">threshold</span><span class="p">,</span> <span class="nx">sigma</span><span class="o">:</span> <span class="nx">sigma</span>
+  <span class="p">});</span>
+
+  <span class="kd">var</span> <span class="nx">canny_blue</span> <span class="o">=</span> <span class="nx">ee</span><span class="p">.</span><span class="nx">Algorithms</span><span class="p">.</span><span class="nx">CannyEdgeDetector</span><span class="p">({</span>
+    <span class="nx">image</span><span class="o">:</span> <span class="nx">image</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s1">&#39;B2&#39;</span><span class="p">),</span> <span class="nx">threshold</span><span class="o">:</span> <span class="nx">threshold</span><span class="p">,</span> <span class="nx">sigma</span><span class="o">:</span> <span class="nx">sigma</span>
+  <span class="p">});</span>
+
+  <span class="kd">var</span> <span class="nx">canny_nir</span> <span class="o">=</span> <span class="nx">ee</span><span class="p">.</span><span class="nx">Algorithms</span><span class="p">.</span><span class="nx">CannyEdgeDetector</span><span class="p">({</span>
+    <span class="nx">image</span><span class="o">:</span> <span class="nx">image</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s1">&#39;B8&#39;</span><span class="p">),</span> <span class="nx">threshold</span><span class="o">:</span> <span class="nx">threshold</span><span class="p">,</span> <span class="nx">sigma</span><span class="o">:</span> <span class="nx">sigma</span>
+  <span class="p">});</span>
+
+  <span class="c1">// Aggregate R/G/B/NIR Canny edges</span>
+  <span class="kd">var</span> <span class="nx">canny_aggregate</span> <span class="o">=</span> <span class="nx">canny_red</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">canny_green</span><span class="p">).</span><span class="nx">add</span><span class="p">(</span><span class="nx">canny_blue</span><span class="p">).</span><span class="nx">add</span><span class="p">(</span><span class="nx">canny_nir</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">select</span><span class="p">([</span><span class="s1">&#39;B4&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;canny_rgbn&#39;</span><span class="p">]);</span>
+
+  <span class="k">return</span> <span class="nx">canny_aggregate</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * Convert raster to vector</span>
+<span class="cm"> * @param  {ee.Image}              raster        Primary or secondary rice field candidates</span>
+<span class="cm"> * @param  {ee.FeatureCollection}  study_area    Study area boundary</span>
+<span class="cm"> * @param  {ee.Number}             max_pixels    Maximum number of pixels to reduce</span>
+<span class="cm"> * @param  {ee.Number}             raster_scale  Scale in meters</span>
+<span class="cm"> * @return {ee.FeatureCollection}                Rice fields coverted to vector feature</span>
+<span class="cm"> */</span>
+<span class="kd">function</span> <span class="nx">raster_to_vector</span><span class="p">(</span><span class="nx">raster</span><span class="p">,</span> <span class="nx">study_area</span><span class="p">,</span> <span class="nx">max_pixels</span><span class="p">,</span> <span class="nx">raster_scale</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// Handle optional parameters</span>
+  <span class="nx">max_pixels</span> <span class="o">=</span> <span class="nx">max_pixels</span> <span class="o">||</span> <span class="mi">1</span><span class="nx">e7</span><span class="p">;</span>
+  <span class="nx">raster_scale</span> <span class="o">=</span> <span class="nx">raster_scale</span> <span class="o">||</span> <span class="mi">30</span><span class="p">;</span>
+
+  <span class="c1">// Convert raster to vector</span>
+  <span class="k">return</span> <span class="nx">raster</span><span class="p">.</span><span class="nx">reduceToVectors</span><span class="p">({</span>
+    <span class="nx">geometry</span><span class="o">:</span> <span class="nx">study_area</span><span class="p">,</span>
+    <span class="nx">maxPixels</span><span class="o">:</span> <span class="nx">max_pixels</span><span class="p">,</span>
+    <span class="nx">scale</span><span class="o">:</span> <span class="nx">raster_scale</span>
+  <span class="p">});</span>
+<span class="p">}</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * Export vector as shapefile to Google Drive or to GEE Asset</span>
+<span class="cm"> * @param   {ee.FeatureCollection}  vector          Vector that will be exported</span>
+<span class="cm"> * @param   {string}                output_name     Name of the output file (without extension)</span>
+<span class="cm"> * @param   {string}                output_method   Name of the export method/location (&quot;Drive&quot; for Google Drive, &quot;Asset&quot; for GEE Asset)</span>
+<span class="cm"> * @return  {string}                output_message  Message indicating the task to run to complete the export</span>
+<span class="cm"> */</span>
+<span class="kd">function</span> <span class="nx">export_vector</span><span class="p">(</span><span class="nx">vector</span><span class="p">,</span> <span class="nx">output_name</span><span class="p">,</span> <span class="nx">output_method</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// Handle optional parameters</span>
+  <span class="nx">output_method</span> <span class="o">=</span> <span class="nx">output_method</span> <span class="o">||</span> <span class="s1">&#39;drive&#39;</span><span class="p">;</span>
+
+  <span class="c1">// Create variable for output message</span>
+  <span class="kd">var</span> <span class="nx">output_message</span><span class="p">;</span>
+
+  <span class="k">if</span> <span class="p">(</span><span class="nx">output_method</span><span class="p">.</span><span class="nx">toLowerCase</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;drive&quot;</span><span class="p">)</span> <span class="p">{</span>
+
+    <span class="c1">// Export vectors a shapefile to Google Drive</span>
+    <span class="nx">Export</span><span class="p">.</span><span class="nx">table</span><span class="p">.</span><span class="nx">toDrive</span><span class="p">({</span>
+      <span class="nx">collection</span><span class="o">:</span> <span class="nx">vector</span><span class="p">,</span>
+      <span class="nx">description</span><span class="o">:</span> <span class="nx">output_name</span><span class="p">,</span>
+      <span class="nx">fileFormat</span><span class="o">:</span> <span class="s1">&#39;SHP&#39;</span>
+    <span class="p">});</span>
+
+    <span class="c1">// Assign output message</span>
+    <span class="nx">output_message</span> <span class="o">=</span> <span class="s2">&quot;Task ready: &quot;</span> <span class="o">+</span> <span class="nx">output_name</span> <span class="o">+</span> <span class="s2">&quot;\nPlease run task to export to Google Drive.&quot;</span><span class="p">;</span>
+
+  <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">output_method</span><span class="p">.</span><span class="nx">toLowerCase</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;asset&quot;</span><span class="p">)</span> <span class="p">{</span>
+
+    <span class="c1">// Export vector to GEE Asset</span>
+    <span class="nx">Export</span><span class="p">.</span><span class="nx">table</span><span class="p">.</span><span class="nx">toAsset</span><span class="p">({</span>
+      <span class="nx">collection</span><span class="o">:</span> <span class="nx">vector</span><span class="p">,</span>
+      <span class="nx">description</span><span class="o">:</span> <span class="nx">output_name</span><span class="p">,</span>
+      <span class="nx">assetId</span><span class="o">:</span> <span class="nx">output_name</span>
+    <span class="p">});</span>
+
+    <span class="c1">// Assign output message</span>
+    <span class="nx">output_message</span> <span class="o">=</span> <span class="s2">&quot;Task ready: &quot;</span> <span class="o">+</span> <span class="nx">output_name</span> <span class="o">+</span> <span class="s2">&quot;\nPlease run task to export to GEE Asset.&quot;</span><span class="p">;</span>
+
+  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+
+    <span class="c1">// Assign output message</span>
+    <span class="nx">output_message</span> <span class="o">=</span> <span class="s2">&quot;Invalid export method. Please specify &#39;Drive&#39; or &#39;Asset&#39;.&quot;</span><span class="p">;</span>
+
+  <span class="p">}</span>
+
+  <span class="c1">// Return output message</span>
+  <span class="k">return</span> <span class="nx">output_message</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * Export image/raster as GeoTiff to Google Drive or to GEE Asset</span>
+<span class="cm"> * @param   {ee.Image}              image           Image/raster that will be exported</span>
+<span class="cm"> * @param   {ee.FeatureCollection}  study_area      Study area boundary</span>
+<span class="cm"> * @param   {ee.Number}             max_pixels      Maximum number of pixels to reduce</span>
+<span class="cm"> * @param   {ee.Number}             raster_scale    Scale in meters</span>
+<span class="cm"> * @param   {string}                output_name     Name of the output file (without extension)</span>
+<span class="cm"> * @param   {string}                output_method   Name of the export method/location (&quot;Drive&quot; for Google Drive, &quot;Asset&quot; for GEE Asset)</span>
+<span class="cm"> * @return  {string}                output_message  Message indicating the task to run to complete the export</span>
+<span class="cm"> */</span>
+<span class="kd">function</span> <span class="nx">export_raster</span><span class="p">(</span><span class="nx">raster</span><span class="p">,</span> <span class="nx">study_area</span><span class="p">,</span> <span class="nx">raster_scale</span><span class="p">,</span> <span class="nx">max_pixels</span><span class="p">,</span> <span class="nx">output_name</span><span class="p">,</span> <span class="nx">output_method</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// Handle optional parameters</span>
+  <span class="nx">output_method</span> <span class="o">=</span> <span class="nx">output_method</span> <span class="o">||</span> <span class="s1">&#39;drive&#39;</span><span class="p">;</span>
+  <span class="nx">raster_scale</span> <span class="o">=</span> <span class="nx">raster_scale</span> <span class="o">||</span> <span class="mi">30</span><span class="p">;</span>
+  <span class="nx">max_pixels</span> <span class="o">=</span> <span class="nx">max_pixels</span> <span class="o">||</span> <span class="mi">1</span><span class="nx">e7</span><span class="p">;</span>
+
+  <span class="c1">// Create variable for output message</span>
+  <span class="kd">var</span> <span class="nx">output_message</span><span class="p">;</span>
+
+  <span class="k">if</span> <span class="p">(</span><span class="nx">output_method</span><span class="p">.</span><span class="nx">toLowerCase</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;drive&quot;</span><span class="p">)</span> <span class="p">{</span>
+
+    <span class="c1">// Export image/raster as a GeoTiff to Google Drive</span>
+    <span class="nx">Export</span><span class="p">.</span><span class="nx">image</span><span class="p">.</span><span class="nx">toDrive</span><span class="p">({</span>
+      <span class="nx">image</span><span class="o">:</span> <span class="nx">raster</span><span class="p">,</span>
+      <span class="nx">region</span><span class="o">:</span> <span class="nx">study_area</span><span class="p">,</span>
+      <span class="nx">scale</span><span class="o">:</span> <span class="nx">raster_scale</span><span class="p">,</span>
+      <span class="nx">maxPixels</span><span class="o">:</span> <span class="nx">max_pixels</span><span class="p">,</span>
+      <span class="nx">description</span><span class="o">:</span> <span class="nx">output_name</span>
+    <span class="p">});</span>
+
+    <span class="c1">// Assign output message</span>
+    <span class="nx">output_message</span> <span class="o">=</span> <span class="s2">&quot;Task ready: &quot;</span> <span class="o">+</span> <span class="nx">output_name</span> <span class="o">+</span> <span class="s2">&quot;\nPlease run task to export to Google Drive.&quot;</span><span class="p">;</span>
+
+  <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">output_method</span><span class="p">.</span><span class="nx">toLowerCase</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;asset&quot;</span><span class="p">)</span> <span class="p">{</span>
+
+    <span class="c1">// Export vector to GEE Asset</span>
+    <span class="nx">Export</span><span class="p">.</span><span class="nx">image</span><span class="p">.</span><span class="nx">toAsset</span><span class="p">({</span>
+      <span class="nx">image</span><span class="o">:</span> <span class="nx">raster</span><span class="p">,</span>
+      <span class="nx">geometry</span><span class="o">:</span> <span class="nx">study_area</span><span class="p">,</span>
+      <span class="nx">scale</span><span class="o">:</span> <span class="nx">raster_scale</span><span class="p">,</span>
+      <span class="nx">maxPixels</span><span class="o">:</span> <span class="nx">max_pixels</span><span class="p">,</span>
+      <span class="nx">description</span><span class="o">:</span> <span class="nx">output_name</span><span class="p">,</span>
+      <span class="nx">assetId</span><span class="o">:</span> <span class="nx">output_name</span>
+    <span class="p">});</span>
+
+    <span class="c1">// Assign output message</span>
+    <span class="nx">output_message</span> <span class="o">=</span> <span class="s2">&quot;Task ready: &quot;</span> <span class="o">+</span> <span class="nx">output_name</span> <span class="o">+</span> <span class="s2">&quot;\nPlease run task to export to GEE Asset.&quot;</span><span class="p">;</span>
+
+  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+
+    <span class="c1">// Assign output message</span>
+    <span class="nx">output_message</span> <span class="o">=</span> <span class="s2">&quot;Invalid export method. Please specify &#39;Drive&#39; or &#39;Asset&#39;.&quot;</span><span class="p">;</span>
+
+  <span class="p">}</span>
+
+  <span class="c1">// Return output message</span>
+  <span class="k">return</span> <span class="nx">output_message</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="data-acquisition-preprocessing">
+<h2>Data Acquisition &amp; Preprocessing<a class="headerlink" href="#data-acquisition-preprocessing" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// Set geometries</span>
+<span class="kd">var</span> <span class="nx">vaalharts_irrigation_scheme</span> <span class="o">=</span>
+    <span class="cm">/* color: #d63000 */</span>
+    <span class="cm">/* shown: false */</span>
+    <span class="nx">ee</span><span class="p">.</span><span class="nx">Geometry</span><span class="p">.</span><span class="nx">Polygon</span><span class="p">(</span>
+        <span class="p">[[[</span><span class="mf">24.65986591490829</span><span class="p">,</span> <span class="o">-</span><span class="mf">28.09412322046305</span><span class="p">],</span>
+          <span class="p">[</span><span class="mf">24.70106464537704</span><span class="p">,</span> <span class="o">-</span><span class="mf">28.054136830234732</span><span class="p">],</span>
+          <span class="p">[</span><span class="mf">24.754622994986416</span><span class="p">,</span> <span class="o">-</span><span class="mf">28.032319800398245</span><span class="p">],</span>
+          <span class="p">[</span><span class="mf">24.78071552428329</span><span class="p">,</span> <span class="o">-</span><span class="mf">28.03110761344614</span><span class="p">],</span>
+          <span class="p">[</span><span class="mf">24.790328561392666</span><span class="p">,</span> <span class="o">-</span><span class="mf">28.004436046690174</span><span class="p">],</span>
+          <span class="p">[</span><span class="mf">24.82466083678329</span><span class="p">,</span> <span class="o">-</span><span class="mf">27.9862471006372</span><span class="p">],</span>
+          <span class="p">[</span><span class="mf">24.87135273131454</span><span class="p">,</span> <span class="o">-</span><span class="mf">27.941367915030856</span><span class="p">],</span>
+          <span class="p">[</span><span class="mf">24.883712350455166</span><span class="p">,</span> <span class="o">-</span><span class="mf">27.90982002972256</span><span class="p">],</span>
+          <span class="p">[</span><span class="mf">24.86860614928329</span><span class="p">,</span> <span class="o">-</span><span class="mf">27.866123149358096</span><span class="p">],</span>
+          <span class="p">[</span><span class="mf">24.850753366080166</span><span class="p">,</span> <span class="o">-</span><span class="mf">27.811477263231893</span><span class="p">],</span>
+          <span class="p">[</span><span class="mf">24.83564716490829</span><span class="p">,</span> <span class="o">-</span><span class="mf">27.7798915448951</span><span class="p">],</span>
+          <span class="p">[</span><span class="mf">24.817794381705166</span><span class="p">,</span> <span class="o">-</span><span class="mf">27.750727353214696</span><span class="p">],</span>
+          <span class="p">[</span><span class="mf">24.806808053580166</span><span class="p">,</span> <span class="o">-</span><span class="mf">27.710613834239876</span><span class="p">],</span>
+          <span class="p">[</span><span class="mf">24.798568307486416</span><span class="p">,</span> <span class="o">-</span><span class="mf">27.674134193214723</span><span class="p">],</span>
+          <span class="p">[</span><span class="mf">24.79719501647079</span><span class="p">,</span> <span class="o">-</span><span class="mf">27.637642367457204</span><span class="p">],</span>
+          <span class="p">[</span><span class="mf">24.78346210631454</span><span class="p">,</span> <span class="o">-</span><span class="mf">27.62547571967499</span><span class="p">],</span>
+          <span class="p">[</span><span class="mf">24.790328561392666</span><span class="p">,</span> <span class="o">-</span><span class="mf">27.59018479545873</span><span class="p">],</span>
+          <span class="p">[</span><span class="mf">24.80268818053329</span><span class="p">,</span> <span class="o">-</span><span class="mf">27.58288180594306</span><span class="p">],</span>
+          <span class="p">[</span><span class="mf">24.81092792662704</span><span class="p">,</span> <span class="o">-</span><span class="mf">27.567056993780913</span><span class="p">],</span>
+          <span class="p">[</span><span class="mf">24.75599628600204</span><span class="p">,</span> <span class="o">-</span><span class="mf">27.508607155782826</span><span class="p">],</span>
+          <span class="p">[</span><span class="mf">24.738143502798916</span><span class="p">,</span> <span class="o">-</span><span class="mf">27.514697130897716</span><span class="p">],</span>
+          <span class="p">[</span><span class="mf">24.72578388365829</span><span class="p">,</span> <span class="o">-</span><span class="mf">27.532965033096218</span><span class="p">],</span>
+          <span class="p">[</span><span class="mf">24.705184518423916</span><span class="p">,</span> <span class="o">-</span><span class="mf">27.562187361647396</span><span class="p">],</span>
+          <span class="p">[</span><span class="mf">24.69282489928329</span><span class="p">,</span> <span class="o">-</span><span class="mf">27.59627024850316</span><span class="p">],</span>
+          <span class="p">[</span><span class="mf">24.70106464537704</span><span class="p">,</span> <span class="o">-</span><span class="mf">27.615741427797115</span><span class="p">],</span>
+          <span class="p">[</span><span class="mf">24.73402362975204</span><span class="p">,</span> <span class="o">-</span><span class="mf">27.61209084526035</span><span class="p">],</span>
+          <span class="p">[</span><span class="mf">24.743636666861416</span><span class="p">,</span> <span class="o">-</span><span class="mf">27.62547571967499</span><span class="p">],</span>
+          <span class="p">[</span><span class="mf">24.70106464537704</span><span class="p">,</span> <span class="o">-</span><span class="mf">27.64007553470646</span><span class="p">],</span>
+          <span class="p">[</span><span class="mf">24.67909198912704</span><span class="p">,</span> <span class="o">-</span><span class="mf">27.659538924478802</span><span class="p">],</span>
+          <span class="p">[</span><span class="mf">24.66810566100204</span><span class="p">,</span> <span class="o">-</span><span class="mf">27.6887275123932</span><span class="p">],</span>
+          <span class="p">[</span><span class="mf">24.680465280142666</span><span class="p">,</span> <span class="o">-</span><span class="mf">27.71304537681072</span><span class="p">],</span>
+          <span class="p">[</span><span class="mf">24.70106464537704</span><span class="p">,</span> <span class="o">-</span><span class="mf">27.721555348922188</span><span class="p">],</span>
+          <span class="p">[</span><span class="mf">24.705184518423916</span><span class="p">,</span> <span class="o">-</span><span class="mf">27.745865894894138</span><span class="p">],</span>
+          <span class="p">[</span><span class="mf">24.696944772330166</span><span class="p">,</span> <span class="o">-</span><span class="mf">27.78839629503583</span><span class="p">],</span>
+          <span class="p">[</span><span class="mf">24.69557148131454</span><span class="p">,</span> <span class="o">-</span><span class="mf">27.802974318988497</span><span class="p">],</span>
+          <span class="p">[</span><span class="mf">24.71754413756454</span><span class="p">,</span> <span class="o">-</span><span class="mf">27.813906553629074</span><span class="p">],</span>
+          <span class="p">[</span><span class="mf">24.779342233267666</span><span class="p">,</span> <span class="o">-</span><span class="mf">27.886759984989332</span><span class="p">],</span>
+          <span class="p">[</span><span class="mf">24.79275012793895</span><span class="p">,</span> <span class="o">-</span><span class="mf">27.90218116928733</span><span class="p">],</span>
+          <span class="p">[</span><span class="mf">24.810602911142077</span><span class="p">,</span> <span class="o">-</span><span class="mf">27.922204424412513</span><span class="p">],</span>
+          <span class="p">[</span><span class="mf">24.81678272071239</span><span class="p">,</span> <span class="o">-</span><span class="mf">27.935551201379933</span><span class="p">],</span>
+          <span class="p">[</span><span class="mf">24.79206348243114</span><span class="p">,</span> <span class="o">-</span><span class="mf">27.945256912915184</span><span class="p">],</span>
+          <span class="p">[</span><span class="mf">24.735758550790514</span><span class="p">,</span> <span class="o">-</span><span class="mf">27.964665719488632</span><span class="p">],</span>
+          <span class="p">[</span><span class="mf">24.702799566415514</span><span class="p">,</span> <span class="o">-</span><span class="mf">27.982858306056414</span><span class="p">],</span>
+          <span class="p">[</span><span class="mf">24.669840582040514</span><span class="p">,</span> <span class="o">-</span><span class="mf">27.999835284900435</span><span class="p">],</span>
+          <span class="p">[</span><span class="mf">24.650614507821764</span><span class="p">,</span> <span class="o">-</span><span class="mf">28.014384852612626</span><span class="p">],</span>
+          <span class="p">[</span><span class="mf">24.647867925790514</span><span class="p">,</span> <span class="o">-</span><span class="mf">28.031356864152194</span><span class="p">],</span>
+          <span class="p">[</span><span class="mf">24.642374761728014</span><span class="p">,</span> <span class="o">-</span><span class="mf">28.039841866403265</span><span class="p">],</span>
+          <span class="p">[</span><span class="mf">24.61628223243114</span><span class="p">,</span> <span class="o">-</span><span class="mf">28.045902172596353</span><span class="p">],</span>
+          <span class="p">[</span><span class="mf">24.5977428037202</span><span class="p">,</span> <span class="o">-</span><span class="mf">28.050750171693185</span><span class="p">],</span>
+          <span class="p">[</span><span class="mf">24.579203375009264</span><span class="p">,</span> <span class="o">-</span><span class="mf">28.04165999411288</span><span class="p">],</span>
+          <span class="p">[</span><span class="mf">24.56684375586864</span><span class="p">,</span> <span class="o">-</span><span class="mf">28.04105395495732</span><span class="p">],</span>
+          <span class="p">[</span><span class="mf">24.568217046884264</span><span class="p">,</span> <span class="o">-</span><span class="mf">28.057415813567268</span><span class="p">],</span>
+          <span class="p">[</span><span class="mf">24.57851672950145</span><span class="p">,</span> <span class="o">-</span><span class="mf">28.067716447153607</span><span class="p">],</span>
+          <span class="p">[</span><span class="mf">24.629328497079577</span><span class="p">,</span> <span class="o">-</span><span class="mf">28.098006704812327</span><span class="p">]]]);</span>
+</pre></div>
+</div>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// Get  collection</span>
+<span class="kd">var</span> <span class="nx">sentinel2_level1c</span> <span class="o">=</span> <span class="nx">ee</span><span class="p">.</span><span class="nx">ImageCollection</span><span class="p">(</span><span class="s2">&quot;COPERNICUS/S2&quot;</span><span class="p">);</span>
+
+<span class="c1">// Get monthly clear Sentinel-2 Level-1C images for November 2016 - April 2017  </span>
+<span class="kd">var</span> <span class="nx">nov_2016</span> <span class="o">=</span> <span class="nx">ee</span><span class="p">.</span><span class="nx">Image</span><span class="p">(</span><span class="s1">&#39;COPERNICUS/S2/20161126T080252_20161126T082438_T35JKK&#39;</span><span class="p">)</span>
+ <span class="p">.</span><span class="nx">clip</span><span class="p">(</span><span class="nx">vaalharts_irrigation_scheme</span><span class="p">);</span>
+
+<span class="kd">var</span> <span class="nx">dec_2016</span> <span class="o">=</span> <span class="nx">ee</span><span class="p">.</span><span class="nx">Image</span><span class="p">(</span><span class="s1">&#39;COPERNICUS/S2/20161229T081332_20161229T083640_T35JKK&#39;</span><span class="p">)</span>
+ <span class="p">.</span><span class="nx">clip</span><span class="p">(</span><span class="nx">vaalharts_irrigation_scheme</span><span class="p">);</span>
+
+<span class="kd">var</span> <span class="nx">jan_2017</span> <span class="o">=</span> <span class="nx">ee</span><span class="p">.</span><span class="nx">Image</span><span class="p">(</span><span class="s1">&#39;COPERNICUS/S2/20170128T081201_20170128T083151_T35JKK&#39;</span><span class="p">)</span>
+ <span class="p">.</span><span class="nx">clip</span><span class="p">(</span><span class="nx">vaalharts_irrigation_scheme</span><span class="p">);</span>
+
+<span class="kd">var</span> <span class="nx">feb_2017</span> <span class="o">=</span> <span class="nx">ee</span><span class="p">.</span><span class="nx">Image</span><span class="p">(</span><span class="s1">&#39;COPERNICUS/S2/20170217T081001_20170217T083329_T35JKK&#39;</span><span class="p">)</span>
+ <span class="p">.</span><span class="nx">clip</span><span class="p">(</span><span class="nx">vaalharts_irrigation_scheme</span><span class="p">);</span>
+
+<span class="kd">var</span> <span class="nx">mar_2017</span> <span class="o">=</span> <span class="nx">ee</span><span class="p">.</span><span class="nx">Image</span><span class="p">(</span><span class="s1">&#39;COPERNICUS/S2/20170326T080001_20170326T082243_T35JKK&#39;</span><span class="p">)</span>
+ <span class="p">.</span><span class="nx">clip</span><span class="p">(</span><span class="nx">vaalharts_irrigation_scheme</span><span class="p">);</span>
+
+<span class="kd">var</span> <span class="nx">apr_2017</span> <span class="o">=</span> <span class="nx">ee</span><span class="p">.</span><span class="nx">Image</span><span class="p">(</span><span class="s1">&#39;COPERNICUS/S2/20170428T081011_20170428T083712_T35JKK&#39;</span><span class="p">)</span>
+ <span class="p">.</span><span class="nx">clip</span><span class="p">(</span><span class="nx">vaalharts_irrigation_scheme</span><span class="p">);</span>
+
+<span class="c1">// Display images in Console</span>
+<span class="c1">// print(nov_2016);</span>
+<span class="c1">// print(dec_2016);</span>
+<span class="c1">// print(jan_2017);</span>
+<span class="c1">// print(feb_2017);</span>
+<span class="c1">// print(mar_2017);</span>
+<span class="c1">// print(apr_2017);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="data-processing">
+<h2>Data Processing<a class="headerlink" href="#data-processing" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// Aggregate Canny Edges (R/G/B/NIR for all months)</span>
+<span class="kd">var</span> <span class="nx">canny_agg_nov_2016</span> <span class="o">=</span> <span class="nx">aggregate_canny_edges</span><span class="p">(</span><span class="nx">nov_2016</span><span class="p">,</span> <span class="mi">500</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">canny_agg_dec_2016</span> <span class="o">=</span> <span class="nx">aggregate_canny_edges</span><span class="p">(</span><span class="nx">dec_2016</span><span class="p">,</span> <span class="mi">500</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">canny_agg_jan_2017</span> <span class="o">=</span> <span class="nx">aggregate_canny_edges</span><span class="p">(</span><span class="nx">jan_2017</span><span class="p">,</span> <span class="mi">500</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">canny_agg_feb_2017</span> <span class="o">=</span> <span class="nx">aggregate_canny_edges</span><span class="p">(</span><span class="nx">feb_2017</span><span class="p">,</span> <span class="mi">500</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">canny_agg_mar_2017</span> <span class="o">=</span> <span class="nx">aggregate_canny_edges</span><span class="p">(</span><span class="nx">mar_2017</span><span class="p">,</span> <span class="mi">500</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">canny_agg_apr_2017</span> <span class="o">=</span> <span class="nx">aggregate_canny_edges</span><span class="p">(</span><span class="nx">apr_2017</span><span class="p">,</span> <span class="mi">500</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">);</span>
+
+<span class="c1">// Display Canny aggregates in Console</span>
+<span class="c1">// print(canny_agg_nov_2016);</span>
+<span class="c1">// print(canny_agg_dec_2016);</span>
+<span class="c1">// print(canny_agg_jan_2017);</span>
+<span class="c1">// print(canny_agg_feb_2017);</span>
+<span class="c1">// print(canny_agg_mar_2017);</span>
+<span class="c1">// print(canny_agg_apr_2017);</span>
+
+<span class="c1">// Aggregate all Canny aggregates into single image</span>
+<span class="kd">var</span> <span class="nx">canny_agg_all</span> <span class="o">=</span> <span class="nx">canny_agg_nov_2016</span>
+  <span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">canny_agg_dec_2016</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">canny_agg_jan_2017</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">canny_agg_feb_2017</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">canny_agg_mar_2017</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">canny_agg_apr_2017</span><span class="p">);</span>
+
+<span class="c1">// Display new aggregate in Console</span>
+<span class="c1">// print(canny_agg_all);</span>
+
+<span class="c1">// Mask non-edge pixels</span>
+<span class="kd">var</span> <span class="nx">edges</span> <span class="o">=</span> <span class="nx">canny_agg_all</span><span class="p">.</span><span class="nx">updateMask</span><span class="p">(</span><span class="nx">canny_agg_all</span><span class="p">.</span><span class="nx">gt</span><span class="p">(</span><span class="mi">0</span><span class="p">));</span>
+<span class="c1">// print(edges);</span>
+
+<span class="c1">// Convert edges raster to vector</span>
+<span class="kd">var</span> <span class="nx">edges_vector</span> <span class="o">=</span> <span class="nx">raster_to_vector</span><span class="p">(</span><span class="nx">edges</span><span class="p">.</span><span class="kr">int</span><span class="p">(),</span> <span class="nx">vaalharts_irrigation_scheme</span><span class="p">,</span> <span class="mi">1</span><span class="nx">e8</span><span class="p">);</span>
+<span class="c1">// NOTE: Printing the edges_vector to Console or adding to the map causes a memory limit error</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="data-postprocessing">
+<h2>Data Postprocessing<a class="headerlink" href="#data-postprocessing" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// No data postprocessing in this lab.</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="data-visualization">
+<h2>Data Visualization<a class="headerlink" href="#data-visualization" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// Set map options</span>
+<span class="nx">Map</span><span class="p">.</span><span class="nx">setCenter</span><span class="p">(</span> <span class="mf">24.769355</span><span class="p">,</span> <span class="o">-</span><span class="mf">27.768264</span><span class="p">,</span> <span class="mi">11</span><span class="p">);</span>
+<span class="nx">Map</span><span class="p">.</span><span class="nx">setOptions</span><span class="p">(</span><span class="s1">&#39;SATELLITE&#39;</span><span class="p">);</span>
+
+<span class="c1">// Add indvidual Canny aggregates to map</span>
+<span class="nx">Map</span><span class="p">.</span><span class="nx">addLayer</span><span class="p">(</span><span class="nx">canny_agg_nov_2016</span><span class="p">,</span> <span class="p">{},</span> <span class="s1">&#39;Canny 4-Band Aggregate - Nov 2016&#39;</span><span class="p">);</span>
+<span class="nx">Map</span><span class="p">.</span><span class="nx">addLayer</span><span class="p">(</span><span class="nx">canny_agg_dec_2016</span><span class="p">,</span> <span class="p">{},</span> <span class="s1">&#39;Canny 4-Band Aggregate - Dec 2016&#39;</span><span class="p">);</span>
+<span class="nx">Map</span><span class="p">.</span><span class="nx">addLayer</span><span class="p">(</span><span class="nx">canny_agg_jan_2017</span><span class="p">,</span> <span class="p">{},</span> <span class="s1">&#39;Canny 4-Band Aggregate - Jan 2017&#39;</span><span class="p">);</span>
+<span class="nx">Map</span><span class="p">.</span><span class="nx">addLayer</span><span class="p">(</span><span class="nx">canny_agg_feb_2017</span><span class="p">,</span> <span class="p">{},</span> <span class="s1">&#39;Canny 4-Band Aggregate - Feb 2017&#39;</span><span class="p">);</span>
+<span class="nx">Map</span><span class="p">.</span><span class="nx">addLayer</span><span class="p">(</span><span class="nx">canny_agg_mar_2017</span><span class="p">,</span> <span class="p">{},</span> <span class="s1">&#39;Canny 4-Band Aggregate - Mar 2017&#39;</span><span class="p">);</span>
+<span class="nx">Map</span><span class="p">.</span><span class="nx">addLayer</span><span class="p">(</span><span class="nx">canny_agg_apr_2017</span><span class="p">,</span> <span class="p">{},</span> <span class="s1">&#39;Canny 4-Band Aggregate - Apr 2017&#39;</span><span class="p">);</span>
+
+<span class="c1">// Add all-month aggregate to map</span>
+<span class="nx">Map</span><span class="p">.</span><span class="nx">addLayer</span><span class="p">(</span><span class="nx">canny_agg_all</span><span class="p">,</span> <span class="p">{},</span> <span class="s1">&#39;Canny 4-Band Aggregate - All Months&#39;</span><span class="p">);</span>
+
+<span class="c1">// Add aedges (without background to map)</span>
+<span class="nx">Map</span><span class="p">.</span><span class="nx">addLayer</span><span class="p">(</span><span class="nx">edges</span><span class="p">,</span> <span class="p">{</span><span class="nx">palette</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;white&#39;</span><span class="p">]},</span> <span class="s1">&#39;Canny Edges - No Background&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="data-export">
+<h2>Data Export<a class="headerlink" href="#data-export" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// Export edges - Raster</span>
+<span class="kd">var</span> <span class="nx">raster_export</span> <span class="o">=</span> <span class="nx">export_raster</span><span class="p">(</span><span class="nx">edges</span><span class="p">,</span><span class="nx">vaalharts_irrigation_scheme</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">1</span><span class="nx">e8</span><span class="p">,</span> <span class="s1">&#39;edges_raster&#39;</span><span class="p">);</span>
+
+<span class="c1">// Export edges - Vector</span>
+<span class="kd">var</span> <span class="nx">vector_export</span> <span class="o">=</span> <span class="nx">export_vector</span><span class="p">(</span><span class="nx">edges_vector</span><span class="p">,</span> <span class="s1">&#39;edges_vector&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./05-advanced"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="../04-intermediate/chapter23-image-collection-export.html" title="previous page">Chapter 23: Image Collection Export</a>
+    <a class='right-next' id="next-link" href="chapter25-rice-fields-columbia.html" title="next page">Chapter 25: Rice Fields in Columbia</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Cale Kochenour<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    <script src="../_static/js/index.js"></script>
+    
+  </body>
+</html>
