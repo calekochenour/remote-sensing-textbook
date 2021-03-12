@@ -1,6 +1,6 @@
 # Chapter 26: Alpine Treeline in Colorado
 
-Partial implementation of "Spatial Detection of Alpine Treeline Ecotones in the Western United States" (Wei, Karger, and Wilson, 2020), applied to Rocky Mountain National Park, Colorado.
+Partial implementation of Wei, Karger, and Wilson {cite}`WEI2020111672`, applied to Rocky Mountain National Park, Colorado.
 
 Reference:
 

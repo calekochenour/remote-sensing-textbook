@@ -1,4 +1,3 @@
-
 # Appendix B: Bibliography
 
 ```{bibliography} ../references.bib
