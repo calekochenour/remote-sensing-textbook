@@ -1,13 +1,6 @@
 # Chapter 24: Edge Detection of Agricultural Fields
 
-Partial implementation of "A comparison of object-based image analysis approaches for field boundary delineation using multi temporal Sentinel-2 imagery" (Watkins and van Niekerk, 2019).
-
-Reference:
-
-* Publication: Computers and Electronics in Agriculture
-* Issue: Volume 158, March 2019, Pages 294-302
-* DOI: https://doi.org/10.1016/j.compag.2019.02.009
-* Webinar: https://www.youtube.com/watch?v=EuyEzjH1vHo&t=1387s
+Partial implementation of Watkins and van Niekerk {cite}`WATKINS2019294`.
 
 ## Functions
 
