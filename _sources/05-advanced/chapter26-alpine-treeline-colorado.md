@@ -2,10 +2,6 @@
 
 Partial implementation of Wei, Karger, and Wilson {cite}`WEI2020111672`, applied to Rocky Mountain National Park, Colorado.
 
-Reference:
-
-* [DOI](https://doi.org/10.1016/j.rse.2020.111672)
-
 ## Functions
 
 ```{code-block} javascript

@@ -8,16 +8,19 @@
  * Mask Landsat 8 image with cloud and shadow masks
  * @param  {ee.image} image - Landsat 8 image
  * @return {ee.Image}       - Masked Landsat 8 image
+ *
+ * Function adapted from:
+ * https://developers.google.com/earth-engine/datasets/catalog LANDSAT_LC08_C01_T1_SR
  */
 function maskL8sr(image) {
-  // Bits 3 and 5 are cloud shadow and cloud, respectively.
+  // Bits 3 and 5 are cloud shadow and cloud, respectively
   var cloudShadowBitMask = (1 << 3);
   var cloudsBitMask = (1 << 5);
 
   // Get the pixel QA band.
   var qa = image.select('pixel_qa');
 
-  // Both flags should be set to zero, indicating clear conditions.
+  // Both flags should be set to zero, indicating clear conditions
   var mask = qa
     .bitwiseAnd(cloudShadowBitMask).eq(0)
     .and(qa.bitwiseAnd(cloudsBitMask).eq(0));

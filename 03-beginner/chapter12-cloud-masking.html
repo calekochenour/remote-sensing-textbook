@@ -386,6 +386,9 @@
 <span class="cm"> * Mask Landsat 8 image with cloud and shadow masks</span>
 <span class="cm"> * @param  {ee.image} image - Landsat 8 image</span>
 <span class="cm"> * @return {ee.Image}       - Masked Landsat 8 image</span>
+<span class="cm"> *</span>
+<span class="cm"> * Function adapted from:</span>
+<span class="cm"> * https://developers.google.com/earth-engine/datasets/catalog/LANDSAT_LC08_C01_T1_SR</span>
 <span class="cm"> */</span>
 <span class="kd">var</span> <span class="nx">mask_clouds_landsat8</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">image</span><span class="p">)</span> <span class="p">{</span>
   <span class="c1">// Bits 3 and 5 are cloud shadow and cloud, respectively.</span>
