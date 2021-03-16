@@ -5,7 +5,7 @@
 jupyter_book = content/
 
 # Set commit message
-github_commit_message = "Add bibliography"
+github_commit_message = "Update syntax"
 
 # Clean, build, and publish book to GitHub Pages; push all files to main
 all: publish-book push-main
