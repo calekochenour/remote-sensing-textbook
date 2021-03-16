@@ -7,6 +7,9 @@
  * Mask Landsat 8 image with cloud and shadow masks
  * @param  {ee.image} image - Landsat 8 image
  * @return {ee.Image}       - Masked Landsat 8 image
+ *
+ * Function adapted from:
+ * https://developers.google.com/earth-engine/datasets/catalog/LANDSAT_LC08_C01_T1_SR
  */
 var mask_clouds_landsat8 = function(image) {
   // Bits 3 and 5 are cloud shadow and cloud, respectively.
