@@ -389,14 +389,14 @@
 <span class="cm"> * @return {ee.Image}       - Masked Landsat 8 image</span>
 <span class="cm"> *</span>
 <span class="cm"> * Function adapted from:</span>
-<span class="cm"> * https://developers.google.com/earth-engine/datasets/catalog LANDSAT_LC08_C01_T1_SR</span>
+<span class="cm"> * https://developers.google.com/earth-engine/datasets/catalog/LANDSAT_LC08_C01_T1_SR</span>
 <span class="cm"> */</span>
 <span class="kd">function</span> <span class="nx">maskL8sr</span><span class="p">(</span><span class="nx">image</span><span class="p">)</span> <span class="p">{</span>
   <span class="c1">// Bits 3 and 5 are cloud shadow and cloud, respectively</span>
   <span class="kd">var</span> <span class="nx">cloudShadowBitMask</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">3</span><span class="p">);</span>
   <span class="kd">var</span> <span class="nx">cloudsBitMask</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">5</span><span class="p">);</span>
 
-  <span class="c1">// Get the pixel QA band.</span>
+  <span class="c1">// Get the pixel QA band</span>
   <span class="kd">var</span> <span class="nx">qa</span> <span class="o">=</span> <span class="nx">image</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s1">&#39;pixel_qa&#39;</span><span class="p">);</span>
 
   <span class="c1">// Both flags should be set to zero, indicating clear conditions</span>
