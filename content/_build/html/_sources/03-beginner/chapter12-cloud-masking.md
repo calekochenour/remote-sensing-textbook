@@ -12,14 +12,14 @@
  * https://developers.google.com/earth-engine/datasets/catalog/LANDSAT_LC08_C01_T1_SR
  */
 var mask_clouds_landsat8 = function(image) {
-  // Bits 3 and 5 are cloud shadow and cloud, respectively.
+  // Bits 3 and 5 are cloud shadow and cloud, respectively
   var cloudShadowBitMask = (1 << 3); // 1000 in base 2
   var cloudsBitMask = (1 << 5); // 100000 in base 2
 
-  // Get the pixel QA band.
+  // Get the pixel QA band
   var qa = image.select('pixel_qa');
 
-  // Both flags should be set to zero, indicating clear conditions.
+  // Both flags should be set to zero, indicating clear conditions
   var mask = qa
     .bitwiseAnd(cloudShadowBitMask).eq(0)
     .and(qa.bitwiseAnd(cloudsBitMask).eq(0));

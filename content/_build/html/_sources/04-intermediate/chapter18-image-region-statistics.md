@@ -28,7 +28,7 @@ var mask_clouds_landsat8 = function(image) {
   var cloudShadowBitMask = (1 << 3); // 1000 in base 2
   var cloudsBitMask = (1 << 5); // 100000 in base 2
 
-  // Get the pixel QA band.
+  // Get the pixel QA band
   var qa = image.select('pixel_qa');
 
   // Both flags should be set to zero, indicating clear conditions
