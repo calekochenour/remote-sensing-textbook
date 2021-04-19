@@ -1,4 +1,6 @@
-# Chapter 23: Image Collection Export
+# Chapter 24: Image Collection Export
+
+This chapter provides a workflow to export all images in a collection from June 1, 2020 to January 21, 2021 for Rocky Mountain National Park, Colorado, United States. The full GEE code can be found [here](https://code.earthengine.google.com/5d824c28adfeb05dc359ba3f04903b11).
 
 Resources:
 
@@ -18,7 +20,6 @@ var batch = require('users/fitoprincipe/geetools:batch');
 ```{code-block} javascript
 // Set area of interest (AOI)
 var rmnp_boundary = ee.FeatureCollection("users/calekochenour/Rocky_Mountain_National_Park__Boundary_Polygon");
-var colorado_boundary = ee.FeatureCollection("users/calekochenour/colorado_boundary");
 
 // Filter Landsat 8 based on dates and AOI
 var rmnp_collection = ee.ImageCollection('LANDSAT/LC08/C01/T1_SR')
@@ -53,7 +54,7 @@ var output_folder = 'gee-export';
 
 // Export collection image to Drive
 batch.Download.ImageCollection.toDrive(
-  rmnp_collection, // colorado_collection
+  rmnp_collection,
   output_folder,
   {
     name: '{id}', // {id}, {system_date} and all other properties (e.g., {WRS_PATH})

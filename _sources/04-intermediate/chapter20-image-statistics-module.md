@@ -1,4 +1,6 @@
-# Chapter 19: Image Statistics Module
+# Chapter 20: Image Statistics Module
+
+This chapter provides a module containing common functions for image statistics. The full GEE code can be found [here](https://code.earthengine.google.com/10f23ec27d411bdd19829d9128cbb46b).
 
 ## Functions
 

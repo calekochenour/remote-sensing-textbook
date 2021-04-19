@@ -1,4 +1,6 @@
-# Chapter 22: Data Conversion and Export
+# Chapter 23: Data Conversion and Export
+
+This chapter provides a workflow to convert raster features to vector and export both raster and vector features for Rocky Mountain National Park, Colorado, United States. The full GEE code can be found [here](https://code.earthengine.google.com/7470e3bba0a377517e77dee64b2ca9d1).
 
 ## Functions
 

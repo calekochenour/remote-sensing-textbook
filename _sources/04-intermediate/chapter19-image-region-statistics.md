@@ -1,4 +1,6 @@
-# Chapter 18: Image Region Statistics
+# Chapter 19: Image Region Statistics
+
+This chapter provides a workflow to create image statistics for an Ecoregion in United States High Plains. The full GEE code can be found [here](https://code.earthengine.google.com/4a49cb6c5267aeadb42846b7d2380997).
 
 Workflow:
 

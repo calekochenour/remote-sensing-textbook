@@ -1,4 +1,6 @@
-# Chapter 21: Arrays and Tasseled Cap
+# Chapter 22: Arrays and Tasseled Cap
+
+This chapter provides a workflow to explore arrays and the Tasseled Cap transformation for an area near Lake Champlain, Vermont, United States. The full GEE code can be found [here](https://code.earthengine.google.com/997ebbc2046625f80e2b474a6c357617).
 
 ## Functions
 

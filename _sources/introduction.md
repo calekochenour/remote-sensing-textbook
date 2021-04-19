@@ -60,28 +60,35 @@ Part 3 provides introductory workflows to introduce Earth Engine functionality. 
 
 {doc}`Chapter 15 <./03-beginner/chapter15-image-band-histograms>` provides a workflow to explore image band histograms for an area near Lake Champlain and Burlington, Vermont, United States.
 
-Chapter quick reference:
-
-* {doc}`./03-beginner/chapter07-qualitative-change-detection`
-* {doc}`./03-beginner/chapter08-normalized-difference-vegetation-index`
-* {doc}`./03-beginner/chapter09-image-composites`
-* {doc}`./03-beginner/chapter10-image-mosaics`
-* {doc}`./03-beginner/chapter11-image-collection-iteration`
-* {doc}`./03-beginner/chapter12-cloud-masking`
-* {doc}`./03-beginner/chapter13-data-quality-bitmasks`
-* {doc}`./03-beginner/chapter14-image-to-asset`
-
 ### Part 4: Intermediate Workflows
 
-Part 4 provides workflows that piece together tasks and processes from Part 2 in order to create more complex and meaningful workflows, and introduces more complex tasks and processes.
+Part 4 provides workflows that piece together tasks and processes from Part 2 in order to create more complex and meaningful workflows, and introduces more complex tasks and processes. Part 4 contains Chapters 16-24.
+
+{doc}`Chapter 16 <./04-intermediate/chapter16-raster-reprojection-resampling>` provides a workflow to reproject and resample imagery for an area near Manchester, Vermont, United States.
+
+{doc}`Chapter 17 <./04-intermediate/chapter17-raster-reduce-resolution>` provides a workflow to reduce the resolution of imagery for an area near Manchester, Vermont, United States.
+
+{doc}`Chapter 18 <./04-intermediate/chapter18-spectral-indices-math>` provides a workflow to create spectral indices for Rocky Mountain National Park, Colorado, United States.
+
+{doc}`Chapter 19 <./04-intermediate/chapter19-image-region-statistics>` provides a workflow to create image statistics for an Ecoregion in United States High Plains.
+
+{doc}`Chapter 20 <./04-intermediate/chapter20-image-statistics-module>` provides a module containing common functions for image statistics.
+
+{doc}`Chapter 21 <./04-intermediate/chapter21-data-correlation>` provides a workflow to explore data correlation between vegetation and terrain in the Gabilan Range, California, United States.
+
+{doc}`Chapter 22 <./04-intermediate/chapter22-arrays-tasseled-cap>` provides a workflow to explore arrays and the Tasseled Cap transformation for an area near Lake Champlain, Vermont, United States.
+
+{doc}`Chapter 23 <./04-intermediate/chapter23-data-conversion-export>` provides a workflow to convert raster features to vector and export both raster and vector features for Rocky Mountain National Park, Colorado, United States.
+
+{doc}`Chapter 24 <./04-intermediate/chapter24-image-collection-export>` provides a workflow to export all images in a collection from June 1, 2020 to January 21, 2021 for Rocky Mountain National Park, Colorado, United States.
 
 ### Part 5: Advanced Workflows
 
-Part 5 provides full scientific workflows in Earth Engine that have been re-created from existing, peer-reviewed papers and/or ongoing remote sensing projects. One of the goals of this book is to promote and provide open and reproducible science workflows, and this chapter is dedicated to creating this type of workflow within the Earth Engine platform.
+Part 5 provides full scientific workflows in Earth Engine that have been re-created from existing, peer-reviewed papers and/or ongoing remote sensing projects. One of the goals of this book is to promote and provide open and reproducible science workflows, and this chapter is dedicated to creating this type of workflow within the Earth Engine platform. Part 5 contains Chapters 25-27.
 
 ### Part 6: Appendices
 
-Part 6 provides supplemental information in the form of appendices. Current appendices include:
+Part 6 provides supplemental information in the form of appendices. Current appendices include: Part 6 contains Appendices A-B.
 
 * Acronym List; and,
 * Bibliography.

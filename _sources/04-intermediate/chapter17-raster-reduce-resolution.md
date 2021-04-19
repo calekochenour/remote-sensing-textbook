@@ -1,4 +1,6 @@
-# Chapter 16: Raster Reduce Resolution
+# Chapter 17: Raster Reduce Resolution
+
+This chapter provides a workflow to reduce the resolution of imagery for an area near Manchester, Vermont, United States. The full GEE code can be found [here](https://code.earthengine.google.com/33c725739b6a0303329b6a8d6dedeca2).
 
 ## Functions
 

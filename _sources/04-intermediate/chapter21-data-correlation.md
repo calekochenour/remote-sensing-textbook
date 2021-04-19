@@ -1,4 +1,6 @@
-# Chapter 20: Data Correlation
+# Chapter 21: Data Correlation
+
+This chapter provides a workflow to explore data correlation between vegetation and terrain in the Gabilan Range, California, United States. The full GEE code can be found [here](https://code.earthengine.google.com/745ccb74c9a889f088b97c26ba772d73).
 
 ## Functions
 

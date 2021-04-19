@@ -1,4 +1,6 @@
-# Chapter 17: Spectral Indices and Math
+# Chapter 18: Spectral Indices and Math
+
+The full GEE code can be found [here](https://code.earthengine.google.com/ab5068ac521ca53acd3561deb3fd3878).
 
 ## Functions
 
