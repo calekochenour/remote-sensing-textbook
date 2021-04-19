@@ -1,6 +1,6 @@
 # Chapter 18: Spectral Indices and Math
 
-The full GEE code can be found [here](https://code.earthengine.google.com/ab5068ac521ca53acd3561deb3fd3878).
+This chapter provides a workflow to create spectral indices for Rocky Mountain National Park, Colorado, United States. The full GEE code can be found [here](https://code.earthengine.google.com/ab5068ac521ca53acd3561deb3fd3878).
 
 ## Functions
 

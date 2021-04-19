@@ -16,7 +16,7 @@ Our goal with this online "textbook" resource is to provide example workflows, i
 
 ## Content
 
-This textbook is organized into five parts, with each part containing chapters. Code for all workflows can be found in this GEE [repository](https://code.earthengine.google.com/?accept_repo=users/calekochenour/textbook-activities). The chapter numbers in this textbook match the code in GEE (e.g., Chapter 7: Qualitative Change Detection in the textbook maps to the chapter07-qualitative-change-detection script in GEE).
+This textbook is organized into six parts, with each part containing chapters. Code for all workflows can be found in this GEE [repository](https://code.earthengine.google.com/?accept_repo=users/calekochenour/textbook-activities). The chapter numbers in this textbook match the code in GEE (e.g., Chapter 7: Qualitative Change Detection in the textbook maps to the chapter07-qualitative-change-detection script in GEE).
 
 ### Part 1: Data Catalog
 
