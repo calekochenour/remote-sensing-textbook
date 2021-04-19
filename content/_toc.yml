@@ -31,22 +31,22 @@
 # Intermedite workflows
 - part: Intermediate Workflows
   chapters:
-  - file: 04-intermediate/chapter15-raster-reprojection-resampling
-  - file: 04-intermediate/chapter16-raster-reduce-resolution
-  - file: 04-intermediate/chapter17-spectral-indices-math
-  - file: 04-intermediate/chapter18-image-region-statistics
-  - file: 04-intermediate/chapter19-image-statistics-module
-  - file: 04-intermediate/chapter20-data-correlation
-  - file: 04-intermediate/chapter21-arrays-tasseled-cap
-  - file: 04-intermediate/chapter22-data-conversion-export
-  - file: 04-intermediate/chapter23-image-collection-export
+  - file: 04-intermediate/chapter16-raster-reprojection-resampling
+  - file: 04-intermediate/chapter17-raster-reduce-resolution
+  - file: 04-intermediate/chapter18-spectral-indices-math
+  - file: 04-intermediate/chapter19-image-region-statistics
+  - file: 04-intermediate/chapter20-image-statistics-module
+  - file: 04-intermediate/chapter21-data-correlation
+  - file: 04-intermediate/chapter22-arrays-tasseled-cap
+  - file: 04-intermediate/chapter23-data-conversion-export
+  - file: 04-intermediate/chapter24-image-collection-export
 
 # Advanced workflows
 - part: Advanced Workflows
   chapters:
-  - file: 05-advanced/chapter24-agriculture-boundaries-vaalharts
-  - file: 05-advanced/chapter25-rice-fields-columbia
-  - file: 05-advanced/chapter26-alpine-treeline-colorado
+  - file: 05-advanced/chapter25-agriculture-boundaries-vaalharts
+  - file: 05-advanced/chapter26-rice-fields-columbia
+  - file: 05-advanced/chapter27-alpine-treeline-colorado
 
 # Appendices
 - part: Appendices
