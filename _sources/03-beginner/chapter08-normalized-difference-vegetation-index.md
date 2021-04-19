@@ -1,5 +1,7 @@
 # Chapter 8: Normalized Difference Vegetation Index
 
+This chapter provides a workflow to demonstrate the Normalized Difference Vegetation Index (NDVI) for snow-on and snow-off conditions in Rocky Mountain National Park, Colorado, United States. The full GEE code can be found [here](https://code.earthengine.google.com/c599d3b27747cf821aa9ec6fed276317).
+
 ## Background
 
 We can exploit channels in portions of the electromagnetic spectrum to create indices that we can use to enhance our understanding of the status of the land surface. The most popular of of these, the Normalized Difference Vegetation Index (NDVI), uses the strong contrast between the red and the near-infrared for healthy green vegetation. This index is expressed as:

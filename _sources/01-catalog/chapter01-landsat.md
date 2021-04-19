@@ -1,5 +1,7 @@
 # Chapter 1: Landsat Collections
 
+This chapter provides an overview of the Landsat collections and relevant quality information necessary for using the imagery.
+
 [Landsat](https://developers.google.com/earth-engine/datasets/catalog/landsat) platform.
 
 Landsat processing [tiers](https://developers.google.com/earth-engine/guides/landsat#landsat-collection-structure).
@@ -126,7 +128,7 @@ Section 6 of the Landsat 8 Collection 1 (C1) Land Surface Reflectance Code (LaSR
 
 ```
 
-#### Surface Reflectance Aerosol Band 
+#### Surface Reflectance Aerosol Band
 
 ```{table} Landsat 8 Internal Surface Reflectance Aerosol Quality Assessment Bit Index
 :name: table:landsat8-aerosol-index
@@ -243,7 +245,7 @@ Section 5 of the Landsat 4-7 Collection 1 (C1) Surface Reflectance  Landsat Ecos
 | DDV | 1, 9 |
 | Cloud | 2, 34 |
 | Cloud Shadow| 4, 12, 20, 36, 52 |
-| Adjacent to Cloud | 8, 12, 24, 40, 56 | 
+| Adjacent to Cloud | 8, 12, 24, 40, 56 |
 | Snow | 16, 20, 24, 48, 52, 56 |
 | Water | 32, 34, 36, 40, 48, 52, 56 |
 
@@ -282,7 +284,7 @@ Section 5 of the Landsat 4-7 Collection 1 (C1) Surface Reflectance  Landsat Ecos
 | Fill | 1 |
 | Clear | 66, 130 |
 | Water | 68, 132 |
-| Cloud Shadow | 72, 136 | 
+| Cloud Shadow | 72, 136 |
 | Snow/Ice | 80, 112, 144, 176 |
 | Cloud | 96, 112, 160, 176, 224 |
 | Low Confidence Cloud | 66, 68, 72, 80, 96, 112 |

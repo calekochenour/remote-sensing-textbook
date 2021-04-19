@@ -1,5 +1,7 @@
 # Chapter 13: Data Quality Bitmasks
 
+This chapter provides a workflow to explore quality flag bitmasks for imagery in Rocky Mountain National Park, Colorado, United States. The full GEE code can be found [here](https://code.earthengine.google.com/3abc12c776843589171290807d35c5c2).
+
 Code for functions was adapted from this [Geographic Information Systems Stack Exchange](https://gis.stackexchange.com/questions/292835/using-cloud-confidence-to-create-cloud-mask-from-landsat-8-bqa) post and this [Open Geo Blog](https://mygeoblog.com/2019/07/25/working-with-bitmasks/) post.
 
 ## Functions
