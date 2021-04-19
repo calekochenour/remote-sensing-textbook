@@ -1,5 +1,7 @@
 # Chapter 3: MODIS Collections
 
+This chapter provides an overview of the MODIS collections and products.
+
 [MODIS](https://developers.google.com/earth-engine/datasets/catalog/modis) collections.
 
 ## Daily Products

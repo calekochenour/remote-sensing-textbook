@@ -1,5 +1,7 @@
 # Chapter 5: Preprocessing Tasks
 
+This chapter provides an introduction to imagery preprocessing tasks.
+
 ## Find Imagery
 
 Criteria to filter collections on include, but are not limited to:

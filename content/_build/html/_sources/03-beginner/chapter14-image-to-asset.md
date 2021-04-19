@@ -1,5 +1,7 @@
 # Chapter 14: Image to Asset
 
+This chapter provides a workflow to export an image to a GEE Asset. The full GEE code can be found [here](https://code.earthengine.google.com/4f4360b56f14321b1bd7f7b96417bb87).
+
 ## Data Acquisition & Preprocessing
 
 ```{code-block} javascript

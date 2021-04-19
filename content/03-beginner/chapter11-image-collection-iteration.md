@@ -1,5 +1,7 @@
 # Chapter 11: Image Collection Iteration
 
+This chapter provides a workflow to iterate through an image collection and calculate the cumulative NDVI difference for imagery in Rocky Mountain National Park, Colorado, United States. The full GEE code can be found [here](https://code.earthengine.google.com/1ee1873e73c10cf12223c94260428b0f).
+
 ## Functions
 
 ```{code-block} javascript

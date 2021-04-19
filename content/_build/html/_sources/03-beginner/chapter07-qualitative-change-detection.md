@@ -1,5 +1,7 @@
 # Chapter 7: Qualitative Change Detection
 
+This chapter provides a workflow to observe qualitative change from snow-on to snow-off conditions in Rocky Mountain National Park, Colorado, United States. The full GEE code can be found [here](https://code.earthengine.google.com/49b6f4d7c06e2b53bd0e669c278f61be).
+
 ## Background
 
 One of the central values of long-term remote sensing programs is the opportunity to study the changing nature of the land surface. With nearly 9 billion people on the planet, we have a wide array of opportunities to study man-induced change as well as change related to natural land surface processes. The nearly 40-year record of the Landsat program and the growing collections from the National Aeronautics and Space Administration (NASA) Earth Observing System (EOS) Moderate Resolution Imaging Spectroradiometer (MODIS) platform and the European Space Agency (ESA) Sentinel platforms provide great opportunities to discover where long-term change is occurring on Earth's surface.

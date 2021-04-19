@@ -1,5 +1,7 @@
 # Chapter 10: Image Mosaics
 
+This chapter provides a workflow to create a mosaic image from water features and imagery in Vermont, United States. The full GEE code can be found [here](https://code.earthengine.google.com/3655a5a58338076ce05bacd0cab2cf21).
+
 ## Data Acquisition & Preprocessing
 
 ```{code-block} javascript

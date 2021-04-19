@@ -1,5 +1,7 @@
 # Chapter 6: Tips and Tricks
 
+This chapter provides useful (and possibly lesser known) tips and tricks.
+
 GEE tasks still process when the computer is shut down (processing continues in the cloud). This means the user does not have to supervise the task processing while ongoing.
 
 GEE methods to get metadata properties provide a useful way to learn about an image. These methods may also provide ideas for which properties to use for image collection reduction and filtering.

@@ -16,28 +16,31 @@ Our goal with this online "textbook" resource is to provide example workflows, i
 
 ## Content
 
-This textbook is organized into five parts, with each part containing chapters.
+This textbook is organized into five parts, with each part containing chapters. Code for all workflows can be found in this GEE [repository](https://code.earthengine.google.com/?accept_repo=users/calekochenour/textbook-activities). The chapter numbers in this textbook match the code in GEE (e.g., Chapter 7: Qualitative Change Detection in the textbook maps to the chapter07-qualitative-change-detection script in GEE).
 
 ### Part 1: Data Catalog
 
-Part 1 introduces the datasets in the [Earth Engine Data Catalog](https://developers.google.com/earth-engine/datasets). Earth Engine organizes data into the following categories:
+Part 1 introduces the imagery collections in the [Earth Engine Data Catalog](https://developers.google.com/earth-engine/datasets). Part 1 contains Chapters 1-4.
 
-* Climate and Weather;
-* Imagery; and,
-* Geophysical.
+{doc}`Chapter 1 <./01-catalog/chapter01-landsat>` provides an overview of the Landsat collections and relevant quality information necessary for using the imagery.
 
-The chapters in Part 1 explore these categories and subsequent data collections in-depth to provide information necessary for using the data in Earth Engine.
+{doc}`Chapter 2 <./01-catalog/chapter02-sentinel>` provides an overview of the Landsat collections and relevant quality information necessary for using the imagery.
+
+{doc}`Chapter 3 <./01-catalog/chapter03-modis>` provides an overview of the MODIS collections and products.
+
+{doc}`Chapter 4 <./01-catalog/chapter04-high-resolution>` provides an overview of the high-resolution collections.
 
 ### Part 2: Workflow Strategies
 
-Part 2 introduces best practices for remote sensing workflows. Topics include:
+Part 2 introduces best practices for remote sensing workflows. Part 2 contains Chapters 5-6.
 
-* Common preprocessing tasks; and,
-* GEE-specific tips and tricks.
+{doc}`Chapter 5 <./02-strategies/chapter05-preprocessing-tasks>` provides an introduction to imagery preprocessing tasks.
+
+{doc}`Chapter 6 <./02-strategies/chapter06-tips-and-tricks>` provides useful (and possibly lesser known) tips and tricks.
 
 ### Part 3: Beginner Workflows
 
-Part 3 provides introductory workflows to introduce Earth Engine functionality. Each chapter shows a few tasks and processes to familiarize the reader with the Earth Engine platform and syntax. Part 2 contains Chapters 7-14.
+Part 3 provides introductory workflows to introduce Earth Engine functionality. Each chapter shows a few tasks and processes to familiarize the reader with the Earth Engine platform and syntax. Part 3 contains Chapters 7-15.
 
 {doc}`Chapter 7 <./03-beginner/chapter07-qualitative-change-detection>` provides a workflow to observe qualitative change from snow-on to snow-off conditions in Rocky Mountain National Park, Colorado, United States.
 
@@ -53,7 +56,9 @@ Part 3 provides introductory workflows to introduce Earth Engine functionality. 
 
 {doc}`Chapter 13 <./03-beginner/chapter13-data-quality-bitmasks>` provides a workflow to explore quality flag bitmasks for imagery in Rocky Mountain National Park, Colorado, United States.
 
-{doc}`Chapter 14 <./03-beginner/chapter14-image-to-asset>` provides a workflow export an image to a GEE Asset.
+{doc}`Chapter 14 <./03-beginner/chapter14-image-to-asset>` provides a workflow to export an image to a GEE Asset.
+
+{doc}`Chapter 15 <./03-beginner/chapter15-image-band-histograms>` provides a workflow to explore image band histograms for an area near Lake Champlain and Burlington, Vermont, United States.
 
 Chapter quick reference:
 

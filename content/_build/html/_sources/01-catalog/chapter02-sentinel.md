@@ -1,5 +1,7 @@
 # Chapter 2: Sentinel Collections
 
+This chapter provides an overview of the Landsat collections and relevant quality information necessary for using the imagery.
+
 [Sentinel](https://developers.google.com/earth-engine/datasets/catalog/sentinel) platform.
 
 ## Sentinel-1
@@ -14,14 +16,14 @@ Short name: Sentinel-1 SAR GRD: C-band Synthetic Aperture Radar
 
 [Sentinel-2](https://developers.google.com/earth-engine/datasets/catalog/sentinel-2) collection.
 
-Short name: Sentinel-2 MSI: Multispectral Instrument 
+Short name: Sentinel-2 MSI: Multispectral Instrument
 
 * Sentinel-2 MSI: MultiSpectral Instrument, Level-2A
 * Sentinel-2 MSI: MultiSpectral Instrument, Level-1C
 
 ### Specifications and Quality
 
-The Sentinel-2 MSI [user guide](https://sentinel.esa.int/web/sentinel/user-guides/sentinel%202-msi), [user handbook](https://sentinel.esa.int/documents/247904/685211/Sentinel-2_User_Handbook.pdf/8869acdf-fd84-43ec-ae8c-3e80a436a16c?t=1438278087000), and [technical guide](https://sentinel.esa.int/web/sentinel/technical-guides/sentinel-2-msi) provide overview of the products and algorithms within the platform. 
+The Sentinel-2 MSI [user guide](https://sentinel.esa.int/web/sentinel/user-guides/sentinel%202-msi), [user handbook](https://sentinel.esa.int/documents/247904/685211/Sentinel-2_User_Handbook.pdf/8869acdf-fd84-43ec-ae8c-3e80a436a16c?t=1438278087000), and [technical guide](https://sentinel.esa.int/web/sentinel/technical-guides/sentinel-2-msi) provide overview of the products and algorithms within the platform.
 
 Specific to the Level-2A processing, the [Level-2 Algorithm Overview](https://sentinel.esa.int/web/sentinel/technical-guides/sentinel-2-msi/level-2a/algorithm) provides additional information about Scene Classification (SC) and Atmospheric Correction (S2A2).
 
@@ -69,7 +71,7 @@ The Sentinel-2 MSI [data quality reports (DQRs)](https://sentinel.esa.int/web/se
 |:-|:-|
 | 10 | Opaque Clouds<br>0 = No Opaque Clouds<br>1 = Opaque Clouds |
 | 11 | Cirrus Clouds<br>0 = No Cirrus Clouds<br>1 = Cirrus Clouds |
-        
+
 ```
 
 
@@ -77,7 +79,7 @@ The Sentinel-2 MSI [data quality reports (DQRs)](https://sentinel.esa.int/web/se
 
 [Sentinel-3](https://developers.google.com/earth-engine/datasets/catalog/COPERNICUS_S3_OLCI) collection.
 
-Short name: Sentinel-3 OLCI EFR: Ocean and Land Color Instrument 
+Short name: Sentinel-3 OLCI EFR: Ocean and Land Color Instrument
 
 * Sentinel-3 OLCI EFR: Ocean and Land Color Instrument Earth Observation Full Resolution
 
@@ -85,7 +87,7 @@ Short name: Sentinel-3 OLCI EFR: Ocean and Land Color Instrument
 
 [Sentinel-5P](https://developers.google.com/earth-engine/datasets/catalog/sentinel-5p) collection.
 
-Short name: Sentinel-5P TROPOMI: TROPOspheric Monitoring Instrument 
+Short name: Sentinel-5P TROPOMI: TROPOspheric Monitoring Instrument
 
 * Sentinel-5P OFFL AER AI: Offline UV Aerosol Index
 * Sentinel-5P OFFL CLOUD: Near Real-Time Cloud

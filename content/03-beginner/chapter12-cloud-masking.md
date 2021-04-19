@@ -1,5 +1,7 @@
 # Chapter 12: Cloud Masking
 
+This chapter provides a workflow to iterate through an image collection and calculate the cumulative NDVI difference for imagery in Rocky Mountain National Park, Colorado, United States. The full GEE code can be found [here](https://code.earthengine.google.com/a959016bf3d7ffeb6b2b60d009e9269d).
+
 ## Functions
 
 ```{code-block} javascript

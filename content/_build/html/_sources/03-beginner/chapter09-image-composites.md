@@ -1,5 +1,7 @@
 # Chapter 9: Image Composites
 
+This chapter provides a workflow to create composite images from a collection of Summer imagery in Rocky Mountain National Park, Colorado, United States. The full GEE code can be found [here](https://code.earthengine.google.com/2528a4c2c3910aa9557447174adaf33a).
+
 ## Functions
 
 ```{code-block} javascript

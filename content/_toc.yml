@@ -26,6 +26,7 @@
     - file: 03-beginner/chapter12-cloud-masking
     - file: 03-beginner/chapter13-data-quality-bitmasks
     - file: 03-beginner/chapter14-image-to-asset
+    - file: 03-beginner/chapter15-image-band-histograms
 
 # Intermedite workflows
 - part: Intermediate Workflows
