@@ -1,6 +1,6 @@
-# Chapter 24: Edge Detection of Agricultural Fields
+# Chapter 25: Agricultural Field Edge Detection
 
-Partial implementation of Watkins and van Niekerk {cite}`WATKINS2019294`.
+This chapter provides a partial implementation of Watkins and van Niekerk {cite}`WATKINS2019294` to delineate agriculture field boundaries in the Vaalharts Irrigation Scheme, South Africa. The full GEE code can be found [here](https://code.earthengine.google.com/a7bc95e9d2dcc0fd9f5695fd075d4068).
 
 ## Functions
 

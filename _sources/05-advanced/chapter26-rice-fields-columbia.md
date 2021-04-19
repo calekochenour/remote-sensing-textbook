@@ -1,4 +1,6 @@
-# Chapter 25: Rice Fields in Columbia
+# Chapter 26: Rice Fields in Columbia
+
+This chapter provides a workflow to identify rice fields based on change detection in the Tolima Department, Columbia. The full GEE code can be found [here](https://code.earthengine.google.com/cd1d3551d72d8969b3d8c453fe80f181).
 
 ## Functions
 

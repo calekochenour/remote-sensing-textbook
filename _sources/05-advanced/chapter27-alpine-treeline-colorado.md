@@ -1,6 +1,6 @@
-# Chapter 26: Alpine Treeline in Colorado
+# Chapter 27: Alpine Treeline in Colorado
 
-Partial implementation of Wei, Karger, and Wilson {cite}`WEI2020111672`, applied to Rocky Mountain National Park, Colorado.
+This chapter provides a partial implementation of Wei, Karger, and Wilson {cite}`WEI2020111672` (applied to Rocky Mountain National Park, Colorado, United States) to map the alpine treeline ecotone. The full GEE code can be found [here](https://code.earthengine.google.com/2478e2acf3310045c75e4af920a4ba20).
 
 ## Functions
 
