@@ -86,12 +86,19 @@ Part 4 provides workflows that piece together tasks and processes from Part 2 in
 
 Part 5 provides full scientific workflows in Earth Engine that have been re-created from existing, peer-reviewed papers and/or ongoing remote sensing projects. One of the goals of this book is to promote and provide open and reproducible science workflows, and this chapter is dedicated to creating this type of workflow within the Earth Engine platform. Part 5 contains Chapters 25-27.
 
+{doc}`Chapter 25 <./05-advanced/chapter25-agriculture-boundaries-vaalharts>` provides a partial implementation of Watkins and van Niekerk {cite}`WATKINS2019294` to delineate agriculture field boundaries in the Vaalharts Irrigation Scheme, South Africa.
+
+{doc}`Chapter 26 <./05-advanced/chapter26-rice-fields-columbia>` provides a workflow to identify rice fields based on change detection in the Tolima Department, Columbia.
+
+{doc}`Chapter 27 <./05-advanced/chapter25-agriculture-boundaries-vaalharts>` provides a partial implementation of Wei, Karger, and Wilson {cite}`WEI2020111672` (applied to Rocky Mountain National Park, Colorado, United States) to map the alpine treeline ecotone.
+
 ### Part 6: Appendices
 
 Part 6 provides supplemental information in the form of appendices. Current appendices include: Part 6 contains Appendices A-B.
 
-* Acronym List; and,
-* Bibliography.
+{doc}`Appendix A <./06-appendices/appendix-a-acronym-list>` provides a list of acronyms used in this textbook.
+
+{doc}`Appendix B <./06-appendices/appendix-b-bibliography>` provides a list of citations used in this textbook.
 
 ## Prerequisites
 

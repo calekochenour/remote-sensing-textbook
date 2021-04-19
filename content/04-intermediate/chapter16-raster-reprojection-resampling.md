@@ -1,6 +1,6 @@
 # Chapter 16: Raster Reprojection and Resampling
 
-This chapter provides a workflow to reproject and resample imagery for an area near Equinox Mountain, Manchester, Vermont. The full GEE code can be found [here](https://code.earthengine.google.com/d759f759e511223324d6f4b9879807d9).
+This chapter provides a workflow to reproject and resample imagery for an area near Manchester, Vermont, United States. The full GEE code can be found [here](https://code.earthengine.google.com/d759f759e511223324d6f4b9879807d9).
 
 GEE resources for [projections](https://developers.google.com/earth-engine/guides/projections) and [scale](https://developers.google.com/earth-engine/guides/scale).
 
